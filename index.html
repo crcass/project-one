@@ -11,7 +11,41 @@
   </head>
   <body>
 
-    <div id="food"></div>
+    <div id="food">
+      
+      <form>
+        <label for="user-city">City</label>
+        <input type="text" id="user-city">
+        <label for="user-food">Food</label>
+        <input type="text" id="user-food">
+        <button class="btn btn-primary"type="submit" id="city-btn">Submit</button>
+      </form>
+
+      <div class="row" id="food-display">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">
+              Best Reviewed
+            </div>
+              <div class="card-body">
+              <h5 class="card-title" id="z-restaurant"></h5>
+              <p class="card-text" id="z-address"></p>
+            </div>
+          </div> 
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">
+              Loved by Locals
+            </div>
+              <div class="card-body">
+              <h5 class="card-title" id="y-restaurant"></h5>
+              <p class="card-text" id="y-address"></p>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
 	<div id="events"></div>
 	<div id="health"></div>
 	<div id="maps"></div>
