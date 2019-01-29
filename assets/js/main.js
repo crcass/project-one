@@ -54,7 +54,7 @@ function ticketMasterData() {
     
     var userInput = $("#user-event").val() || "music";
     var location = $("#user-city").val() || "75206";
-    var gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&postalCode=" + location + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
+    var gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&city=" + location + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
 
     fetch(gueryTicketMasterURL)
         .then(function (response) {
@@ -103,8 +103,7 @@ $("#city-btn").on("click", function (event) {
     event.preventDefault();
     ticketMasterData()
     eventBriteData();
-
-
+    $('#user-event').val('');
 });
 
 
