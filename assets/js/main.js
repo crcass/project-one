@@ -70,7 +70,7 @@ function ticketMasterData() {
 // Function to dispalay the Ticketmaster data information 
 function displayEventData(eventData) {
     console.log(eventData);
-    var randomEventTM = Math.floor(Math.random() * 10)
+    var randomEventTM = Math.floor(Math.random() * 1)
     console.log(randomEventTM);
     var topEventTicketMaster = eventData._embedded.events[randomEventTM];
     console.log(topEventTicketMaster)
@@ -81,13 +81,15 @@ function displayEventData(eventData) {
     var EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
     // var eventLocalTM = $("<p>").text(topEventTicketMaster.dates.start.localTime);
     // var eventLogoTM = $("<img>").attr('src', topEventTicketMaster.images[0].url);
-    var TMLink = topEventTicketMaster.url;
+    // var TMLink = topEventTicketMaster.url;
     // var eventLinkTMDiv = $("<a>").attr("href", TMLink).text("Link")
     console.log(TMLink);
 
 
     $("#tm-name").text(eventNameTM);
-    $("#tm-info").text(EventDescriptionTM);
+    $("#tm-date").text(EventDescriptionTM);
+    //  $("#tm-link").text(eventLinkTMDiv);
+
     // $("#tm-address").attr("href", TMLink).text("Link")
 
 //    newEventTM.append(eventNameTM );
