@@ -1,25 +1,90 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Hello, world!</title>
+</head>
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
+<body>
+  <form>
+    <label for="user-city">City</label>
+    <input type="text" id="user-city">
+    <label for="user-food">Food</label>
+    <input type="text" id="user-food">
+    <label for="user-event">Music</label>
+    <input type="text" id="user-event">
+    <button class="btn btn-primary" type="submit" id="city-btn">Submit</button>
+  </form>
+  <div class="row" id="food-display">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          Best Reviewed
+        </div>
+        <img src="" class="card-img-top" alt="Image Provided by Zomato" id="z-image">
+        <div class="card-body">
+          <h5 class="card-title" id="z-restaurant"></h5>
+          <p class="card-text" id="z-address"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          Loved by Locals
+        </div>
+        <img src="" class="card-img-top" alt="Image Provided by Yelp" id="y-image">
+        <div class="card-body">
+          <h5 class="card-title" id="y-restaurant"></h5>
+          <p class="card-text" id="y-address"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> 
+  <div id="events"></div>
+  <div class="row" id="tm-event-display">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          Large Venue
+        </div>
+        <img src="" class="card-img-top" alt="" id="tm-image">
+        <div class="card-body">
+          <h5 class="card-title" id="tm-name"></h5>
+          <p class="card-text" id="tm-info"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          Small Venue
+        </div>
+        <img src="" class="card-img-top" alt="" id="eb-image">
+        <div class="card-body">
+          <h5 class="card-title" id="eb-name"></h5>
+          <p class="card-text" id="eb-link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="health"></div>
+  <div id="maps"></div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
 
-    <div id="food"></div>
-	<div id="events"></div>
-	<div id="health"></div>
-	<div id="maps"></div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
-    <script src="./assets/js/main.js"></script>
-  </body>
 </html>
