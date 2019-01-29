@@ -6,9 +6,13 @@ let zRestName;
 
 let zRestAddress;
 
+// let zRestImage;
+
 let yRestName;
 
 let yRestAddress;
+
+// let yRestImage;
 
 let displayZomato = (() => {
   $('#z-restaurant').text(zRestName);
@@ -18,6 +22,7 @@ let displayZomato = (() => {
 let displayYelpFood = (() => {
   $('#y-restaurant').text(yRestName);
   $('#y-address').text(yRestAddress);
+  // $('#y-image').attr('src', yRestImage);
 })
 
 
@@ -83,6 +88,7 @@ $('#city-btn').on('click', (e) => {
     }
     yRestName = response.businesses[foodIndex].name;
     yRestAddress = addressArray.join(' ');
+    // yRestImage = response.businesses[foodIndex].image_url;
     console.log(`Yelp's best ${userFood} in ${userCity}: ${yRestName}, ${yRestAddress}`);
     displayYelpFood();
   })
