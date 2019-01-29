@@ -28,7 +28,7 @@ function processData(data) {
 
     // $("#eb-image").attr("src", eventLogoEB);
    
-    $("#eb-link").text(EventDescriptionEB);
+    $("#eb-date").text(EventDescriptionEB);
     $("#eb-name").text(eventNameEB);
     console.log(EventDescriptionEB);
 
@@ -83,7 +83,7 @@ function displayEventData(eventData) {
     // var eventLogoTM = $("<img>").attr('src', topEventTicketMaster.images[0].url);
     // var TMLink = topEventTicketMaster.url;
     // var eventLinkTMDiv = $("<a>").attr("href", TMLink).text("Link")
-    console.log(TMLink);
+    // console.log(TMLink);
 
 
     $("#tm-name").text(eventNameTM);
