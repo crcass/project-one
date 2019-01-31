@@ -10,105 +10,160 @@
 </head>
 
 <body>
-  
+
     <div class="container">
-      <form>
-          <label for="user-city">City</label>
-          <input type="text" id="user-city">
-          <label for="user-food">Food</label>
-          <input type="text" id="user-food">
-          <label for="user-event">Music</label>
-          <input type="text" id="user-event">
-          <button class="btn btn-primary" type="submit" id="city-btn">Submit</button>
-      </form>
-    </div>
 
-    <div class="container" id="food">
-        <h2>Food</h2>
-        <div class="row" id="food-display">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        Best Reviewed
-                    </div>
-                    <div class=img-div>
-                        <img src="" class="card-img-top" alt="Image Provided by Zomato" id="z-image">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="z-restaurant"></h5>
-                        <p class="card-text" id="z-address"></p>
+        <!-- Form for user intput -->
+
+        <div class="row">
+            <form>
+                <label for="user-city">City</label>
+                <input type="text" id="user-city">
+                <label for="user-food">Food</label>
+                <input type="text" id="user-food">
+                <label for="user-event">Music</label>
+                <input type="text" id="user-event">
+                <button class="btn btn-primary" type="submit" id="city-btn">Submit</button>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+
+                <!-- Food Info Display -->
+
+                <div class="container" id="food">
+                    <h2>Food</h2>
+                    <div class="row" id="food-display">
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Best Reviewed
+                                </div>
+                                <div class=img-div>
+                                    <img src="" class="card-img-top" alt="" id="z-image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id="z-restaurant"></h5>
+                                    <p class="card-text" id="z-address"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Loved by Locals
+                                </div>
+                                <div class="img-div">
+                                    <img src="" class="card-img-top" alt="" id="y-image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id="y-restaurant"></h5>
+                                    <p class="card-text" id="y-address"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Event Info Display -->
+
+                <div class="container" id="events">
+                    <h2>Events</h2>
+                    <div class="row" id="tm-event-display">
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Large Venue
+                                </div>
+                                <div class="img-div">
+                                    <img src="" class="card-img-top" alt="" id="tm-image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id="tm-name"></h5>
+                                    <p class="card-text" id="tm-info"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Small Venue
+                                </div>
+                                <div class="img-div">
+                                    <img src="" class="card-img-top" alt="" id="eb-image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id="eb-name"></h5>
+                                    <p class="card-text" id="eb-link"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Info Display -->
+
+                <div id="health">
+                    <div class="container" id="events">
+                    <h2>Exercise</h2>
+                    <div class="row" id="">
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Sort Option 1
+                                </div>
+                                <div class="img-div">
+                                    <img src="" class="card-img-top" alt="" id="">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id=""></h5>
+                                    <p class="card-text" id=""></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card choice">
+                                <div class="card-header">
+                                    Sort Option 2
+                                </div>
+                                <div class="img-div">
+                                    <img src="" class="card-img-top" alt="" id="">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id=""></h5>
+                                    <p class="card-text" id=""></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="col-sm-6">
+
+            <!-- Map Display -->
+
+            <div class=" col-sm-4" id="maps">
+                <h2>Map</h2>
                 <div class="card">
-                    <div class="card-header">
-                        Loved by Locals
+                    <div class="card-header" id="city-name">
+                        City Name
                     </div>
                     <div class="img-div">
-                            <img src="" class="card-img-top" alt="Image Provided by Yelp" id="y-image">
+                        <img src="" class="card-img-top" alt="" id="">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title" id="y-restaurant"></h5>
-                        <p class="card-text" id="y-address"></p>
+                        <h5 class="card-title" id=""></h5>
+                        <p class="card-text" id=""></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container" id="events">
-        <h2>Events</h2>
-        <div class="row" id="tm-event-display">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        Large Venue
-                    </div>
-                    <div class="img-div">
-                        <img src="" class="card-img-top" alt="" id="tm-image">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="tm-name"></h5>
-                        <p class="card-text" id="tm-info"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        Small Venue
-                    </div>
-                    <div class="img-div">
-                        <img src="" class="card-img-top" alt="" id="eb-image">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="eb-name"></h5>
-                        <p class="card-text" id="eb-link"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-  </div>
-  <div id="health"></div>
-  <div id="maps"></div>
 
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-header">
-        User Pick
-      </div>
-      <img src="" class="card-img-top" alt="" id="user-image">
-      <div class="card-body">
-        <h5 class="card-title" id="user-event-name"></h5>
-        <p class="card-text" id="user-event-info"></p>
-        <p class="card-text" id="user-event-link"><a href="" id="usereventlink">Event Link</a></p>
-      </div>
-    </div>
-    <div id="health"></div>
-    <div id="maps"></div>
+    <!-- Scripts -->
 
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

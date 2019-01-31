@@ -1,3 +1,8 @@
+
+// global variables
+let zomatoCoords = [];
+let yelpFoodCoords = [];
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
@@ -9,19 +14,14 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
-
 let database = firebase.database();
 let EventBriteLocationArray = [];
 let TicketMasterLocationArray = [];
-// let zRestImage;
-// let yRestImage;
-
 
 // food search & parse function - zomato
 let zomatoFood = (() => {
   let zomatoFoodArray = [];
-
+  
   // Zomato API call to convert user city to Zomato ID
   let userCity = $('#user-city').val();
   let userFood = $('#user-food').val();
@@ -34,7 +34,7 @@ let zomatoFood = (() => {
     // Zomato API call to find restaurants that match user preference
     let zomatoSearch = `https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${userFood}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
     $.ajax(zomatoSearch).done((response) => {
-      console.log(response);
+      // console.log(response);
       response.restaurants.forEach((element) => {
         zomatoFoodArray.push(element.restaurant.user_rating.aggregate_rating);
       })
@@ -48,13 +48,16 @@ let zomatoFood = (() => {
       let zRestName = response.restaurants[foodIndex].restaurant.name;
       let zRestAddress = response.restaurants[foodIndex].restaurant.location.address;
       let zRestId = response.restaurants[foodIndex].restaurant.R.res_id;
+      zomatoCoords.push(Number(response.restaurants[foodIndex].restaurant.location.latitude));
+      zomatoCoords.push(Number(response.restaurants[foodIndex].restaurant.location.longitude));
+      // console.log(zomatoCoords);
 
       // Zomato API call to find image for restaurant
       let zomatoImageSearch = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${zRestId}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
       $.ajax(zomatoImageSearch).done((response) => {
-        console.log(response);
-        console.log(response.thumb.indexOf('?'));
-        console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
+        // console.log(response);
+        // console.log(response.thumb.indexOf('?'));
+        // console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
         zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
         $('#z-image').attr('src', zRestImage);
       })
@@ -68,7 +71,7 @@ let zomatoFood = (() => {
 // food search & parse function - yelp
 let yelpFood = (() => {
   let yelpFoodArray = [];
-
+  
   // Yelp API call to find restaurants that match user preference
   let userCity = $('#user-city').val();
   let userFood = $('#user-food').val();
@@ -80,7 +83,7 @@ let yelpFood = (() => {
     }
   };
   $.ajax(yelpLocation).done((response) => {
-    // console.log(response);
+    console.log(response);
     response.businesses.forEach((element) => {
       yelpFoodArray.push(element.review_count);
     })
@@ -98,6 +101,9 @@ let yelpFood = (() => {
     let yRestName = response.businesses[foodIndex].name;
     let yRestAddress = addressArray.join(' ');
     let yRestImage = response.businesses[foodIndex].image_url;
+    yelpFoodCoords.push(response.businesses[foodIndex].coordinates.latitude);
+    yelpFoodCoords.push(response.businesses[foodIndex].coordinates.longitude);
+    // console.log(yelpFoodCoords);
     console.log(`Yelp's best ${userFood} in ${userCity}: ${yRestName}, ${yRestAddress}`);
     $('#y-restaurant').text(yRestName);
     $('#y-address').text(yRestAddress);
