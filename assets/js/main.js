@@ -317,6 +317,6 @@ let savedUserChoiceTM = () => {
     )
 }
 
-let removeUserChoice = () => {
+// let removeUserChoice = () => {
 
-}
+// };
