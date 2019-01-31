@@ -18,6 +18,8 @@ let yelpFoodCoords = [];
 
 let yelpFoodData = {};
 let zomatoFoodData = {};
+let ticketMasterFireBaseData = {};
+let eventBriteFireBaseData = {};
 
 // food search & parse function - zomato
 let zomatoFood = (() => {
@@ -184,14 +186,13 @@ function processData(data) {
     })
 
 
-    let eventBriteFireBaseData = {
+    eventBriteFireBaseData = {
         ebName: eventNameEB,
         ebDiscription: EventDescriptionEB,
         ebID: eventBriteLat,
         ebLink: eventBriteLink
     }
 
-    database.ref().push(eventBriteFireBaseData);
 }
 
 //ticketMaster api call///////////////
@@ -249,14 +250,13 @@ function displayEventData(eventData) {
 
 
 
-    let ticketMasterFireBaseData = {
+    ticketMasterFireBaseData = {
         tmName: eventNameTM,
         tmDiscription: EventDescriptionTM,
         tmLat: ticketMasterLat,
         tmLon: ticketMasterLon
     }
 
-    database.ref().push(ticketMasterFireBaseData);
 }
 
 
@@ -351,6 +351,15 @@ $('#y-food-card').on('click', function (e) {
   e.preventDefault();
     database.ref(`/user/${userName}/food`).set(yelpFoodData);
 });
+
+$('#tm-card').on('click', function (e){
+    e.preventDefault();
+    database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
+})
+$('#eb-card').on('click', function (e){
+    e.preventDefault();
+    database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
+})
 
 $('#name-btn').on('click', (e) => {
   e.preventDefault();
