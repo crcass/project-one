@@ -1,6 +1,22 @@
+
 // global variables
 let zomatoCoords = [];
 let yelpFoodCoords = [];
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
+    authDomain: "wknder-fad8c.firebaseapp.com",
+    databaseURL: "https://wknder-fad8c.firebaseio.com",
+    projectId: "wknder-fad8c",
+    storageBucket: "wknder-fad8c.appspot.com",
+    messagingSenderId: "478987146878"
+};
+firebase.initializeApp(config);
+
+let database = firebase.database();
+let EventBriteLocationArray = [];
+let TicketMasterLocationArray = [];
 
 // food search & parse function - zomato
 let zomatoFood = (() => {
@@ -98,11 +114,17 @@ let yelpFood = (() => {
 //function calls the eventBrite API 
 function eventBriteData() {
 
-    var userInput = $("#user-event").val() || "music";
-    var location = $("#user-city").val() || "75206";
+    let userInput = $("#user-event").val() || "music";
+    let location = $("#user-city").val() || "75206";
+    let dateTime = new Date(startDate);
+    let newDateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+    var startDate = $("#start-date").val();
+    // var endDate = $("#end-date").val() || "2019-01-31";
     console.log(userInput);
 
     var queryURL = "https://www.eventbriteapi.com/v3/events/search/?q=" + userInput + "&location.address=" + location + "&token=D6XUTCDEZDOKRNBW4HNT";
+
+    https://www.eventbriteapi.com//v3/events/search/?q=" + userInput + "&location.address=" + location + "start_date.range_start=" + newDateTime + "&token=D6XUTCDEZDOKRNBW4HNT
     fetch(queryURL)
         .then(function (response) {
             return response.json();
@@ -113,87 +135,164 @@ function eventBriteData() {
 
 //Displaying the EventBrite information 
 function processData(data) {
-    var randomEventEB = Math.floor(Math.random() * 10)
-    console.log(randomEventEB);
-    var topEventEB = data.events[randomEventEB];
+    let randomEventEB = Math.floor(Math.random() * 10)
+    let topEventEB = data.events[randomEventEB];
+    // console.log(randomEventEB);
     console.log(topEventEB)
 
-    var EventDescriptionEB = topEventEB.description.text;
-    var eventNameEB = topEventEB.name.text;
+    let EventDescriptionEB = topEventEB.description.text;
+    let eventNameEB = topEventEB.name.text;
+    let eventBriteLat = topEventEB.venue_id;
+    let eventBriteLink = topEventEB.url;
+    EventBriteLocationArray.push(eventBriteLat);
+    // console.log(eventBriteLink);
+    // console.log(eventBriteLat);
+    // console.log(EventBriteLocationArray);
+
     //var eventLogoEB =  topEventEB.logo.original.url;
 
     // $("#eb-image").attr("src", eventLogoEB);
-   
-    $("#eb-link").text(EventDescriptionEB);
+
+    $("#eb-info").text(EventDescriptionEB);
     $("#eb-name").text(eventNameEB);
     console.log(EventDescriptionEB);
 
+    $("#eb-link").on("click", function () {
+        $("#eblink").attr("href", eventBriteLink);
+    })
 
-    // $("#eb-name").text(eventBriteData);
-    // var newEventEB = $("<div>");
-    // var eventNameEB = $("<p>").text(topEventEB.name.text);
-    // var eventLocalEB = $("<p>").text(topEventEB.end.local);
 
-    // newEventEB.append(eventNameEB);
-    // newEventEB.append(eventLocalEB);
-    // newEventEB.append(EventDescriptionEB);
-    // newEventEB.append(eventLogoEB);
-    // $("#events").append(newEventEB);
+    let eventBriteFireBaseData = {
+        ebName: eventNameEB,
+        ebDiscription: EventDescriptionEB,
+        ebID: eventBriteLat,
+        ebLink: eventBriteLink
+    }
 
+    database.ref().push(eventBriteFireBaseData);
 }
 
-//ticketMaster api call
+//ticketMaster api call///////////////
 function ticketMasterData() {
     //Need to figure out how to call the dates within the API.
     // var startDate = $("#start-date").val() || "2019-01-29";
     // var endDate = $("#end-date").val() || "2019-01-31";
-    
-    var userInput = $("#user-event").val() || "music";
-    var location = $("#user-city").val() || "75206";
-    var gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&city=" + location + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
+
+    let userInput = $("#user-event").val() || "music";
+    let location = $("#user-city").val() || "75206";
+    let gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&city=" + location + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
 
     fetch(gueryTicketMasterURL)
         .then(function (response) {
-            console.log(response);
+            // console.log(response);
             return response.json();
         }).then(function (myJsonTM) {
-            console.log(myJsonTM);
+            //console.log(myJsonTM);
             displayEventData(myJsonTM);
-
         });
 }
 
 // Function to dispalay the Ticketmaster data information 
 function displayEventData(eventData) {
+    let randomEventTM = Math.floor(Math.random() * 1)
+    let topEventTicketMaster = eventData._embedded.events[randomEventTM];
+    let ticketMasterLat = topEventTicketMaster._embedded.venues[0].location.latitude;
+    let ticketMasterLon = topEventTicketMaster._embedded.venues[0].location.longitude;
+    TicketMasterLocationArray.push(ticketMasterLat, ticketMasterLon);
+
     console.log(eventData);
-    var randomEventTM = Math.floor(Math.random() * 10)
-    console.log(randomEventTM);
-    var topEventTicketMaster = eventData._embedded.events[randomEventTM];
-    console.log(topEventTicketMaster)
+    // console.log(randomEventTM);
+    // console.log(ticketMasterLat);
+    // console.log(ticketMasterLon);
+    // console.log(TicketMasterLocationArray);
+    // console.log(topEventTicketMaster)
 
-    var newEventTM = $("<div>");
-    var eventNameTM = topEventTicketMaster.name;
-    console.log(topEventTicketMaster.name);
-    var EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
-    // var eventLocalTM = $("<p>").text(topEventTicketMaster.dates.start.localTime);
-    // var eventLogoTM = $("<img>").attr('src', topEventTicketMaster.images[0].url);
-    var TMLink = topEventTicketMaster.url;
-    // var eventLinkTMDiv = $("<a>").attr("href", TMLink).text("Link")
-    console.log(TMLink);
 
+    let tmLink = topEventTicketMaster.url
+    let eventNameTM = topEventTicketMaster.name;
+    let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
+    // console.log(tmLink);
+    // console.log(topEventTicketMaster.name);
 
     $("#tm-name").text(eventNameTM);
     $("#tm-info").text(EventDescriptionTM);
-    // $("#tm-address").attr("href", TMLink).text("Link")
 
-//    newEventTM.append(eventNameTM );
-//     newEventTM.append(eventLocalTM);
-//     newEventTM.append(EventDescriptionTM);
-//     newEventTM.append(eventLogoTM);
-//     newEventTM.append(eventLinkTMDiv);
-//     $("#events").append(newEventTM);
+    $("#tm-link").on("click", function () {
+        $("#tmlink").attr("href", tmLink);
+
+    })
+
+
+
+    let ticketMasterFireBaseData = {
+        tmName: eventNameTM,
+        tmDiscription: EventDescriptionTM,
+        tmLat: ticketMasterLat,
+        tmLon: ticketMasterLon
+    }
+
+    database.ref().push(ticketMasterFireBaseData);
 }
 
+
+//////Weather api//////////////////////
+
+
+let getCurrentWeather = (event) => {
+    let userInput = $("#user-city").val();
+    let weatherKey = '75db64d1c63b2811dc0f6b1eaae6a7bd';
+    let weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&APPID=' + weatherKey;
+    fetch(weatherUrl)
+        .then(response => {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(JSON.stringify(myJson));
+            displayInfo(myJson)
+            weatherData = myJson;
+        })
+
+        .catch(function (err) {
+            // console.log()
+        });
+}
+
+let displayInfo = (response) => {
+
+    let weatherCityName = response.name;
+    let weatherCityTemp = temperatureConversion(response.main.temp);
+    let weatherCityWind = response.wind.speed;
+
+    let newRow = $("<tr>").append(
+        $("<td>").text('Location: ' + weatherCityName + "  |  "),
+        $("<td>").text('Current Temperature: ' + weatherCityTemp + "  |  "),
+        $("<td>").text('Wind Speed: ' + weatherCityWind + "mph")
+    )
+
+    $("#weather-display").append(newRow);
+
+}
+
+let temperatureConversion = (num) => {
+    var kelvin = num
+    var clesius = kelvin - 273;
+    var fahrenheit = Math.round(clesius * (9 / 5) + 32);
+    return fahrenheit;
+}
+
+
+/////////Save the user data for ref////////////
+
+$("#large-venue").on("click", function (event) {
+    event.preventDefault();
+
+    if(this.classList.contains("active")){
+        this.classList.remove("active");
+        console.log("delete");
+    }else{
+        this.classList.add("active");
+        savedUserChoiceTM();
+    }
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
   e.preventDefault();
@@ -201,7 +300,29 @@ $('#city-btn').on('click', (e) => {
   yelpFood();
   ticketMasterData();
   eventBriteData();
+  getCurrentWeather();
   $('#user-city').val('');
   $('#user-food').val('');
   $('#user-event').val('');
 });
+
+
+let savedUserChoiceTM = () => {
+    database.ref().on("child_added", function (childSnapshot, ID) {
+        console.log(childSnapshot.val());
+        console.log(childSnapshot.key);
+
+        let tmUserChoiceDiscription = childSnapshot.val().tmDiscription;
+        let tmUserChoiceName = childSnapshot.val().tmName;
+        console.log(tmUserChoiceDiscription);
+
+        $("#user-event-name").text(tmUserChoiceName);
+        $("#user-event-info").text(tmUserChoiceDiscription);
+    }
+
+    )
+}
+
+let removeUserChoice = () => {
+
+}
