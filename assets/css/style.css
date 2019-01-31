@@ -1,0 +1,18 @@
+.img-div {
+	display: inline-block;
+	position: relative;
+	height: 270px;
+	overflow: hidden;
+}
+
+img {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.card-text {
+	max-height: 135px;
+	overflow: scroll;
+}
