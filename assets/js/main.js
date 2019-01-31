@@ -149,12 +149,15 @@ function processData(data) {
     // console.log(eventBriteLat);
     // console.log(EventBriteLocationArray);
 
-    //var eventLogoEB =  topEventEB.logo.original.url;
+    var eventLogoEB =  topEventEB.logo.original.url;
 
-    // $("#eb-image").attr("src", eventLogoEB);
-
+    
+    
+    $("#eb-image").attr("src", eventLogoEB);
     $("#eb-info").text(EventDescriptionEB);
     $("#eb-name").text(eventNameEB);
+    $("#eblink").attr("href", eventBriteLink);
+    $("#eblink").text("Buy tickets here");
     console.log(EventDescriptionEB);
 
     $("#eb-link").on("click", function () {
@@ -198,6 +201,7 @@ function displayEventData(eventData) {
     let topEventTicketMaster = eventData._embedded.events[randomEventTM];
     let ticketMasterLat = topEventTicketMaster._embedded.venues[0].location.latitude;
     let ticketMasterLon = topEventTicketMaster._embedded.venues[0].location.longitude;
+    let ticketMasterPic = topEventTicketMaster.images[0].url;
     TicketMasterLocationArray.push(ticketMasterLat, ticketMasterLon);
 
     console.log(eventData);
@@ -205,7 +209,7 @@ function displayEventData(eventData) {
     // console.log(ticketMasterLat);
     // console.log(ticketMasterLon);
     // console.log(TicketMasterLocationArray);
-    // console.log(topEventTicketMaster)
+    console.log(topEventTicketMaster)
 
 
     let tmLink = topEventTicketMaster.url
@@ -213,9 +217,11 @@ function displayEventData(eventData) {
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
     // console.log(tmLink);
     // console.log(topEventTicketMaster.name);
-
+    $("#tm-image").attr("src" , ticketMasterPic);
     $("#tm-name").text(eventNameTM);
     $("#tm-info").text(EventDescriptionTM);
+    $("#tmlink").attr("href", tmLink);
+    $("#tmlink").text("Buy tickets here");
 
     $("#tm-link").on("click", function () {
         $("#tmlink").attr("href", tmLink);
@@ -283,16 +289,20 @@ let temperatureConversion = (num) => {
 
 /////////Save the user data for ref////////////
 
-$("#large-venue").on("click", function (event) {
-    event.preventDefault();
+// $("#large-venue").on("click", function (event) {
+//     event.preventDefault();
+//     if(this.classList.contains("active")){
+//         this.classList.remove("active");
+//         console.log("delete");
+//     }else{
+//         this.classList.add("active");
+//         savedUserChoiceTM();
+//     }
 
-    if(this.classList.contains("active")){
-        this.classList.remove("active");
-        console.log("delete");
-    }else{
-        this.classList.add("active");
-        savedUserChoiceTM();
-    }
+// }
+
+
+
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
   e.preventDefault();
@@ -318,11 +328,7 @@ let savedUserChoiceTM = () => {
 
         $("#user-event-name").text(tmUserChoiceName);
         $("#user-event-info").text(tmUserChoiceDiscription);
+    
+
     }
-
-    )
-}
-
-// let removeUserChoice = () => {
-
-// };
+    )}
