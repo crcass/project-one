@@ -1,8 +1,3 @@
-
-// global variables
-let zomatoCoords = [];
-let yelpFoodCoords = [];
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
@@ -14,9 +9,15 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// global variables
 let database = firebase.database();
 let EventBriteLocationArray = [];
 let TicketMasterLocationArray = [];
+let zomatoCoords = [];
+let yelpFoodCoords = [];
+
+let yelpFoodData = {};
+let zomatoFoodData = {};
 
 // food search & parse function - zomato
 let zomatoFood = (() => {
@@ -48,8 +49,10 @@ let zomatoFood = (() => {
       let zRestName = response.restaurants[foodIndex].restaurant.name;
       let zRestAddress = response.restaurants[foodIndex].restaurant.location.address;
       let zRestId = response.restaurants[foodIndex].restaurant.R.res_id;
-      zomatoCoords.push(Number(response.restaurants[foodIndex].restaurant.location.latitude));
-      zomatoCoords.push(Number(response.restaurants[foodIndex].restaurant.location.longitude));
+      let zRestLat = Number(response.restaurants[foodIndex].restaurant.location.latitude);
+      let zRestLong = Number(response.restaurants[foodIndex].restaurant.location.longitude);
+      zomatoCoords.push(zRestLat);
+      zomatoCoords.push(zRestLong);
       // console.log(zomatoCoords);
 
       // Zomato API call to find image for restaurant
@@ -64,6 +67,13 @@ let zomatoFood = (() => {
       console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
       $('#z-restaurant').text(zRestName);
       $('#z-address').text(zRestAddress);
+
+      zomatoFoodData = {
+        name: zRestName,
+        address: zRestAddress,
+        latitude: zRestLat,
+        longitude: zRestLong
+      }
     })
   })
 });
@@ -101,13 +111,22 @@ let yelpFood = (() => {
     let yRestName = response.businesses[foodIndex].name;
     let yRestAddress = addressArray.join(' ');
     let yRestImage = response.businesses[foodIndex].image_url;
-    yelpFoodCoords.push(response.businesses[foodIndex].coordinates.latitude);
-    yelpFoodCoords.push(response.businesses[foodIndex].coordinates.longitude);
+    let yRestLat = response.businesses[foodIndex].coordinates.latitude;
+    let yRestLong = response.businesses[foodIndex].coordinates.longitude;
+    yelpFoodCoords.push(yRestLat);
+    yelpFoodCoords.push(yRestLong);
     // console.log(yelpFoodCoords);
     console.log(`Yelp's best ${userFood} in ${userCity}: ${yRestName}, ${yRestAddress}`);
     $('#y-restaurant').text(yRestName);
     $('#y-address').text(yRestAddress);
     $('#y-image').attr('src', yRestImage);
+
+    yelpFoodData = {
+    name: yRestName,
+    address: yRestAddress,
+    latitude: yRestLat,
+    longitude: yRestLong
+  }
   })
 });
 
@@ -300,8 +319,15 @@ let temperatureConversion = (num) => {
 //     }
 
 // }
+let userName;
 
-
+let createUser = () => {
+  database.ref(`/user/${userName}`).set({
+    food:'',
+    event:'',
+    activity: ''
+  })
+}
 
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
@@ -315,6 +341,23 @@ $('#city-btn').on('click', (e) => {
   $('#user-food').val('');
   $('#user-event').val('');
 });
+
+$('#z-food-card').on('click', function (e) {
+  e.preventDefault();
+    database.ref(`/user/${userName}/food`).set(zomatoFoodData);
+});
+
+$('#y-food-card').on('click', function (e) {
+  e.preventDefault();
+    database.ref(`/user/${userName}/food`).set(yelpFoodData);
+});
+
+$('#name-btn').on('click', (e) => {
+  e.preventDefault();
+  userName = $('#user-name').val();
+  createUser();
+});
+
 
 
 let savedUserChoiceTM = () => {
