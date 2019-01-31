@@ -16,3 +16,24 @@ img {
 	max-height: 135px;
 	overflow: scroll;
 }
+
+.choice {
+	cursor: pointer;
+}
+
+#maps {
+	position: fixed;
+	right: 3.25rem;
+}
+
+@media and (max-width: 1024px) {
+	#maps {
+		right: 1.5rem;
+	}
+}
+
+@media and (max-width: 425px) {
+	#maps {
+		position: initial;
+	}
+}
