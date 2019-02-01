@@ -1,3 +1,7 @@
+.navbar-collapse {
+	flex-grow: 0;
+}
+
 .jumbotron {
 	height: 44rem;
     padding-top: 10rem;
@@ -91,19 +95,14 @@ img {
 	align-items: center;
 }
 
-/*#maps {
+#maps {
 	position: sticky;
-	top: 2rem;
-}*/
-
-@media and (max-width: 1024px) {
-/*	#maps {
-		right: 1.5rem;
-	}*/
+	top: 4rem;
+	align-self: flex-start;
 }
 
-@media and (max-width: 425px) {
-/*	#maps {
-		position: initial;
-	}*/
+@media and (max-width: 1024px) {
+	#maps {
+		position: static;
+	}
 }

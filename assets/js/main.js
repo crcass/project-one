@@ -342,7 +342,7 @@ let displayInfo = (response) => {
     let weatherCityTemp = temperatureConversion(response.main.temp);
     let weatherCityWind = response.wind.speed;
 
-    $('#map-temp').text(weatherCityTemp);
+    $('#map-temp').text(`${weatherCityTemp}°`);
 
     // let newRow = $("<tr>").append(
     //     $("<td>").text('Location: ' + weatherCityName + "  |  "),
@@ -467,6 +467,7 @@ $('#name-btn').on('click', (e) => {
     userName = $('#user-name').val();
     createUser();
     displayUserName();
+    $('#user-name').val('');
 });
 
 

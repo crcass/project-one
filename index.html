@@ -25,10 +25,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#startModal">Get Started</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#startModal">Get Started</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Meet the Team</a>
+                    <a class="nav-link">Meet the Team</a>
                 </li>
             </ul>
         </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="text-center button-wrapper">
-        <button class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
+        <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
     </div>
 
     <!-- Modals for User Preferences -->
@@ -76,7 +76,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#detailsModal" id="city-btn">Onward!</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#detailsModal" id="city-btn">Onward!</button>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="choices-btn">Let's Go!</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" id="choices-btn">Let's Go!</button>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
                     <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
                 </div> -->
 
-        <div class="row">
+        <div class="row results">
             <div class="col-sm-8">
 
                 <!-- Food Info Display -->
@@ -283,7 +283,7 @@
                 <h2>Map</h2>
                 <div class="card">
                     <div class="card-header" id="map-city">
-                        <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">72</span></span>
+                        <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">--</span></span>
                     </div>
                     <div class="img-div">
                         <img src="" class="card-img-top" alt="" id="">
