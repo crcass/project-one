@@ -476,13 +476,7 @@ $('#tm-card').on('click', function (e) {
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $("#savedChoice-event").text(ticketMasterFireBaseData.name);
     $("#savedChoice-event-buy").text(ticketMasterFireBaseData.link);
-    // $("#savedChoice-event-buy").attr("href", ticketMasterFireBaseData.link);
-    // $("#savedChoice-event-buy").text("Buy tickets here");
 
-    // $("#savedChoice-event-buy").on("click", function(e) {
-    //     $("#savedChoice-event-buy").attr("href", ticketMasterFireBaseData.link);
-
-    // })
 
     console.log(ticketMasterFireBaseData.name);
     userEventArray = [];
@@ -496,13 +490,7 @@ $('#eb-card').on('click', function (e) {
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $("#savedChoice-event").text(eventBriteFireBaseData.name);
     $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
-    // $("#savedChoice-event-buy").attr("href", eventBriteFireBaseData.link);
-    // $("#savedChoice-event-buy").text("Buy tickets here");
 
-    // $("#savedChoice-event-buy").on("click", function(e) {
-    //     $("#savedChoice-event-buy").attr("href", eventBriteFireBaseData.link);
-
-    // })
     console.log(eventBriteFireBaseData.name);
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData)
@@ -529,17 +517,20 @@ function savedUserChoices() {
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
     $("#saved-event-buy").text(userEventArray[0].link);
+ 
 }
 
 
 $("#save-choices-btn").on("click", function () {
-    $("#saveModal").show();
+    database.ref(`/user/${userName}/saved`).set();
+    // userSavedPrefArray.push(userEventArray);
+    // userSavedPrefArray.push(userFoodArray);
+    // console.log(userSavedPrefArray);
 
 })
 
 
-
-
+// let userSavedPrefArray;
 
 //      Mapping Functions Begin here
 //geocodes address
