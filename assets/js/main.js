@@ -1,3 +1,53 @@
+// randomly changes names of cities, food, events, and activities in the jumbotron
+let updateHero = setInterval(nameChange, 1000);
+
+function nameChange() {
+  cityNames = ['Dallas', 'Chicago', 'New York', 'Seattle', 'Atlanta', 'Miami', 'Los Angeles', 'Seattle'];
+  foodNames = ['thai', 'pizza', 'burgers', 'mexican', 'steak', 'bbq', 'french', 'italian', 'vegetarian', 'indian'];
+  eventNames = ['live music', 'wine tastings', 'art shows', 'pub crawls', 'sporting events'];
+  activityNames = ['running', 'weights', 'swimming', 'biking', 'gyms', 'yoga', 'spin class'];
+
+  function randomNumber(num) {
+      return Math.floor(Math.random() * Math.floor(num));
+      }
+
+  randCity = randomNumber(cityNames.length);
+  $('#city-name').text(cityNames[randCity]);
+  randFood = randomNumber(foodNames.length);
+  $('#food-name').text(foodNames[randFood]);
+  randEvent = randomNumber(eventNames.length);
+  $('#event-name').text(eventNames[randEvent]);
+  randActivity = randomNumber(activityNames.length);
+  $('#activity-name').text(activityNames[randActivity]);
+};
+
+// jumbotron slideshow
+$(document).ready(() => {
+  $('.carousel').slick({
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
+    draggable: false,
+    pauseOnFocus: false,
+    pauseOnHover: false
+  });
+
+  // auto-hides nav bar
+  let lastScrollTop = 0;
+  $(window).scroll(function () {
+    let scrollTop = $(this).scrollTop();
+    if (scrollTop - lastScrollTop > 50) {
+      let navHeight = $('.navbar').css('height');
+      $('.navbar').animate({top: '-' + navHeight}, 150);
+      lastScrollTop = scrollTop;
+    } else if (lastScrollTop - scrollTop > 50) {
+      $('.navbar').animate({top: '0px'}, 150);
+      lastScrollTop = scrollTop;
+    }
+  });
+});
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
@@ -20,6 +70,13 @@ let yelpFoodData = {};
 let zomatoFoodData = {};
 let ticketMasterFireBaseData = {};
 let eventBriteFireBaseData = {};
+
+// function that automatically corrects user name case
+let titleCase = ((str) => {
+  return str.toLowerCase().split(' ').map((word) => {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ');
+});
 
 // food search & parse function - zomato
 let zomatoFood = (() => {
@@ -303,24 +360,45 @@ let userName;
 
 let createUser = () => {
     database.ref(`/user/${userName}`).set({
+        city: '',
         food: '',
         event: '',
         activity: ''
     })
 }
 
+let displayUserName = (() => {
+    userName = titleCase(userName);
+    $('#user').text(userName);
+})
+
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
+    e.preventDefault();
+    // zomatoFood();
+    // yelpFood();
+    // ticketMasterData();
+    // eventBriteData();
+    getCurrentWeather();
+    
+    // $('#user-food').val('');
+    // $('#user-event').val('');
+    userCity = $('#user-city').val();
+    database.ref(`/user/${userName}`).child('city').set(userCity);
+    $('#user-city').val('');
+});
+
+$('#choices-btn').on('click', (e) => {
     e.preventDefault();
     zomatoFood();
     yelpFood();
     ticketMasterData();
     eventBriteData();
-    getCurrentWeather();
-    $('#user-city').val('');
+    $('#user-city').val(database.ref(`/user/${userName}`).child('city'));
     $('#user-food').val('');
     $('#user-event').val('');
-});
+    $('#user-activity').val('');
+})
 
 database.ref(`/user/${userName}/`).on("child_added", function (snapshot) {
 })
@@ -378,6 +456,7 @@ $('#name-btn').on('click', (e) => {
     e.preventDefault();
     userName = $('#user-name').val();
     createUser();
+    displayUserName();
 });
 
 
