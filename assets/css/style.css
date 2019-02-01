@@ -1,3 +1,7 @@
+.navbar-collapse {
+	flex-grow: 0;
+}
+
 .jumbotron {
 	height: 44rem;
     padding-top: 10rem;
