@@ -394,7 +394,6 @@ $('#choices-btn').on('click', (e) => {
     yelpFood();
     ticketMasterData();
     eventBriteData();
-    $('#user-city').val(database.ref(`/user/${userName}`).child('city'));
     $('#user-food').val('');
     $('#user-event').val('');
     $('#user-activity').val('');
