@@ -216,7 +216,7 @@ function eventBriteData() {
         })
 };
 
-//Displaying the EventBrite information 
+// Displaying the EventBrite information 
 function processData(data) {
     let randomEventEB = Math.floor(Math.random() * 10)
     let topEventEB = data.events[randomEventEB];
@@ -234,8 +234,6 @@ function processData(data) {
 
     var eventLogoEB = topEventEB.logo.original.url;
 
-
-
     $("#eb-image").attr("src", eventLogoEB);
     $("#eb-info").text(EventDescriptionEB);
     $("#eb-name").text(eventNameEB);
@@ -247,19 +245,17 @@ function processData(data) {
         $("#eblink").attr("href", eventBriteLink);
     })
 
-
     eventBriteFireBaseData = {
         name: eventNameEB,
         discription: EventDescriptionEB,
         lat: eventBriteLat,
         link: eventBriteLink
     }
-
 }
 
-//ticketMaster api call///////////////
+// ticketMaster api call
 function ticketMasterData() {
-    //Need to figure out how to call the dates within the API.
+    // Need to figure out how to call the dates within the API.
     // var startDate = $("#start-date").val() || "2019-01-29";
     // var endDate = $("#end-date").val() || "2019-01-31";
 
@@ -310,8 +306,6 @@ function displayEventData(eventData) {
 
     })
 
-
-
     ticketMasterFireBaseData = {
         name: eventNameTM,
         discription: EventDescriptionTM,
@@ -319,17 +313,14 @@ function displayEventData(eventData) {
         lon: ticketMasterLon,
         link: tmLink
     }
-
 }
 
-
-//////Weather api//////////////////////
-
+// Weather api
 
 let getCurrentWeather = (event) => {
-    let userInput = $("#user-city").val();
+    let userCity = $("#user-city").val();
     let weatherKey = '75db64d1c63b2811dc0f6b1eaae6a7bd';
-    let weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&APPID=' + weatherKey;
+    let weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + userCity + '&APPID=' + weatherKey;
     fetch(weatherUrl)
         .then(response => {
             return response.json();
@@ -351,14 +342,14 @@ let displayInfo = (response) => {
     let weatherCityTemp = temperatureConversion(response.main.temp);
     let weatherCityWind = response.wind.speed;
 
-    let newRow = $("<tr>").append(
-        $("<td>").text('Location: ' + weatherCityName + "  |  "),
-        $("<td>").text('Current Temperature: ' + weatherCityTemp + "  |  "),
-        $("<td>").text('Wind Speed: ' + weatherCityWind + "mph")
-    )
+    $('#map-temp').text(weatherCityTemp);
 
-    $("#weather-display").append(newRow);
-
+    // let newRow = $("<tr>").append(
+    //     $("<td>").text('Location: ' + weatherCityName + "  |  "),
+    //     $("<td>").text('Current Temperature: ' + weatherCityTemp + "  |  "),
+    //     $("<td>").text('Wind Speed: ' + weatherCityWind + "mph")
+    // )
+    // $("#weather-display").append(newRow);
 }
 
 let temperatureConversion = (num) => {
@@ -401,16 +392,13 @@ let displayUserName = (() => {
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
-    // zomatoFood();
-    // yelpFood();
+    userCity = $('#user-city').val();
+    database.ref(`/user/${userName}`).child('city').set(userCity);
     // ticketMasterData();
     // eventBriteData();
     getCurrentWeather();
-
-    // $('#user-food').val('');
     // $('#user-event').val('');
-    userCity = $('#user-city').val();
-    database.ref(`/user/${userName}`).child('city').set(userCity);
+    $('#map-name').text(titleCase(userCity));
     $('#user-city').val('');
 });
 
@@ -430,13 +418,8 @@ database.ref(`/user/${userName}/`).on("child_added", function(snapshot) {
 
 })
 
-
-
-
 let userFoodArray = [];
 let userEventArray = [];
-
-
 
 $('#z-food-card').on('click', function(e) {
     e.preventDefault();
@@ -446,10 +429,7 @@ $('#z-food-card').on('click', function(e) {
     $("#user-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData)
-    console.log(userFoodArray);
-
-
-
+        // console.log(userFoodArray);
 });
 
 $('#y-food-card').on('click', function(e) {
@@ -459,8 +439,7 @@ $('#y-food-card').on('click', function(e) {
     $("#user-food-address").text(yelpFoodData.address);
     userFoodArray = [];
     userFoodArray.push(yelpFoodData)
-    console.log(userFoodArray);
-
+        // console.log(userFoodArray);
 });
 
 $('#tm-card').on('click', function(e) {
@@ -471,8 +450,8 @@ $('#tm-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData)
     console.log(userEventArray);
-
 })
+
 $('#eb-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
@@ -481,7 +460,6 @@ $('#eb-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData)
     console.log(userEventArray);
-
 })
 
 $('#name-btn').on('click', (e) => {
@@ -495,7 +473,6 @@ $('#name-btn').on('click', (e) => {
 $('#save-user-btn').on('click', (e) => {
     e.preventDefault();
     savedUserChoices();
-
 });
 
 function savedUserChoices() {
@@ -503,8 +480,6 @@ function savedUserChoices() {
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
     $("#saved-event-buy").text(userEventArray[0].link);
-
-
 }
 
 
@@ -514,7 +489,6 @@ function savedUserChoices() {
 var geocodeLat = 0;
 var geocodeLong = 0;
 
-
 function codeAddress() {
     geocoder = new google.maps.Geocoder();
     var address = document.getElementById("user-city").value;
@@ -523,7 +497,6 @@ function codeAddress() {
         'address': address
     }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-
 
             geocodeLat = results[0].geometry.location.lat();
             geocodeLong = results[0].geometry.location.lng();
@@ -558,7 +531,6 @@ function initMap() {
             coords: event.latLng
         });
     });
-
 
     // Array of markers
     var markers = [{
