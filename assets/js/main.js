@@ -275,7 +275,7 @@ function ticketMasterData() {
 
 // Function to dispalay the Ticketmaster data information 
 function displayEventData(eventData) {
-    let randomEventTM = Math.floor(Math.random() * 1)
+    let randomEventTM = Math.floor(Math.random() * 3)
     let topEventTicketMaster = eventData._embedded.events[randomEventTM];
     let ticketMasterLat = topEventTicketMaster._embedded.venues[0].location.latitude;
     let ticketMasterLon = topEventTicketMaster._embedded.venues[0].location.longitude;
@@ -394,10 +394,10 @@ $('#city-btn').on('click', (e) => {
     e.preventDefault();
     userCity = $('#user-city').val();
     database.ref(`/user/${userName}`).child('city').set(userCity);
-    // ticketMasterData();
-    // eventBriteData();
+    ticketMasterData();
+    eventBriteData();
     getCurrentWeather();
-    // $('#user-event').val('');
+    $('#user-event').val('');
     $('#map-name').text(titleCase(userCity));
     $('#user-city').val('');
 });
@@ -414,8 +414,6 @@ $('#choices-btn').on('click', (e) => {
 })
 
 database.ref(`/user/${userName}/`).on("child_added", function(snapshot) {
-
-
 })
 
 let userFoodArray = [];
@@ -424,12 +422,11 @@ let userEventArray = [];
 $('#z-food-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(zomatoFoodData);
-    // onChildAdded(zomatoFoodData)
     $("#user-food").text(zomatoFoodData.name);
     $("#user-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData)
-        // console.log(userFoodArray);
+  
 });
 
 $('#y-food-card').on('click', function(e) {
@@ -439,7 +436,7 @@ $('#y-food-card').on('click', function(e) {
     $("#user-food-address").text(yelpFoodData.address);
     userFoodArray = [];
     userFoodArray.push(yelpFoodData)
-        // console.log(userFoodArray);
+       
 });
 
 $('#tm-card').on('click', function(e) {
@@ -449,7 +446,7 @@ $('#tm-card').on('click', function(e) {
     $("#user-event-buy").text(ticketMasterFireBaseData.link);
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData)
-    console.log(userEventArray);
+
 })
 
 $('#eb-card').on('click', function(e) {
@@ -459,7 +456,7 @@ $('#eb-card').on('click', function(e) {
     $("#user-event-buy").text(eventBriteFireBaseData.link);
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData)
-    console.log(userEventArray);
+
 })
 
 $('#name-btn').on('click', (e) => {
