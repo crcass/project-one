@@ -59,6 +59,7 @@
     </div>
 
     <!-- Modals for User Preferences -->
+
     <div class="modal fade" id="startModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -161,19 +162,6 @@
                     </div>
                     <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
                 </div> -->
-
-        <!-- Form for user input -->
-        <!--         <div class="row">
-            <form>
-                <label for="user-city">City</label>
-                <input type="text" id="user-city">
-                <label for="user-food">Food</label>
-                <input type="text" id="user-food">
-                <label for="user-event">Music</label>
-                <input type="text" id="user-event">
-                <button class="btn btn-primary" type="submit" id="city-btn">Submit</button>
-            </form>
-        </div> -->
 
         <div class="row">
             <div class="col-sm-8">
@@ -291,11 +279,11 @@
 
             <!-- Map Display -->
 
-            <div class=" col-sm-4" id="maps">
+            <div class="col-sm-4" id="maps">
                 <h2>Map</h2>
                 <div class="card">
-                    <div class="card-header" id="city-name">
-                        City Name
+                    <div class="card-header" id="map-city">
+                        <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">72</span></span>
                     </div>
                     <div class="img-div">
                         <img src="" class="card-img-top" alt="" id="">
@@ -310,11 +298,6 @@
 
         </div>
     </div>
-
-    <!--     <form>
-        <input type="text" name="" id="user-name">
-        <button class="btn btn-primary" type="submit" id="name-btn">Submit</button>
-    </form> -->
 
     <!-- Save User Info -->
 
