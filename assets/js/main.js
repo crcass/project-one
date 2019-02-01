@@ -282,10 +282,19 @@ function displayEventData(eventData) {
     let ticketMasterPic = topEventTicketMaster.images[0].url;
     TicketMasterLocationArray.push(ticketMasterLat, ticketMasterLon);
 
+    console.log(eventData);
+    // console.log(randomEventTM);
+    // console.log(ticketMasterLat);
+    // console.log(ticketMasterLon);
+    // console.log(TicketMasterLocationArray);
+    console.log(topEventTicketMaster)
+
+
     let tmLink = topEventTicketMaster.url
     let eventNameTM = topEventTicketMaster.name;
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
-
+    // console.log(tmLink);
+    // console.log(topEventTicketMaster.name);
     $("#tm-image").attr("src", ticketMasterPic);
     $("#tm-name").text(eventNameTM);
     $("#tm-info").text(EventDescriptionTM);
@@ -352,6 +361,18 @@ let temperatureConversion = (num) => {
 
 
 /////////Save the user data for ref////////////
+
+// $("#large-venue").on("click", function (event) {
+//     event.preventDefault();
+//     if(this.classList.contains("active")){
+//         this.classList.remove("active");
+//         console.log("delete");
+//     }else{
+//         this.classList.add("active");
+//         savedUserChoiceTM();
+//     }
+
+// }
 let userName;
 
 let createUser = () => {
@@ -392,19 +413,11 @@ $('#choices-btn').on('click', (e) => {
     $('#user-activity').val('');
 })
 
-<<<<<<< HEAD
-database.ref(`/user/${userName}/`).on("child_added", function (snapshot) {
-=======
 database.ref(`/user/${userName}/`).on("child_added", function(snapshot) {
 
 
->>>>>>> f85b85e588dc062de962be8bcc72c2bfac6b156e
 })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 14124de8d421db47ab670d79ef950b531e1b1a36
 let userFoodArray = [];
 let userEventArray = [];
 
@@ -416,11 +429,7 @@ $('#z-food-card').on('click', function(e) {
     $("#user-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData)
-<<<<<<< HEAD
-    console.log(userFoodArray);
-=======
         // console.log(userFoodArray);
->>>>>>> 14124de8d421db47ab670d79ef950b531e1b1a36
 });
 
 $('#y-food-card').on('click', function(e) {
@@ -481,96 +490,6 @@ var geocodeLat = 0;
 var geocodeLong = 0;
 
 function codeAddress() {
-<<<<<<< HEAD
-   geocoder = new google.maps.Geocoder();
-   var address = document.getElementById("user-city").value;
-   console.log($('#user-city').val());
-   geocoder.geocode( { 'address': address}, function(results, status) {
-     if (status == google.maps.GeocoderStatus.OK) {
-
-     geocodeLat= results[0].geometry.location.lat();
-     geocodeLong=results[0].geometry.location.lng();
-     console.log(geocodeLat);
-     console.log(geocodeLong);
-     }
-     else {
-       console.log("Geocode was not successful for the following reason: " + status);
-     }
-   });
- }
-
-  function initMap(){
-   //need to add geocoder function to push values from function above to map
-
-     var options = {
-       zoom:8,
-       center:{lat: 32.7767, lng:-96.7970}
-     }
-     console.log(geocodeLat);
-     console.log(geocodeLong);
-
-     // New map
-     var map = new google.maps.Map(document.getElementById('map'), options);
-
-     // Listen for click on map (to test add marker function)
-     google.maps.event.addListener(map, 'click', function(event){
-       // Add marker
-       addMarker({coords:event.latLng});
-     });
-
-
-     // Array of markers
-     var markers = [
-       {
-         coords:{lat:32.7767,lng:-96.7970},
-         iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-// 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-
-         content:'<h1>Dallas, Tx</h1>'
-       },
-       {
-         coords:{lat:32.7473,lng:-96.8304},
-         content:'<h1>Bishop Arts</h1>'
-       },
-       {
-         coords:{lat:32.7469,lng:-96.700}
-
-       }
-     ];
-
-     // Loop through markers
-     for(var i = 0;i < markers.length;i++){
-       // Add marker
-       addMarker(markers[i]);
-     }
-
-     // Add Marker Function
-     function addMarker(props){
-       var marker = new google.maps.Marker({
-         position:props.coords,
-         map:map,
-         //icon:props.iconImage
-       });
-
-       // Check for customicon
-       if(props.iconImage){
-         // Set icon image
-         marker.setIcon(props.iconImage);
-       }
-
-       // Check content
-       if(props.content){
-         var infoWindow = new google.maps.InfoWindow({
-           content:props.content
-         });
-
-         marker.addListener('click', function(){
-           infoWindow.open(map, marker);
-         });
-       }
-     }
-   }
-=======
     geocoder = new google.maps.Geocoder();
     var address = document.getElementById("user-city").value;
     console.log($('#user-city').val());
@@ -591,7 +510,6 @@ function codeAddress() {
 
 function initMap() {
     //need to add geocoder function to push values from function above to map
->>>>>>> f85b85e588dc062de962be8bcc72c2bfac6b156e
 
     var options = {
         zoom: 8,
