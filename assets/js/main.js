@@ -224,19 +224,10 @@ function displayEventData(eventData) {
     let ticketMasterPic = topEventTicketMaster.images[0].url;
     TicketMasterLocationArray.push(ticketMasterLat, ticketMasterLon);
 
-    console.log(eventData);
-    // console.log(randomEventTM);
-    // console.log(ticketMasterLat);
-    // console.log(ticketMasterLon);
-    // console.log(TicketMasterLocationArray);
-    console.log(topEventTicketMaster)
-
-
     let tmLink = topEventTicketMaster.url
     let eventNameTM = topEventTicketMaster.name;
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
-    // console.log(tmLink);
-    // console.log(topEventTicketMaster.name);
+
     $("#tm-image").attr("src", ticketMasterPic);
     $("#tm-name").text(eventNameTM);
     $("#tm-info").text(EventDescriptionTM);
@@ -308,18 +299,6 @@ let temperatureConversion = (num) => {
 
 
 /////////Save the user data for ref////////////
-
-// $("#large-venue").on("click", function (event) {
-//     event.preventDefault();
-//     if(this.classList.contains("active")){
-//         this.classList.remove("active");
-//         console.log("delete");
-//     }else{
-//         this.classList.add("active");
-//         savedUserChoiceTM();
-//     }
-
-// }
 let userName;
 
 let createUser = () => {
@@ -344,11 +323,7 @@ $('#city-btn').on('click', (e) => {
 });
 
 database.ref(`/user/${userName}/`).on("child_added", function (snapshot) {
-
-
 })
-
-
 
 
 let userFoodArray = [];
@@ -365,9 +340,6 @@ $('#z-food-card').on('click', function (e) {
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData)
     console.log(userFoodArray);
-
-
-
 });
 
 $('#y-food-card').on('click', function (e) {
@@ -439,13 +411,11 @@ function codeAddress() {
    geocoder.geocode( { 'address': address}, function(results, status) {
      if (status == google.maps.GeocoderStatus.OK) {
 
-
      geocodeLat= results[0].geometry.location.lat();
      geocodeLong=results[0].geometry.location.lng();
      console.log(geocodeLat);
      console.log(geocodeLong);
      }
-
      else {
        console.log("Geocode was not successful for the following reason: " + status);
      }
