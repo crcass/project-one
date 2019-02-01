@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Hello, world!</title>
 </head>
@@ -15,135 +14,135 @@
 
     <!-- Nav-->
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top justify-content-between">
-  <a class="navbar-brand" href="#">BRAND NAME</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Get Started</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Meet the Team</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top justify-content-between">
+        <a class="navbar-brand" href="#">BRAND NAME</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#startModal">Get Started</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Meet the Team</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<!--Jumbotron-->
+    <!--Jumbotron-->
 
     <div class="carousel">
-      <div class="jumbotron jumbotron-city">
-        <h1>We know <span id="city-name">Dallas</span></h1>
-        <p>Just tell us where you want to go and we'll find you the best spots in town</p>
-      </div>
-      <div class="jumbotron jumbotron-food">
-        <h1>We know <span id="food-name">thai</span></h1>
-        <p>We find the best food of any kind, every time</p>
-      </div>
-      <div class="jumbotron jumbotron-events">
-        <h1>We know <span id="event-name">music</span></h1>
-        <p>Get out of that hotel room and see what's happening around you</p>
-      </div>
-      <div class="jumbotron jumbotron-activity">
-        <h1>We know <span id="activity-name">fitness</span></h1>
-        <p>Keep up with your workouts while you're on the road</p>
-      </div>
+        <div class="jumbotron jumbotron-city">
+            <h1>We know <span id="city-name">Dallas</span></h1>
+            <p>Just tell us where you want to go and we'll find you the best spots in town</p>
+        </div>
+        <div class="jumbotron jumbotron-food">
+            <h1>We know <span id="food-name">thai</span></h1>
+            <p>We find the best food of any kind, every time</p>
+        </div>
+        <div class="jumbotron jumbotron-events">
+            <h1>We know <span id="event-name">music</span></h1>
+            <p>Get out of that hotel room and see what's happening around you</p>
+        </div>
+        <div class="jumbotron jumbotron-activity">
+            <h1>We know <span id="activity-name">fitness</span></h1>
+            <p>Keep up with your workouts while you're on the road</p>
+        </div>
     </div>
     <div class="text-center button-wrapper">
-      <button class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
+        <button class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
     </div>
 
     <!-- Modals for User Preferences -->
-<div class="modal fade" id="startModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Welcome!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="container">
-          <label for="user-name">First, tell us your name:</label>
-          <input type="text" class="form-control" id="user-name">
-        </form>
-      </div>  
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
-      </div>
+    <div class="modal fade" id="startModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <label for="user-name">First, tell us your name:</label>
+                        <input type="text" class="form-control" id="user-name">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="modal fade" id="cityModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Hi, <span id="user"></span>!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="container">
-          <div class="form-group">
-            <label for="user-city">Next, tell us where you're headed:</label>
-            <input type="text" class="form-control" id="user-city">
-            <label for="user-date">and when you'll be there:</label>
-            <input type="date" class="form-control" id="user-date">
-          </div>
-        </form>
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#detailsModal" id="city-btn">Onward!</button>
-      </div>
-    </div>
-  </div>
-</div>
+    <div class="modal fade" id="cityModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hi, <span id="user"></span>!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <div class="form-group">
+                            <label for="user-city">Next, tell us where you're headed:</label>
+                            <input type="text" class="form-control" id="user-city">
+                            <label for="user-date">and when you'll be there:</label>
+                            <input type="date" class="form-control" id="user-date">
+                        </div>
+                    </form>
+                </div>
 
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Just a few more questions...</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="container">
-          <div class="form-group">
-            <label for="user-food">What kind of food makes your mouth water?</label>
-            <input type="text" class="form-control" id="user-food">
-          </div>
-          <div class="form-group">
-            <label for="user-event">What's your favorite type of music?</label>
-            <input type="text" class="form-control" id="user-event">
-          </div>
-          <div class="form-group">
-            <label for="user-activity">How do you stay active?</label>
-            <input type="text" class="form-control" id="user-activity">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="choices-btn">Let's Go!</button>
-      </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#detailsModal" id="city-btn">Onward!</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Just a few more questions...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <div class="form-group">
+                            <label for="user-food">What kind of food makes your mouth water?</label>
+                            <input type="text" class="form-control" id="user-food">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-event">What's your favorite type of music?</label>
+                            <input type="text" class="form-control" id="user-event">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-activity">How do you stay active?</label>
+                            <input type="text" class="form-control" id="user-activity">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="choices-btn">Let's Go!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
 
-            <!-- <div class="card">
+        <!-- <div class="card">
                     <div class="card-header" id="user-selected">
                         User Data
                     </div>
@@ -164,7 +163,7 @@
                 </div> -->
 
         <!-- Form for user input -->
-<!--         <div class="row">
+        <!--         <div class="row">
             <form>
                 <label for="user-city">City</label>
                 <input type="text" id="user-city">
@@ -309,11 +308,10 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 
-<!--     <form>
+    <!--     <form>
         <input type="text" name="" id="user-name">
         <button class="btn btn-primary" type="submit" id="name-btn">Submit</button>
     </form> -->
@@ -321,31 +319,31 @@
     <!-- Save User Info -->
 
     <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Would you like to Save?</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h5 class="modal-title">Would you like to Save?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                        <h5 class="card-title" id="">Food</h5>
-                        <p class="card-text test" id="saved-food"></p>
-                        <p class="card-text test" id="saved-food-address"></p>
-                        <h5 class="card-title" id="">Event</h5>
-                        <p class="card-text test" id="saved-event"></p>
-                        <p class="card-text test" id="save-event-buy"></p>
-                        <h5 class="card-title" id="">Exercise</h5>
-                        <p class="card-text" id="user-exercise"></p>
+                    <h5 class="card-title" id="">Food</h5>
+                    <p class="card-text test" id="saved-food"></p>
+                    <p class="card-text test" id="saved-food-address"></p>
+                    <h5 class="card-title" id="">Event</h5>
+                    <p class="card-text test" id="saved-event"></p>
+                    <p class="card-text test" id="save-event-buy"></p>
+                    <h5 class="card-title" id="">Exercise</h5>
+                    <p class="card-text" id="user-exercise"></p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" id="save-user-btn">Save changes</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-user-btn">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
     <!-- <div class="card">
             <div class="card-header" id="user-selected">
@@ -367,19 +365,12 @@
             <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
         </div> -->
 
-
-
-
-
     <!-- Scripts -->
 
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="./assets/js/main.js"></script>
