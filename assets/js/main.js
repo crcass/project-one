@@ -422,7 +422,7 @@ let displayUserName = (() => {
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
     userCity = $('#user-city').val();
-    database.ref(`/user/${userName}`).child('city').set(userCity);
+    database.ref(`/user/${userName}/city`).set(userCity);
     //ticketMasterData();
     // eventBriteData();
     getCurrentWeather();
@@ -442,9 +442,6 @@ $('#choices-btn').on('click', (e) => {
     $('#user-activity').val('');
 })
 
-//database.ref(`/user/${userName}/`).on("child_added", function(snapshot) {
-
-//})
 
 let userFoodArray = [];
 let userEventArray = [];
@@ -522,15 +519,20 @@ function savedUserChoices() {
 
 
 $("#save-choices-btn").on("click", function () {
-    database.ref(`/user/${userName}/saved`).set();
-    // userSavedPrefArray.push(userEventArray);
-    // userSavedPrefArray.push(userFoodArray);
-    // console.log(userSavedPrefArray);
+    database.ref(`/user/${userName}/saved`).set(userSavedPrefArray);
+    userSavedPrefArray =  foodName.userFoodArray[0].name;
+    userSavedPrefArray.foodAddress = userFoodArray[1];
+    
 
 })
 
 
-// let userSavedPrefArray;
+let userSavedPrefArray = {
+    foodName: '',
+    foodAddress: '',
+    eventName: '',
+    eventLink: ''
+}
 
 //      Mapping Functions Begin here
 //geocodes address
