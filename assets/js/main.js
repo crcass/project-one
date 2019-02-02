@@ -481,7 +481,7 @@ $('#choices-btn').on('click', (e) => {
 $('#z-food-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(zomatoFoodData);
-    $("#savedChoice-food").text(zomatoFoodData.name);
+    $(".savedChoice-food").text(zomatoFoodData.name);
     $("#savedChoice-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData);
@@ -493,7 +493,7 @@ $('#z-food-card').on('click', function (e) {
 $('#y-food-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
-    $("#savedChoice-food").text(yelpFoodData.name);
+    $(".savedChoice-food").text(yelpFoodData.name);
     $("#savedChoice-food-address").text(yelpFoodData.address);
     console.log(yelpFoodData.name);
     userFoodArray = [];
@@ -506,7 +506,7 @@ $('#y-food-card').on('click', function (e) {
 $('#tm-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
-    $("#savedChoice-event").text(ticketMasterFireBaseData.name);
+    $(".savedChoice-event").text(ticketMasterFireBaseData.name);
     $("#savedChoice-event-buy").text(ticketMasterFireBaseData.link);
 
 
@@ -521,7 +521,7 @@ $('#tm-card').on('click', function (e) {
 $('#eb-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
-    $("#savedChoice-event").text(eventBriteFireBaseData.name);
+    $(".savedChoice-event").text(eventBriteFireBaseData.name);
     $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
 
     console.log(eventBriteFireBaseData.name);
@@ -535,7 +535,7 @@ $('#eb-card').on('click', function (e) {
 $('#sup-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/activity`).set(yelpRandomActData);
-    $('#user-exercise').text(yelpRandomActData.name);
+    $('.user-exercise').text(yelpRandomActData.name);
     $('#user-exercise-address').text(yelpRandomActData.address);
     userActivityArray = [];
     userActivityArray.push(yelpRandomActData);
@@ -546,7 +546,7 @@ $('#sup-card').on('click', function (e) {
 $('#yelp-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/activity`).set(yelpActivityData);
-    $('#user-exercise').text(yelpActivityData.name);
+    $('.user-exercise').text(yelpActivityData.name);
     $('#user-exercise-address').text(yelpActivityData.address);
 
     userActivityArray = [];
