@@ -171,11 +171,16 @@ h4 {
 	align-items: center;
 }
 
-#maps {
+#map {
 	position: sticky;
 	top: 4rem;
 	align-self: flex-start;
 }
+#map{
+      height:400px;
+      width:100%;
+
+    }
 
 /* Footer */
 
