@@ -393,7 +393,7 @@ let displayUserName = (() => {
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
     userCity = $('#user-city').val();
-    database.ref(`/user/${userName}`).child('city').set(userCity);
+    database.ref(`/user/${userName}/city`).set(userCity);
     // ticketMasterData();
     // eventBriteData();
     getCurrentWeather();

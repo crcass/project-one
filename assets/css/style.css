@@ -66,6 +66,10 @@
   outline: none;
 }
 
+.modal {
+  overflow-y:auto;
+}
+
 .img-div {
 	display: inline-block;
 	position: relative;
