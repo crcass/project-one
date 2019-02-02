@@ -35,7 +35,7 @@ $(document).ready(() => {
 
     // auto-hides nav bar
     let lastScrollTop = 0;
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         let scrollTop = $(this).scrollTop();
         if (scrollTop - lastScrollTop > 50) {
             let navHeight = $('.navbar').css('height');
@@ -143,13 +143,13 @@ let zomatoFood = (() => {
             // Zomato API call to find image for restaurant
             let zomatoImageSearch = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${zRestId}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
             $.ajax(zomatoImageSearch).done((response) => {
-                // console.log(response);
-                // console.log(response.thumb.indexOf('?'));
-                // console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
-                zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
-                $('#z-image').attr('src', zRestImage);
-            })
-            // console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
+                    // console.log(response);
+                    // console.log(response.thumb.indexOf('?'));
+                    // console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
+                    zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
+                    $('#z-image').attr('src', zRestImage);
+                })
+                // console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
             $('#z-restaurant').text(zRestName);
             $('#z-address').text(zRestAddress);
 
@@ -231,9 +231,9 @@ function eventBriteData() {
 
     //https: //www.eventbriteapi.com//v3/events/search/?q=" + userInput + "&location.address=" + location + "start_date.range_start=" + newDateTime + "&token=D6XUTCDEZDOKRNBW4HNT
     fetch(queryURL)
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
-        }).then(function (myJson) {
+        }).then(function(myJson) {
             processData(myJson);
         })
 };
@@ -259,7 +259,7 @@ function processData(data) {
     $("#eblink").text("Buy tickets here");
     console.log(EventDescriptionEB);
 
-    $("#eb-link").on("click", function () {
+    $("#eb-link").on("click", function() {
         $("#eblink").attr("href", eventBriteLink);
     })
 
@@ -294,11 +294,11 @@ function ticketMasterData() {
 
 
     fetch(gueryTicketMasterURL)
-        .then(function (response) {
+        .then(function(response) {
             // console.log(response);
 
             return response.json();
-        }).then(function (myJsonTM) {
+        }).then(function(myJsonTM) {
             //console.log(myJsonTM);
             displayEventData(myJsonTM);
         });
@@ -328,7 +328,7 @@ function displayEventData(eventData) {
     $("#tmlink").attr("href", tmLink);
     $("#tmlink").text("Buy tickets here");
 
-    $("#tm-link").on("click", function () {
+    $("#tm-link").on("click", function() {
         $("#tmlink").attr("href", tmLink);
     })
 
@@ -427,15 +427,15 @@ let getCurrentWeather = (event) => {
         .then(response => {
             return response.json();
         })
-        .then(function (myJson) {
+        .then(function(myJson) {
             console.log(JSON.stringify(myJson));
             displayInfo(myJson)
             weatherData = myJson;
         })
 
-        .catch(function (err) {
-            // console.log()
-        });
+    .catch(function(err) {
+        // console.log()
+    });
 }
 
 let displayInfo = (response) => {
@@ -490,13 +490,13 @@ $('#choices-btn').on('click', (e) => {
     displayYelpActivity();
     ticketMasterData();
     eventBriteData();
-    initMap ();
+    initMap();
     $('#user-food').val('');
     $('#user-event').val('');
     $('#user-activity').val('');
 });
 
-$('#z-food-card').on('click', function (e) {
+$('#z-food-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(zomatoFoodData);
     $(".savedChoice-food").text(zomatoFoodData.name);
@@ -508,7 +508,7 @@ $('#z-food-card').on('click', function (e) {
     $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
-$('#y-food-card').on('click', function (e) {
+$('#y-food-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
     $(".savedChoice-food").text(yelpFoodData.name);
@@ -521,7 +521,7 @@ $('#y-food-card').on('click', function (e) {
     $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
-$('#tm-card').on('click', function (e) {
+$('#tm-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $(".savedChoice-event").text(ticketMasterFireBaseData.name);
@@ -536,7 +536,7 @@ $('#tm-card').on('click', function (e) {
     $('#eb-card').css('background-color', '#d6d8d9');
 });
 
-$('#eb-card').on('click', function (e) {
+$('#eb-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $(".savedChoice-event").text(eventBriteFireBaseData.name);
@@ -550,7 +550,7 @@ $('#eb-card').on('click', function (e) {
     $('#tm-card').css('background-color', '#d6d8d9');
 });
 
-$('#sup-card').on('click', function (e) {
+$('#sup-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/activity`).set(yelpRandomActData);
     $('.user-exercise').text(yelpRandomActData.name);
@@ -561,7 +561,7 @@ $('#sup-card').on('click', function (e) {
     $('#yelp-card').css('background-color', '#d6d8d9');
 });
 
-$('#yelp-card').on('click', function (e) {
+$('#yelp-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/activity`).set(yelpActivityData);
     $('.user-exercise').text(yelpActivityData.name);
@@ -610,7 +610,7 @@ function savedUserChoices() {
 }
 
 
-$("#save-choices-btn").on("click", function () {
+$("#save-choices-btn").on("click", function() {
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
 })
@@ -624,69 +624,70 @@ savedData = userEventArray.concat(userFoodArray);
 //geocodes address
 var lat = 32.7767;
 var lng = -96.7970;
+
 function codeAddress() {
     geocoder = new google.maps.Geocoder();
     var address = userCity;
-    console.log (userCity);
+    console.log(userCity);
     //console.log($('#userCity').val());
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
 
-      
-      lat= results[0].geometry.location.lat();
-      lng= results[0].geometry.location.lng();
-      console.log(lat);
-      console.log(lng);
-      } 
 
-      else {
-        console.log("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-var locations = [
-      ['Bondi Beach', -33.890542, 151.274856, 4],
-      // ['Coogee Beach', -33.923036, 151.259052, 5],
-      // ['Cronulla Beach', -34.028249, 151.157507, 3],
-      // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      // ['Maroubra Beach', -33.950198, 151.259302, 1]
-    ];
-
-    function initMap () {
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: new google.maps.LatLng(lat, lng),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(EventBriteLocationArray[i][0], EventBriteLocationArray[i][1]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          //infowindow.setContent(locations[i][0]);
-          //infowindow.open(map, marker);
+            lat = results[0].geometry.location.lat();
+            lng = results[0].geometry.location.lng();
+            console.log(lat);
+            console.log(lng);
+        } else {
+            console.log("Geocode was not successful for the following reason: " + status);
         }
-      })(marker, i));
-    }
+    });
 }
-//    function initMap(){
-//     //need to add geocoder function to push values from function above to map
-//       var coords = new google.maps.LatLng(lat, lng);
-//       var options = {
-//         zoom:8,
-//         center: coords
-//       }
-//       console.log(lat);
-//       console.log(lng);
+var locations = [
+    ['Bondi Beach', -33.890542, 151.274856, 4],
+    // ['Coogee Beach', -33.923036, 151.259052, 5],
+    // ['Cronulla Beach', -34.028249, 151.157507, 3],
+    // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+    // ['Maroubra Beach', -33.950198, 151.259302, 1]
+];
+
+function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: new google.maps.LatLng(lat, lng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(EventBriteLocationArray[i][0], EventBriteLocationArray[i][1]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    //infowindow.setContent(locations[i][0]);
+                    //infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+    }
+    //    function initMap(){
+    //     //need to add geocoder function to push values from function above to map
+    //       var coords = new google.maps.LatLng(lat, lng);
+    //       var options = {
+    //         zoom:8,
+    //         center: coords
+    //       }
+    //       console.log(lat);
+    //       console.log(lng);
 
 //       // New map
 //       var map = new google.maps.Map(document.getElementById('map'), options);
@@ -716,7 +717,7 @@ var locations = [
 //       //   },
 //       //   {
 //       //     coords:{lat:32.7469,lng:-96.700}
-          
+
 //       //   }
 //       // ];
 
@@ -751,12 +752,12 @@ var locations = [
 //           });
 //         }
 //       }
-    
+
 //     var locations = [
 
 //     //example
 //   ['California', -33.890542, 151.274856, 4, "http://maps.google.com/mapfiles/ms/micons/blue.png"]
-  
+
 // ];
 
 // var infowindow = new google.maps.InfoWindow();
