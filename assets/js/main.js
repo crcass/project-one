@@ -587,7 +587,7 @@ function savedUserChoices() {
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
     $("#saved-event-buy").text(userEventArray[0].link);
-    $("#user-exercise").text(userActivityArray[0].name);
+    $(".user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
 }
 
