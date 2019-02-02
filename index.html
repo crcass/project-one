@@ -358,7 +358,7 @@
                 <div class="modal-content" id="save">
                     <div class="modal-header">
                         <h5 class="modal-title">Save your stuff!</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-toggle="modal" data-target="#saveModal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <h5 class="card-title" id="">Enjoy Dinner</h5>
@@ -367,15 +367,17 @@
                         <p class="text-center ">__________</p>
                         <h5 class="card-title" id="">Maybe a show?</h5>
                         <p class="card-text test savedChoice-event"></p>
-                        <p class="card-text test" id="savedChoice-event-buy"></p>
+                        <a class="card-text test" href="" id="savedChoice-event-buy">Click to Learn More</a>
                         <p class="text-center">__________</p>
-                        <h5 class="card-title" id="">Exercise</h5>
+                        <h5 class="card-title" id="">Get that workout in</h5>
                         <p class="card-text user-exercise"></p>
                         <p class="card-text" id="user-exercise-address"></p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#saveModal">Close</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Save</button>
+                    <div class="modal-footer justify-content-between">
+                        <label for="phone">Enter your phone #<br>We'll send your stuff</label>
+                        <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="10" maxlength="10">
+                        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#saveModal">Close</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Send</button>
                     </div>
                 </div>
 

@@ -290,7 +290,7 @@ function ticketMasterData() {
 
 
 
-    let gueryTicketMasterURL = "https://app.ticketmaster.com/discovery/v2/events.json?startDateTime=" + apiStartDate + "&classificationName=" + userInput + "&city=" + userCity + "&endDateTime=&" + apiEndDate + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
+    let gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?startDateTime=" + apiStartDate + "&classificationName=" + userInput + "&city=" + userCity + "&endDateTime=&" + apiEndDate + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
 
 
     fetch(gueryTicketMasterURL)
@@ -525,7 +525,7 @@ $('#tm-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $(".savedChoice-event").text(ticketMasterFireBaseData.name);
-    $("#savedChoice-event-buy").text(ticketMasterFireBaseData.link);
+    $("#savedChoice-event-buy").attr('href', ticketMasterFireBaseData.link);
 
 
     console.log(ticketMasterFireBaseData.name);
@@ -540,7 +540,7 @@ $('#eb-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $(".savedChoice-event").text(eventBriteFireBaseData.name);
-    $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
+    $("#savedChoice-event-buy").attr('href', eventBriteFireBaseData.link);
 
     console.log(eventBriteFireBaseData.name);
     userEventArray = [];
