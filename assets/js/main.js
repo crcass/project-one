@@ -488,7 +488,7 @@ $('#z-food-card').on('click', function (e) {
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData);
     console.log(userFoodArray);
-    $('#z-food-card').css('background-color', '#d1ecf1');
+    $('#z-food-card').css('background-color', '#F5CDA7');
     $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -501,7 +501,7 @@ $('#y-food-card').on('click', function (e) {
     userFoodArray = [];
     userFoodArray.push(yelpFoodData);
     console.log(userFoodArray);
-    $('#y-food-card').css('background-color', '#d1ecf1');
+    $('#y-food-card').css('background-color', '#F5CDA7');
     $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -516,7 +516,7 @@ $('#tm-card').on('click', function (e) {
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData);
     console.log(userEventArray);
-    $('#tm-card').css('background-color', '#d1ecf1');
+    $('#tm-card').css('background-color', '#F5CDA7');
     $('#eb-card').css('background-color', '#d6d8d9');
 });
 
@@ -530,7 +530,7 @@ $('#eb-card').on('click', function (e) {
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData);
     console.log(userEventArray);
-    $('#eb-card').css('background-color', '#d1ecf1');
+    $('#eb-card').css('background-color', '#F5CDA7');
     $('#tm-card').css('background-color', '#d6d8d9');
 });
 
