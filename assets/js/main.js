@@ -467,7 +467,7 @@ $('#z-food-card').on('click', function(e) {
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData);
     console.log(userFoodArray);
-    $('#z-food-card').css('background-color', '#DBBADD');
+    $('#z-food-card').css('background-color', '#F5CDA7');
     $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -480,7 +480,7 @@ $('#y-food-card').on('click', function(e) {
     userFoodArray = [];
     userFoodArray.push(yelpFoodData);
     console.log(userFoodArray);
-    $('#y-food-card').css('background-color', '#DBBADD');
+    $('#y-food-card').css('background-color', '#F5CDA7');
     $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -495,7 +495,7 @@ $('#tm-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData);
     console.log(userEventArray);
-    $('#tm-card').css('background-color', '#DBBADD');
+    $('#tm-card').css('background-color', '#F5CDA7');
     $('#eb-card').css('background-color', '#d6d8d9');
 });
 
@@ -509,7 +509,7 @@ $('#eb-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData);
     console.log(userEventArray);
-    $('#eb-card').css('background-color', '#DBBADD');
+    $('#eb-card').css('background-color', '#F5CDA7');
     $('#tm-card').css('background-color', '#d6d8d9');
 });
 
@@ -582,130 +582,107 @@ savedData = userEventArray.concat(userFoodArray);
 
 //database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
-//                                      Mapping Functions Begin here
+//                   Mapping Functions Begin here
 //geocodes address
-
 var lat=32.7767;
 var lng=-96.7970;
-
-
 function codeAddress() {
-    geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("user-city").value;
-    console.log($('#user-city').val());
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-
-      
-      lat= results[0].geometry.location.lat();
-      lng= results[0].geometry.location.lng();
-      console.log(lat);
-      console.log(lng);
-      } 
-
-      else {
-        console.log("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-
-   function initMap(){
-    //need to add geocoder function to push values from function above to map
-      var coords = new google.maps.LatLng(lat, lng);
-      var options = {
-        zoom:8,
-        center: coords
-      }
-      console.log(lat);
-      console.log(lng);
-
-      // New map
-      var map = new google.maps.Map(document.getElementById('map'), options);
-
-      // Listen for click on map (to test add marker function)
-      // google.maps.event.addListener(map, 'click', function(event){
-      //   // Add marker
-      //   addMarker({coords:event.latLng});
-      // });
-
-    //Set Center Function
-
-  map.setCenter(new google.maps.LatLng(geocodeLat, geocodeLong));
-
-
-
-      // Array of markers
-      // var markers = [
-      //   {
-      //     coords:{lat:32.7767,lng:-96.7970},
-      //     iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      //     content:'<h1>Dallas, Tx</h1>'
-      //   },
-      //   {
-      //     coords:{lat:32.7473,lng:-96.8304},
-      //     content:'<h1>Bishop Arts</h1>'
-      //   },
-      //   {
-      //     coords:{lat:32.7469,lng:-96.700}
-          
-      //   }
-      // ];
-
-      // Loop through markers
-      // for(var i = 0;i < markers.length;i++){
-      //   // Add marker
-      //   addMarker(markers[i]);
-      // }
-
-      // Add Marker Function
-      // function addMarker(props){
-      //   var marker = new google.maps.Marker({
-      //     position:props.coords,
-      //     map:map,
-      //     //icon:props.iconImage
-      //   });
-
-        // Check for customicon
-        if(props.iconImage){
-          // Set icon image
-          marker.setIcon(props.iconImage);
-        }
-
-        // Check content
-        if(props.content){
-          var infoWindow = new google.maps.InfoWindow({
-            content:props.content
-          });
-
-          marker.addListener('click', function(){
-            infoWindow.open(map, marker);
-          });
-        }
-      }
-    
-    var locations = [
-
-    //example
-  ['California', -33.890542, 151.274856, 4, "http://maps.google.com/mapfiles/ms/micons/blue.png"],
-  
-];
-
-var infowindow = new google.maps.InfoWindow();
-
-var marker, i;
-
-for (i = 0; i < locations.length; i++) {
-  marker = new google.maps.Marker({
-    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    icon: locations[i][4],
-    title: locations[i][0],
-    map: map
+  geocoder = new google.maps.Geocoder();
+  var address = document.getElementById("user-city").value;
+  console.log($('#user-city').val());
+  geocoder.geocode( { 'address': address}, function(results, status) {
+   if (status == google.maps.GeocoderStatus.OK) {
+   
+   lat= results[0].geometry.location.lat();
+   lng= results[0].geometry.location.lng();
+   console.log(lat);
+   console.log(lng);
+   } 
+   else {
+    console.log("Geocode was not successful for the following reason: " + status);
+   }
   });
-
-  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    return function() {
-      infowindow.setContent(locations[i][0]);
-      infowindow.open(map, marker);
+ }
+  function initMap(){
+  //need to add geocoder function to push values from function above to map
+   var coords = new google.maps.LatLng(lat, lng);
+   var options = {
+    zoom:8,
+    center: coords
+   }
+   console.log(lat);
+   console.log(lng);
+   // New map
+   var map = new google.maps.Map(document.getElementById('map'), options);
+   // Listen for click on map (to test add marker function)
+   // google.maps.event.addListener(map, 'click', function(event){
+   //  // Add marker
+   //  addMarker({coords:event.latLng});
+   // });
+  //Set Center Function
+ map.setCenter(new google.maps.LatLng(geocodeLat, geocodeLong));
+   // Array of markers
+   // var markers = [
+   //  {
+   //   coords:{lat:32.7767,lng:-96.7970},
+   //   iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+   //   content:'<h1>Dallas, Tx</h1>'
+   //  },
+   //  {
+   //   coords:{lat:32.7473,lng:-96.8304},
+   //   content:'<h1>Bishop Arts</h1>'
+   //  },
+   //  {
+   //   coords:{lat:32.7469,lng:-96.700}
+     
+   //  }
+   // ];
+   // Loop through markers
+   // for(var i = 0;i < markers.length;i++){
+   //  // Add marker
+   //  addMarker(markers[i]);
+   // }
+   // Add Marker Function
+   // function addMarker(props){
+   //  var marker = new google.maps.Marker({
+   //   position:props.coords,
+   //   map:map,
+   //   //icon:props.iconImage
+   //  });
+    // Check for customicon
+    if(props.iconImage){
+     // Set icon image
+     marker.setIcon(props.iconImage);
     }
-  })(marker, i));
+    // Check content
+    if(props.content){
+     var infoWindow = new google.maps.InfoWindow({
+      content:props.content
+     });
+     marker.addListener('click', function(){
+      infoWindow.open(map, marker);
+     });
+    }
+   }
+  
+  var locations = [
+  //example
+ ['California', -33.890542, 151.274856, 4, "http://maps.google.com/mapfiles/ms/micons/blue.png"],
+ 
+];
+var infowindow = new google.maps.InfoWindow();
+var marker, i;
+for (i = 0; i < locations.length; i++) {
+ marker = new google.maps.Marker({
+  position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+  icon: locations[i][4],
+  title: locations[i][0],
+  map: map
+ });
+ google.maps.event.addListener(marker, 'click', (function(marker, i) {
+  return function() {
+   infowindow.setContent(locations[i][0]);
+   infowindow.open(map, marker);
+  }
+ })(marker, i));
 }
