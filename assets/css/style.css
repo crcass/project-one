@@ -1,0 +1,112 @@
+.navbar-collapse {
+	flex-grow: 0;
+}
+
+.jumbotron {
+	height: 44rem;
+    padding-top: 10rem;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;	
+}
+
+.jumbotron p {
+	max-width: 51.3rem;
+	font-size: 1.5rem;
+	margin: auto;
+}
+
+.jumbotron-city {
+	background-image: url(../../assets/images/city.jpg);
+}
+
+.jumbotron-food {
+	background-image: url(../../assets/images/food.jpg);
+}
+
+.jumbotron-events {
+	background-image: url(../../assets/images/music.jpg);
+}
+
+.jumbotron-activity {
+	background-image: url(../../assets/images/activity.jpg);
+}
+
+.btn-large {
+	font-size: 1.3rem;
+	background-color: #399bd1;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	margin-top: 2.8rem;
+	width: 11.4rem;
+	padding: 1.3rem 0;
+	text-shadow: none;
+	border: 0;
+	transition: .5s box-shadow;
+}
+
+.btn-large:hover {
+	background-color: #399bd1;
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.btn-large:active {
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.button-wrapper {
+  position: relative;
+  top: -16rem;
+  width: 100%;
+}
+
+.slick-slide {
+  outline: none;
+}
+
+.modal {
+  overflow-y:auto;
+}
+
+.img-div {
+	display: inline-block;
+	position: relative;
+	height: 166px;
+	overflow: hidden;
+}
+
+img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.card-text {
+	max-height: 135px;
+	overflow: scroll;
+}
+
+.choice {
+	cursor: pointer;
+}
+
+#map-city {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#maps {
+	position: sticky;
+	top: 4rem;
+	align-self: flex-start;
+}
+
+@media and (max-width: 1024px) {
+	#maps {
+		position: static;
+	}
+}
