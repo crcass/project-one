@@ -53,14 +53,26 @@ $(document).ready(() => {
 });
 
 // modal event listeners
+$('#startModal').on('shown.bs.modal', () => {
+  $('#user-name').trigger('focus');
+});
+
 $('#startModal').on('submit', (e) => {
     e.preventDefault();
     $('#name-btn').click();
 });
 
+$('#cityModal').on('shown.bs.modal', () => {
+  $('#user-city').trigger('focus');
+});
+
 $('#cityModal').on('submit', (e) => {
     e.preventDefault();
     $('#city-btn').click();
+});
+
+$('#detailsModal').on('shown.bs.modal', () => {
+  $('#user-food').trigger('focus');
 });
 
 $('#detailsModal').on('submit', (e) => {
@@ -526,8 +538,6 @@ $('#tm-card').on('click', function(e) {
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $(".savedChoice-event").text(ticketMasterFireBaseData.name);
     $("#savedChoice-event-buy").attr('href', ticketMasterFireBaseData.link);
-
-
     console.log(ticketMasterFireBaseData.name);
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData);
@@ -541,7 +551,6 @@ $('#eb-card').on('click', function(e) {
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $(".savedChoice-event").text(eventBriteFireBaseData.name);
     $("#savedChoice-event-buy").attr('href', eventBriteFireBaseData.link);
-
     console.log(eventBriteFireBaseData.name);
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData);
@@ -566,14 +575,11 @@ $('#yelp-card').on('click', function(e) {
     database.ref(`/user/${userName}/activity`).set(yelpActivityData);
     $('.user-exercise').text(yelpActivityData.name);
     $('#user-exercise-address').text(yelpActivityData.address);
-
     userActivityArray = [];
     userActivityArray.push(yelpActivityData);
-
     $('#yelp-card').css('background-color', '#F5CDA7');
     $('#sup-card').css('background-color', '#d6d8d9');
 });
-
 
 // stores the user's name for other functions
 $('#name-btn').on('click', (e) => {
@@ -609,14 +615,12 @@ function savedUserChoices() {
     $("#user-exercise-address").text(userActivityArray[0].address);
 }
 
-
 $("#save-choices-btn").on("click", function() {
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
 })
 
 savedData = userEventArray.concat(userFoodArray);
-
 
 //database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
