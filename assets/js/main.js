@@ -455,7 +455,7 @@ $('#z-food-card').on('click', function(e) {
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData);
     console.log(userFoodArray);
-    $('#z-food-card').css('background-color', '#d1ecf1');
+    $('#z-food-card').css('background-color', '#DBBADD');
     $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -468,7 +468,7 @@ $('#y-food-card').on('click', function(e) {
     userFoodArray = [];
     userFoodArray.push(yelpFoodData);
     console.log(userFoodArray);
-    $('#y-food-card').css('background-color', '#d1ecf1');
+    $('#y-food-card').css('background-color', '#DBBADD');
     $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
@@ -483,7 +483,7 @@ $('#tm-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData);
     console.log(userEventArray);
-    $('#tm-card').css('background-color', '#d1ecf1');
+    $('#tm-card').css('background-color', '#DBBADD');
     $('#eb-card').css('background-color', '#d6d8d9');
 });
 
@@ -497,7 +497,7 @@ $('#eb-card').on('click', function(e) {
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData);
     console.log(userEventArray);
-    $('#eb-card').css('background-color', '#d1ecf1');
+    $('#eb-card').css('background-color', '#DBBADD');
     $('#tm-card').css('background-color', '#d6d8d9');
 });
 
@@ -511,7 +511,7 @@ $('#sup-card').on('click', function(e) {
     // userEventArray = [];
     // userEventArray.push(eventBriteFireBaseData);
     // console.log(userEventArray);
-    $('#sup-card').css('background-color', '#d1ecf1');
+    $('#sup-card').css('background-color', '#DBBADD');
     $('#yelp-card').css('background-color', '#d6d8d9');
 });
 
@@ -525,7 +525,7 @@ $('#yelp-card').on('click', function(e) {
     // userEventArray = [];
     // userEventArray.push(eventBriteFireBaseData);
     // console.log(userEventArray);
-    $('#yelp-card').css('background-color', '#d1ecf1');
+    $('#yelp-card').css('background-color', '#DBBADD');
     $('#sup-card').css('background-color', '#d6d8d9');
 });
 

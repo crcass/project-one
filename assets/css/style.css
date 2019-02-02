@@ -124,7 +124,11 @@ h4 {
 /* Modals */
 
 .modal {
-  overflow-y:auto;
+	overflow-y:auto;
+}
+
+#results {
+	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
 }
 
 .card:hover {
