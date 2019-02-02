@@ -35,7 +35,7 @@ $(document).ready(() => {
 
     // auto-hides nav bar
     let lastScrollTop = 0;
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         let scrollTop = $(this).scrollTop();
         if (scrollTop - lastScrollTop > 50) {
             let navHeight = $('.navbar').css('height');
@@ -69,8 +69,13 @@ let EventBriteLocationArray = [];
 let TicketMasterLocationArray = [];
 let zomatoCoords = [];
 let yelpFoodCoords = [];
+let yelpActiviyCoords = [];
+let userName;
 let userCity;
+let userFoodArray = [];
+let userEventArray = [];
 
+let ylpActivityData = {};
 let yelpFoodData = {};
 let zomatoFoodData = {};
 let ticketMasterFireBaseData = {};
@@ -88,7 +93,6 @@ let zomatoFood = (() => {
     let zomatoFoodArray = [];
 
     // Zomato API call to convert user city to Zomato ID
-    // let userCity = $('#user-city').val();
     let userFood = $('#user-food').val().trim().toLowerCase() || 'pizza';
     let zomatoLocation = `https://developers.zomato.com/api/v2.1/locations?query=${userCity}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
     $.ajax(zomatoLocation).done((response) => {
@@ -122,13 +126,13 @@ let zomatoFood = (() => {
             // Zomato API call to find image for restaurant
             let zomatoImageSearch = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${zRestId}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
             $.ajax(zomatoImageSearch).done((response) => {
-                // console.log(response);
-                // console.log(response.thumb.indexOf('?'));
-                // console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
-                zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
-                $('#z-image').attr('src', zRestImage);
-            })
-            // console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
+                    // console.log(response);
+                    // console.log(response.thumb.indexOf('?'));
+                    // console.log(response.thumb.substring(0, response.thumb.indexOf('?')));
+                    zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
+                    $('#z-image').attr('src', zRestImage);
+                })
+                // console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
             $('#z-restaurant').text(zRestName);
             $('#z-address').text(zRestAddress);
 
@@ -147,7 +151,6 @@ let yelpFood = (() => {
     let yelpFoodArray = [];
 
     // Yelp API call to find restaurants that match user preference
-    // let userCity = $('#user-city').val();
     let userFood = $('#user-food').val().trim().toLowerCase() || 'pizza';
     let yelpLocation = {
         url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${userFood}&location=${userCity}`,
@@ -211,9 +214,9 @@ function eventBriteData() {
 
     //https: //www.eventbriteapi.com//v3/events/search/?q=" + userInput + "&location.address=" + location + "start_date.range_start=" + newDateTime + "&token=D6XUTCDEZDOKRNBW4HNT
     fetch(queryURL)
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
-        }).then(function (myJson) {
+        }).then(function(myJson) {
             processData(myJson);
         })
 };
@@ -239,7 +242,7 @@ function processData(data) {
     $("#eblink").text("Buy tickets here");
     console.log(EventDescriptionEB);
 
-    $("#eb-link").on("click", function () {
+    $("#eb-link").on("click", function() {
         $("#eblink").attr("href", eventBriteLink);
     })
 
@@ -272,10 +275,10 @@ function ticketMasterData() {
     let gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&city=" + userCity + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
 
     fetch(gueryTicketMasterURL)
-        .then(function (response) {
+        .then(function(response) {
             // console.log(response);
             return response.json();
-        }).then(function (myJsonTM) {
+        }).then(function(myJsonTM) {
             //console.log(myJsonTM);
             displayEventData(myJsonTM);
         });
@@ -293,7 +296,6 @@ function displayEventData(eventData) {
     console.log(eventData);
     console.log(topEventTicketMaster)
 
-
     let tmLink = topEventTicketMaster.url
     let eventNameTM = topEventTicketMaster.name;
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
@@ -304,9 +306,8 @@ function displayEventData(eventData) {
     $("#tmlink").attr("href", tmLink);
     $("#tmlink").text("Buy tickets here");
 
-    $("#tm-link").on("click", function () {
+    $("#tm-link").on("click", function() {
         $("#tmlink").attr("href", tmLink);
-
     })
 
     ticketMasterFireBaseData = {
@@ -318,8 +319,59 @@ function displayEventData(eventData) {
     }
 }
 
-// Weather api
 
+//Start of Health Activity not incomplete
+let displayYelpActivity = (() => {
+    let yelpActivityArray = [];
+
+    // Health/Activity  API call 
+    let userActivity = $('#user-activity').val().trim().toLowerCase();
+
+    let yelpLocation = {
+        url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=' + userActivity + '&location=' + userCity,
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer yWaQJHl2o89UuNIHcjYdRgwwJGrCEU3XVL6DQYPbdbPSu261nkOvcpUHI4rxmnWBbBGf4FcvVuUm7EgASDF8g5_vrpqQPGq8imdmjvbKlY_HZSl66YFihuLBjGRMXHYx'
+        }
+    }
+
+    //Health/Activity Ajax
+    $.ajax(yelpLocation).done((response) => {
+        console.log(response);
+        console.log(response.businesses[0].location);
+        response.businesses.forEach((element) => {
+            yelpActivityArray.push(element.review_count);
+        })
+        let highestRating = 0;
+        for (var i = 0; i < yelpActivityArray.length; i++) {
+            if (yelpActivityArray[i] > highestRating) {
+                highestRating = yelpActivityArray[i];
+            }
+        }
+
+        // Health/Activity to display 
+        let activityIndex = yelpActivityArray.indexOf(highestRating);
+        let addressArray = [];
+        for (var i = 0; i < response.businesses[activityIndex].location.display_address.length; i++) {
+            addressArray.push(response.businesses[activityIndex].location.display_address[i]);
+        }
+        // Health/Activity Coordspush pending 
+        let yelpBusinessName = response.businesses[activityIndex].name;
+        let yelpBusinessAddress = addressArray.join(' ');
+        let yelpBusinessImage = response.businesses[activityIndex].image_url;
+        //yelpActivityCoords.push(response.businesses[activityIndex].coordinates.latitude);
+        //yelpActivityCoords.push(response.businesses[activityIndex].coordinates.longitude);
+
+        // console.log(yelpActivityCoords);
+
+        //console.log(`Yelp's best ${userActivity} in ${userCity}: ${yelpBusinessName}, ${yelpBusinessAddress}`);
+        $('#yelp-business').text(yelpBusinessName);
+        $('#yelp-address').text(yelpBusinessAddress);
+        $('#yelp-image').attr('src', yelpBusinessImage);
+    });
+});
+
+// Weather api
 let getCurrentWeather = (event) => {
     let userCity = $("#user-city").val();
     let weatherKey = '75db64d1c63b2811dc0f6b1eaae6a7bd';
@@ -328,15 +380,15 @@ let getCurrentWeather = (event) => {
         .then(response => {
             return response.json();
         })
-        .then(function (myJson) {
+        .then(function(myJson) {
             console.log(JSON.stringify(myJson));
             displayInfo(myJson)
             weatherData = myJson;
         })
 
-        .catch(function (err) {
-            // console.log()
-        });
+    .catch(function(err) {
+        // console.log()
+    });
 }
 
 let displayInfo = (response) => {
@@ -344,15 +396,7 @@ let displayInfo = (response) => {
     let weatherCityName = response.name;
     let weatherCityTemp = temperatureConversion(response.main.temp);
     let weatherCityWind = response.wind.speed;
-
-    $('#map-temp').text(`${weatherCityTemp}°`);
-
-    // let newRow = $("<tr>").append(
-    //     $("<td>").text('Location: ' + weatherCityName + "  |  "),
-    //     $("<td>").text('Current Temperature: ' + weatherCityTemp + "  |  "),
-    //     $("<td>").text('Wind Speed: ' + weatherCityWind + "mph")
-    // )
-    // $("#weather-display").append(newRow);
+    $('#map-temp').text(weatherCityTemp);
 }
 
 let temperatureConversion = (num) => {
@@ -362,7 +406,7 @@ let temperatureConversion = (num) => {
     return fahrenheit;
 }
 
-let userName;
+
 
 let createUser = () => {
     database.ref(`/user/${userName}`).set({});
@@ -373,7 +417,7 @@ let displayUserName = (() => {
     $('#user').text(userName);
 })
 
-// all functions trigger when button is clicked
+// city is defined for other functions on click, weather updates
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
     userCity = $('#user-city').val().trim();
@@ -392,47 +436,45 @@ $('#city-btn').on('click', (e) => {
     }
 });
 
+// runs functions based on user preferences
 $('#choices-btn').on('click', (e) => {
     e.preventDefault();
     zomatoFood();
     yelpFood();
+    displayYelpActivity();
     ticketMasterData();
     eventBriteData();
     $('#user-food').val('');
     $('#user-event').val('');
     $('#user-activity').val('');
-})
+});
 
-
-let userFoodArray = [];
-let userEventArray = [];
-
-$('#z-food-card').on('click', function (e) {
+$('#z-food-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(zomatoFoodData);
     $("#savedChoice-food").text(zomatoFoodData.name);
     $("#savedChoice-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
-    userFoodArray.push(zomatoFoodData)
+    userFoodArray.push(zomatoFoodData);
     console.log(userFoodArray);
     $('#z-food-card').css('background-color', '#d1ecf1');
     $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
-$('#y-food-card').on('click', function (e) {
+$('#y-food-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
     $("#avedChoice-food").text(yelpFoodData.name);
     $("#savedChoice-food-address").text(yelpFoodData.address);
     console.log(yelpFoodData.name);
     userFoodArray = [];
-    userFoodArray.push(yelpFoodData)
+    userFoodArray.push(yelpFoodData);
     console.log(userFoodArray);
     $('#y-food-card').css('background-color', '#d1ecf1');
     $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
-$('#tm-card').on('click', function (e) {
+$('#tm-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $("#savedChoice-event").text(ticketMasterFireBaseData.name);
@@ -441,14 +483,13 @@ $('#tm-card').on('click', function (e) {
 
     console.log(ticketMasterFireBaseData.name);
     userEventArray = [];
-    userEventArray.push(ticketMasterFireBaseData)
+    userEventArray.push(ticketMasterFireBaseData);
     console.log(userEventArray);
     $('#tm-card').css('background-color', '#d1ecf1');
     $('#eb-card').css('background-color', '#d6d8d9');
+});
 
-})
-
-$('#eb-card').on('click', function (e) {
+$('#eb-card').on('click', function(e) {
     e.preventDefault();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $("#savedChoice-event").text(eventBriteFireBaseData.name);
@@ -456,13 +497,42 @@ $('#eb-card').on('click', function (e) {
 
     console.log(eventBriteFireBaseData.name);
     userEventArray = [];
-    userEventArray.push(eventBriteFireBaseData)
+    userEventArray.push(eventBriteFireBaseData);
     console.log(userEventArray);
     $('#eb-card').css('background-color', '#d1ecf1');
     $('#tm-card').css('background-color', '#d6d8d9');
+});
 
-})
+$('#sup-card').on('click', function(e) {
+    e.preventDefault();
+    // database.ref(`/user/${userName}/activity`).set(eventBriteFireBaseData);
+    // $("#savedChoice-event").text(eventBriteFireBaseData.name);
+    // $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
 
+    // console.log(eventBriteFireBaseData.name);
+    // userEventArray = [];
+    // userEventArray.push(eventBriteFireBaseData);
+    // console.log(userEventArray);
+    $('#sup-card').css('background-color', '#d1ecf1');
+    $('#yelp-card').css('background-color', '#d6d8d9');
+});
+
+$('#yelp-card').on('click', function(e) {
+    e.preventDefault();
+    // database.ref(`/user/${userName}/activity`).set(eventBriteFireBaseData);
+    // $("#savedChoice-event").text(eventBriteFireBaseData.name);
+    // $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
+
+    // console.log(eventBriteFireBaseData.name);
+    // userEventArray = [];
+    // userEventArray.push(eventBriteFireBaseData);
+    // console.log(userEventArray);
+    $('#yelp-card').css('background-color', '#d1ecf1');
+    $('#sup-card').css('background-color', '#d6d8d9');
+});
+
+
+// stores the user's name for other functions
 $('#name-btn').on('click', (e) => {
     e.preventDefault();
     userName = $('#user-name').val().trim();
@@ -479,10 +549,11 @@ $('#name-btn').on('click', (e) => {
     }
 });
 
-
+// saves user data
 $('#save-user-btn').on('click', (e) => {
     e.preventDefault();
     savedUserChoices();
+    $('#saveModal').modal('hide');
 });
 
 function savedUserChoices() {
@@ -490,13 +561,11 @@ function savedUserChoices() {
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
     $("#saved-event-buy").text(userEventArray[0].link);
- 
 }
 
-
-$("#save-choices-btn").on("click", function () {
+$("#save-choices-btn").on("click", function() {
     database.ref(`/user/${userName}/saved`).set(userSavedPrefArray);
-    userSavedPrefArray =  foodName.userFoodArray[0].name;
+    userSavedPrefArray = foodName.userFoodArray[0].name;
     userSavedPrefArray.foodAddress = userFoodArray[1];
 })
 
@@ -506,10 +575,10 @@ let userSavedPrefArray = {
     eventName: '',
     eventLink: ''
 }
+database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
-//      Mapping Functions Begin here
-//geocodes address
-
+// Mapping Functions Begin here
+// geocodes address
 var geocodeLat = 0;
 var geocodeLong = 0;
 
@@ -519,7 +588,7 @@ function codeAddress() {
     console.log($('#user-city').val());
     geocoder.geocode({
         'address': address
-    }, function (results, status) {
+    }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
             geocodeLat = results[0].geometry.location.lat();
@@ -549,7 +618,7 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), options);
 
     // Listen for click on map (to test add marker function)
-    google.maps.event.addListener(map, 'click', function (event) {
+    google.maps.event.addListener(map, 'click', function(event) {
         // Add marker
         addMarker({
             coords: event.latLng
@@ -606,7 +675,7 @@ function initMap() {
                 content: props.content
             });
 
-            marker.addListener('click', function () {
+            marker.addListener('click', function() {
                 infoWindow.open(map, marker);
             });
         }
