@@ -167,7 +167,7 @@ function processData(data) {
 
     let eventBriteFireBaseData = {
         ebName: eventNameEB,
-        ebDiscription: EventDescriptionEB,
+        ebDescription: EventDescriptionEB,
         ebID: eventBriteLat,
         ebLink: eventBriteLink
     }
@@ -353,7 +353,7 @@ let temperatureConversion = (num) => {
     
     // console.log(yelpActivityCoords);
 
-     //console.log(`Yelp's best ${userActivity} in ${userCity}: ${yelplBusinessName}, ${yelpBusinessAddress}`);
+     //console.log(`Yelp's best ${userActivity} in ${userCity}: ${yelpBusinessName}, ${yelpBusinessAddress}`);
      $('#yelp-business').text(yelpBusinessName);
      $('#yelp-address').text(yelpBusinessAddress);
      $('#yelp-image').attr('src', yelpBusinessImage);
@@ -375,6 +375,7 @@ $('#city-btn').on('click', (e) => {
   $('#user-city').val('');
   $('#user-food').val('');
   $('#user-event').val('');
+  $('#user-activity').val('');
 });
 
 
