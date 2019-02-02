@@ -406,8 +406,6 @@ let temperatureConversion = (num) => {
     return fahrenheit;
 }
 
-
-
 let createUser = () => {
     database.ref(`/user/${userName}`).set({});
 }
@@ -546,6 +544,7 @@ $('#name-btn').on('click', (e) => {
         $('#user-name').val('');
         $('#user-name').attr('placeholder', '');
         $('#user-name').attr('class', 'form-control');
+        $('.card').css('background-color', '#fff');
     }
 });
 
