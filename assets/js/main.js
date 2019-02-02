@@ -74,6 +74,7 @@ let userName;
 let userCity;
 let userFoodArray = [];
 let userEventArray = [];
+let userActivityArray=[];
 
 let ylpActivityData = {};
 let yelpFoodData = {};
@@ -257,32 +258,37 @@ function processData(data) {
 // ticketMaster api call
 function ticketMasterData() {
     // Need to figure out how to call the dates within the API.
-    // var startDate = $("#user-date").val();
-    // var d = new Date();
-    // var n = d.toISOString();
-    // console.log(n);
-    // var newStartTime = moment(startDate).format("YYYY-MM-DD");
-    // var proposedStartDate = startDate.toISOString();
-    // endDate = moment(newStartTime).add(3, 'days');
-    // console.log(proposedStartDate);
-    // console.log(endDate);
+var startDate = $("#user-date").val();
+var newStartTime = moment(startDate).format("YYYY-MM-DDTh:mm:ss");
+let apiStartDate = newStartTime.concat("Z");
 
-    let userInput = $("#user-event").val();
-    // let locationEvent = $("#user-city").val();
-    console.log(userInput);
-    console.log(userCity);
+// let endDate = moment(startDate, 'MM/DD/YYYY').add(1, 'day').format("YYYY-MM-DDTh:mm:ssZ");
+let endDate = moment(startDate).add(1, "week").format("YYYY-MM-DDTh:mm:ss");
+console.log(endDate);
+const apiEndDate = endDate.concat('Z');
+console.log(apiEndDate);
+let userInput = $("#user-event").val();
+// let locationEvent = $("#user-city").val();
+// console.log(userInput);
+// console.log(userCity);
 
-    let gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" + userInput + "&city=" + userCity + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
+
+
+let gueryTicketMasterURL = "https://app.ticketmaster.com/discovery/v2/events.json?startDateTime=" + apiStartDate + "&classificationName=" + userInput + "&city=" + userCity + "&endDateTime=&" + apiEndDate + "&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
+
 
     fetch(gueryTicketMasterURL)
         .then(function(response) {
             // console.log(response);
+
             return response.json();
         }).then(function(myJsonTM) {
             //console.log(myJsonTM);
             displayEventData(myJsonTM);
         });
 }
+
+
 
 // Function to dispalay the Ticketmaster data information 
 function displayEventData(eventData) {
@@ -368,6 +374,12 @@ let displayYelpActivity = (() => {
         $('#yelp-business').text(yelpBusinessName);
         $('#yelp-address').text(yelpBusinessAddress);
         $('#yelp-image').attr('src', yelpBusinessImage);
+
+
+        yelpActivityData = {
+            name: yelpBusinessName,
+            address: yelpBusinessAddress,
+        }
     });
 });
 
@@ -503,28 +515,23 @@ $('#eb-card').on('click', function(e) {
 
 $('#sup-card').on('click', function(e) {
     e.preventDefault();
-    // database.ref(`/user/${userName}/activity`).set(eventBriteFireBaseData);
-    // $("#savedChoice-event").text(eventBriteFireBaseData.name);
-    // $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
-
-    // console.log(eventBriteFireBaseData.name);
-    // userEventArray = [];
-    // userEventArray.push(eventBriteFireBaseData);
-    // console.log(userEventArray);
+    $('#user-exercise').text(yelpActivityData2.name);
+    $('#yelp-address').text(yelpActivityData2.address);
+    userActivityArray =[],
+    userActivityArray.push(yelpActivityData);
     $('#sup-card').css('background-color', '#DBBADD');
     $('#yelp-card').css('background-color', '#d6d8d9');
 });
 
 $('#yelp-card').on('click', function(e) {
     e.preventDefault();
-    // database.ref(`/user/${userName}/activity`).set(eventBriteFireBaseData);
-    // $("#savedChoice-event").text(eventBriteFireBaseData.name);
-    // $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
+    database.ref(`/user/${userName}/activity`).set(yelpActivityData);
+    $('#user-exercise').text(yelpActivityData.name);
+    $('#user-exercise-address').text(yelpActivityData.address);
+    
+    userActivityArray =[],
+    userActivityArray.push(yelpActivityData);
 
-    // console.log(eventBriteFireBaseData.name);
-    // userEventArray = [];
-    // userEventArray.push(eventBriteFireBaseData);
-    // console.log(userEventArray);
     $('#yelp-card').css('background-color', '#DBBADD');
     $('#sup-card').css('background-color', '#d6d8d9');
 });
@@ -560,21 +567,20 @@ function savedUserChoices() {
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
     $("#saved-event-buy").text(userEventArray[0].link);
+    $("#user-exercise").text(userActivityArray[0].name);
+    $("#user-exercise-address").text(userActivityArray[0].address);
 }
+
 
 $("#save-choices-btn").on("click", function() {
-    database.ref(`/user/${userName}/saved`).set(userSavedPrefArray);
-    userSavedPrefArray = foodName.userFoodArray[0].name;
-    userSavedPrefArray.foodAddress = userFoodArray[1];
+    database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
+
 })
 
-let userSavedPrefArray = {
-    foodName: '',
-    foodAddress: '',
-    eventName: '',
-    eventLink: ''
-}
-database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
+savedData = userEventArray.concat(userFoodArray);
+
+
+//database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
 //                                      Mapping Functions Begin here
 //geocodes address
