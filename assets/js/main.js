@@ -52,6 +52,22 @@ $(document).ready(() => {
     });
 });
 
+// modal event listeners
+$('#startModal').on('submit', (e) => {
+    e.preventDefault();
+    $('#name-btn').click();
+});
+
+$('#cityModal').on('submit', (e) => {
+    e.preventDefault();
+    $('#city-btn').click();
+});
+
+$('#detailsModal').on('submit', (e) => {
+    e.preventDefault();
+    $('#choices-btn').click();
+});
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
