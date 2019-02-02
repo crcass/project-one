@@ -304,15 +304,82 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="">Save Info</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#saveModal">Save Info</button>
                 </div>
             </div>
         </div>
+
+        <!--         <div class="container">
+            <h2>Save Choices</h2>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="saveModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--                             <h4 class="modal-title">Close Saved Data</h4> -->
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="card-title" id="">Food</h5>
+                        <p class="card-text test" id="savedChoice-food"></p>
+                        <p class="card-text test" id="savedChoice-food-address"></p>
+                        <h5 class="card-title" id="">Event</h5>
+                        <p class="card-text test" id="savedChoice-event"></p>
+                        <p class="card-text test" id="savedChoice-event-buy"></p>
+                        <h5 class="card-title" id="">Exercise</h5>
+                        <p class="card-text" id="user-exercise"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save-choices-btn">Save</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--         </div> -->
     </div>
 
     <!-- Save User Info -->
 
-    <div class="modal" tabindex="-1" role="dialog">
+    </div>
+
+    <!-- <div class="modal fade" id="saveModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="user-choices-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Would you like to save?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <h5 class="card-title" id="">Food</h5>
+                        <p class="card-text test" id="saved-food"></p>
+                        <p class="card-text test" id="saved-food-address"></p>
+                        <h5 class="card-title" id="">Event</h5>
+                        <p class="card-text test" id="saved-event"></p>
+                        <p class="card-text test" id="save-event-buy"></p>
+                        <h5 class="card-title" id="">Exercise</h5>
+                        <p class="card-text" id="user-exercise"></p>
+                    <form class="container">
+                        <label for="user-name">First, tell us your name:</label>
+                        <input type="text" class="form-control" id="user-name">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="save-choices-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -337,7 +404,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="card">
             <div class="card-header" id="user-selected">
@@ -358,6 +425,9 @@
             </div>
             <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
         </div> -->
+    <!-- <div class="modal fade" id="myModal" role="dialog">
+
+              </div> -->
 
     <!-- Scripts -->
 
