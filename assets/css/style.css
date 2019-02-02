@@ -127,8 +127,16 @@ h4 {
 	overflow-y:auto;
 }
 
-#results {
+.modal-body {
 	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
+}
+
+label {
+	color: #fff;
+}
+
+.modal h2 {
+	color: #fff;
 }
 
 .card:hover {
@@ -171,16 +179,38 @@ h4 {
 	align-items: center;
 }
 
-#map {
+#map-display {
 	position: sticky;
 	top: 4rem;
 	align-self: flex-start;
 }
-#map{
-      height:400px;
-      width:100%;
 
-    }
+#map-display p {
+	margin-top: 0.75rem;
+	margin-bottom: 0;
+	font-size: 0.75rem;
+}
+
+#map {
+  height: 200px;
+  width: 100%;
+}
+
+.break {
+	color: #ddd;
+}
+
+#save {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#saveModal .modal-body h5, #saveModal .modal-body p {
+	color: #fff;
+}
+
+#saveModal .modal-body h5 {
+	font-weight: bold;
+}
 
 /* Footer */
 
