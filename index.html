@@ -64,13 +64,11 @@
     <div class="container text-center rounded" id="learn">
         <div class="info" id="info-top">
             <h2>We get it, you're busy</h2>
-            <p>______________________</p>
             <p>When you travel for business, it can feel like you're in a foreign country. There are so many choices when it comes to food, events, and exercise that it can be hard to find just the right thing. You spend all day making tough decisions, and the last thing on your mind is finding the best place to eat or finding the right workout. That's where we come in.</p>
             <p>We take the guess work out of finding those perfect places so you can spend your precious down time actually enjoying them.</p>
         </div>
         <div class="info">
             <h2>How it works</h2>
-            <p>______________________</p>
             <p>Simply enter your name & preferences for food, events, and exercise. Let us handle the rest. In seconds you'll have the very best of each category, right at your fingertips. We'll give you two great options to choose from in each category and directions to each place.</p>
             <p>We're obsessed with sorting through the noise to get you out of that hotel room and in to the best places your city has to offer.</p>
         </div>
@@ -80,7 +78,6 @@
 
     <div class="container-fluid text-center" id="team">
         <h2>Meet the Team</h2>
-        <p>______________________</p>
         <div class="container team-inside">
             <div class="row">
                 <div class="col-sm-3 team-member">
@@ -112,7 +109,7 @@
                         <img class="rounded-circle" src="./assets/images/daniel.jpg" height="140" width="140">
                     </div>
                     <h4>Daniel</h4>
-                    <p>Mapping</p>
+                    <p>Maps</p>
                     <a class="btn btn-outline-light" href="https://danbrit.github.io/responsive-portfolio/portfolio.html" target="blank">Portfolio</a>
                 </div>
             </div>
@@ -286,7 +283,7 @@
 
                                 <!-- Activity Info Display -->
 
-                                <h2>Exercise</h2>
+                                <h2>Activity</h2>
                                 <div class="row" id="">
                                     <div class="col-sm-6">
                                         <div class="card choice" id="sup-card">
@@ -308,7 +305,7 @@
                                                 Voted Most Popular
                                             </div>
                                             <div class="img-div">
-                                                <img src="" class="card-img-top" alt="" id="yelp-image">
+                                                <img src="" class="card-img-top" id="yelp-image">
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title" id="yelp-business"></h5>
@@ -327,22 +324,16 @@
                                     <div class="card-header" id="map-city">
                                         <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">--</span>°</span>
                                     </div>
-
                                     <div class="card-body">
                                         <div id="map">
 
                                         </div>
-                                        <p class="text-center break">__________</p>
-                                        <p class="card-text test savedChoice-food"></p>
-                                        <p class="text-center break">______</p>
-                                        <p class="card-text test savedChoice-event"></p>
-                                        <p class="text-center break">______</p>
-                                        <p class="card-text user-exercise"></p>
+                                        <p class="card-text under-map savedChoice-food"></p>
+                                        <p class="card-text under-map savedChoice-event"></p>
+                                        <p class="card-text under-map user-exercise"></p>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -353,6 +344,8 @@
             </div>
         </div>
 
+        <!-- Save Modal -->
+
         <div class="modal fade" id="saveModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="save">
@@ -361,26 +354,23 @@
                         <button type="button" class="close" data-toggle="modal" data-target="#saveModal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="card-title" id="">Enjoy Dinner</h5>
+                        <h5 class="card-title">Enjoy Dinner</h5>
                         <p class="card-text test savedChoice-food"></p>
                         <p class="card-text test" id="savedChoice-food-address"></p>
-                        <p class="text-center ">__________</p>
-                        <h5 class="card-title" id="">Maybe a show?</h5>
+                        <h5 class="card-title save-header">Maybe a show?</h5>
                         <p class="card-text test savedChoice-event"></p>
                         <a class="card-text test" href="" id="savedChoice-event-buy">Click to Learn More</a>
-                        <p class="text-center">__________</p>
-                        <h5 class="card-title" id="">Get that workout in</h5>
+                        <h5 class="card-title save-header">Get that workout in</h5>
                         <p class="card-text user-exercise"></p>
                         <p class="card-text" id="user-exercise-address"></p>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <label for="phone">Enter your phone #<br>We'll send your stuff</label>
+                        <label for="phone">Enter your phone #
+                            <br>We'll send your stuff</label>
                         <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="10" maxlength="10">
-                        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#saveModal">Close</button> -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Send</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

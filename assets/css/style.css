@@ -1,7 +1,8 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #636363;
-	background: linear-gradient(45deg, #3146DE 15%, #AB6A15 85%);
+/*	background: linear-gradient(45deg, #3146DE 15%, #AB6A15 85%);
+*/	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
 }
 
 /* Nav */
@@ -88,6 +89,19 @@ h1 {
 	background: #fff;
 }
 
+#learn h2::after, #team h2::after {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 2px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    background-image: linear-gradient(90deg, #81ffef, #f067b4);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .info {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -119,6 +133,10 @@ h1 {
 
 h4 {
 	margin-top: 1rem;
+}
+
+.btn-outline-light {
+	border-image: linear-gradient(45deg, #81ffef, #f067b4) 1;
 }
 
 /* Modals */
@@ -196,8 +214,16 @@ label {
   width: 100%;
 }
 
-.break {
-	color: #ddd;
+.under-map::before {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 1px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #save {
@@ -210,6 +236,18 @@ label {
 
 #saveModal .modal-body h5 {
 	font-weight: bold;
+}
+
+.save-header::before {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 2px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #saveModal label {
