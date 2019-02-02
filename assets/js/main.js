@@ -576,107 +576,130 @@ let userSavedPrefArray = {
 }
 database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
-// Mapping Functions Begin here
-// geocodes address
-var geocodeLat = 0;
-var geocodeLong = 0;
+//                                      Mapping Functions Begin here
+//geocodes address
+
+var lat=32.7767;
+var lng=-96.7970;
+
 
 function codeAddress() {
     geocoder = new google.maps.Geocoder();
     var address = document.getElementById("user-city").value;
     console.log($('#user-city').val());
-    geocoder.geocode({
-        'address': address
-    }, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
 
-            geocodeLat = results[0].geometry.location.lat();
-            geocodeLong = results[0].geometry.location.lng();
-            console.log(geocodeLat);
-            console.log(geocodeLong);
-        } else {
-            console.log("Geocode was not successful for the following reason: " + status);
-        }
+      
+      lat= results[0].geometry.location.lat();
+      lng= results[0].geometry.location.lng();
+      console.log(lat);
+      console.log(lng);
+      } 
+
+      else {
+        console.log("Geocode was not successful for the following reason: " + status);
+      }
     });
-}
+  }
 
-function initMap() {
+   function initMap(){
     //need to add geocoder function to push values from function above to map
+      var coords = new google.maps.LatLng(lat, lng);
+      var options = {
+        zoom:8,
+        center: coords
+      }
+      console.log(lat);
+      console.log(lng);
 
-    var options = {
-        zoom: 8,
-        center: {
-            lat: 32.7767,
-            lng: -96.7970
-        }
-    }
-    console.log(geocodeLat);
-    console.log(geocodeLong);
+      // New map
+      var map = new google.maps.Map(document.getElementById('map'), options);
 
-    // New map
-    var map = new google.maps.Map(document.getElementById('map'), options);
+      // Listen for click on map (to test add marker function)
+      // google.maps.event.addListener(map, 'click', function(event){
+      //   // Add marker
+      //   addMarker({coords:event.latLng});
+      // });
 
-    // Listen for click on map (to test add marker function)
-    google.maps.event.addListener(map, 'click', function(event) {
-        // Add marker
-        addMarker({
-            coords: event.latLng
-        });
-    });
+    //Set Center Function
 
-    // Array of markers
-    var markers = [{
-        coords: {
-            lat: 32.7767,
-            lng: -96.7970
-        },
-        iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-        // 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+  map.setCenter(new google.maps.LatLng(geocodeLat, geocodeLong));
 
-        content: '<h1>Dallas, Tx</h1>'
-    }, {
-        coords: {
-            lat: 32.7473,
-            lng: -96.8304
-        },
-        content: '<h1>Bishop Arts</h1>'
-    }, {
-        coords: {
-            lat: 32.7469,
-            lng: -96.700
-        }
 
-    }];
 
-    // Loop through markers
-    for (var i = 0; i < markers.length; i++) {
-        // Add marker
-        addMarker(markers[i]);
-    }
+      // Array of markers
+      // var markers = [
+      //   {
+      //     coords:{lat:32.7767,lng:-96.7970},
+      //     iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      //     content:'<h1>Dallas, Tx</h1>'
+      //   },
+      //   {
+      //     coords:{lat:32.7473,lng:-96.8304},
+      //     content:'<h1>Bishop Arts</h1>'
+      //   },
+      //   {
+      //     coords:{lat:32.7469,lng:-96.700}
+          
+      //   }
+      // ];
 
-    // Add Marker Function
-    function addMarker(props) {
-        var marker = new google.maps.Marker({
-            position: props.coords,
-            map: map,
-            //icon:props.iconImage
-        });
+      // Loop through markers
+      // for(var i = 0;i < markers.length;i++){
+      //   // Add marker
+      //   addMarker(markers[i]);
+      // }
+
+      // Add Marker Function
+      // function addMarker(props){
+      //   var marker = new google.maps.Marker({
+      //     position:props.coords,
+      //     map:map,
+      //     //icon:props.iconImage
+      //   });
 
         // Check for customicon
-        if (props.iconImage) {
-            // Set icon image
-            marker.setIcon(props.iconImage);
+        if(props.iconImage){
+          // Set icon image
+          marker.setIcon(props.iconImage);
         }
 
         // Check content
-        if (props.content) {
-            var infoWindow = new google.maps.InfoWindow({
-                content: props.content
-            });
+        if(props.content){
+          var infoWindow = new google.maps.InfoWindow({
+            content:props.content
+          });
 
-            marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-            });
+          marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+          });
         }
+      }
+    
+    var locations = [
+
+    //example
+  ['California', -33.890542, 151.274856, 4, "http://maps.google.com/mapfiles/ms/micons/blue.png"],
+  
+];
+
+var infowindow = new google.maps.InfoWindow();
+
+var marker, i;
+
+for (i = 0; i < locations.length; i++) {
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+    icon: locations[i][4],
+    title: locations[i][0],
+    map: map
+  });
+
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      infowindow.setContent(locations[i][0]);
+      infowindow.open(map, marker);
     }
+  })(marker, i));
 }
