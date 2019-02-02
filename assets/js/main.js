@@ -89,11 +89,11 @@ let zomatoFood = (() => {
 
     // Zomato API call to convert user city to Zomato ID
     // let userCity = $('#user-city').val();
-    let userFood = $('#user-food').val();
+    let userFood = $('#user-food').val().trim().toLowerCase() || 'pizza';
     let zomatoLocation = `https://developers.zomato.com/api/v2.1/locations?query=${userCity}&apikey=3b053c756fdbe3bc1e535e2bd3506391`;
     $.ajax(zomatoLocation).done((response) => {
         // console.log(response);
-        console.log(`${userCity}'s Zomato ID is: ${response.location_suggestions[0].city_id}`);
+        // console.log(`${userCity}'s Zomato ID is: ${response.location_suggestions[0].city_id}`);
         let cityId = response.location_suggestions[0].city_id;
 
         // Zomato API call to find restaurants that match user preference
@@ -128,7 +128,7 @@ let zomatoFood = (() => {
                 zRestImage = response.thumb.substring(0, response.thumb.indexOf('?'));
                 $('#z-image').attr('src', zRestImage);
             })
-            console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
+            // console.log(`Zomato's best ${userFood} in ${userCity}: ${zRestName}, ${zRestAddress}`);
             $('#z-restaurant').text(zRestName);
             $('#z-address').text(zRestAddress);
 
@@ -148,7 +148,7 @@ let yelpFood = (() => {
 
     // Yelp API call to find restaurants that match user preference
     // let userCity = $('#user-city').val();
-    let userFood = $('#user-food').val();
+    let userFood = $('#user-food').val().trim().toLowerCase() || 'pizza';
     let yelpLocation = {
         url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${userFood}&location=${userCity}`,
         method: 'GET',
@@ -180,7 +180,7 @@ let yelpFood = (() => {
         yelpFoodCoords.push(yRestLat);
         yelpFoodCoords.push(yRestLong);
         // console.log(yelpFoodCoords);
-        console.log(`Yelp's best ${userFood} in ${userCity}: ${yRestName}, ${yRestAddress}`);
+        // console.log(`Yelp's best ${userFood} in ${userCity}: ${yRestName}, ${yRestAddress}`);
         $('#y-restaurant').text(yRestName);
         $('#y-address').text(yRestAddress);
         $('#y-image').attr('src', yRestImage);
@@ -251,19 +251,6 @@ function processData(data) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ticketMaster api call
 function ticketMasterData() {
     // Need to figure out how to call the dates within the API.
@@ -331,20 +318,6 @@ function displayEventData(eventData) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Weather api
 
 let getCurrentWeather = (event) => {
@@ -389,19 +362,6 @@ let temperatureConversion = (num) => {
     return fahrenheit;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 let userName;
 
 let createUser = () => {
@@ -416,15 +376,20 @@ let displayUserName = (() => {
 // all functions trigger when button is clicked
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
-    userCity = $('#user-city').val();
-    database.ref(`/user/${userName}/city`).set(userCity);
-    // ticketMasterData();
-    //ticketMasterData();
-    // eventBriteData();
-    getCurrentWeather();
-    $('#user-event').val('');
-    $('#map-name').text(titleCase(userCity));
-    $('#user-city').val('');
+    userCity = $('#user-city').val().trim();
+    if (userCity === '') {
+        $('#user-city').attr('placeholder', 'Please enter your destination');
+        $('#user-city').attr('class', 'form-control border border-danger');
+        return false;
+    } else {
+        database.ref(`/user/${userName}/city`).set(userCity);
+        getCurrentWeather();
+        $('#user-event').val('');
+        $('#map-name').text(titleCase(userCity));
+        $('#user-city').val('');
+        $('#user-city').attr('placeholder', '');
+        $('#user-city').attr('class', 'form-control');
+    }
 });
 
 $('#choices-btn').on('click', (e) => {
@@ -450,7 +415,8 @@ $('#z-food-card').on('click', function (e) {
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData)
     console.log(userFoodArray);
-
+    $('#z-food-card').css('background-color', '#d1ecf1');
+    $('#y-food-card').css('background-color', '#d6d8d9');
 });
 
 $('#y-food-card').on('click', function (e) {
@@ -462,6 +428,8 @@ $('#y-food-card').on('click', function (e) {
     userFoodArray = [];
     userFoodArray.push(yelpFoodData)
     console.log(userFoodArray);
+    $('#y-food-card').css('background-color', '#d1ecf1');
+    $('#z-food-card').css('background-color', '#d6d8d9');
 });
 
 $('#tm-card').on('click', function (e) {
@@ -475,6 +443,8 @@ $('#tm-card').on('click', function (e) {
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData)
     console.log(userEventArray);
+    $('#tm-card').css('background-color', '#d1ecf1');
+    $('#eb-card').css('background-color', '#d6d8d9');
 
 })
 
@@ -488,15 +458,25 @@ $('#eb-card').on('click', function (e) {
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData)
     console.log(userEventArray);
+    $('#eb-card').css('background-color', '#d1ecf1');
+    $('#tm-card').css('background-color', '#d6d8d9');
 
 })
 
 $('#name-btn').on('click', (e) => {
     e.preventDefault();
-    userName = $('#user-name').val();
-    createUser();
-    displayUserName();
-    $('#user-name').val('');
+    userName = $('#user-name').val().trim();
+    if (userName === '') {
+        $('#user-name').attr('placeholder', 'Please enter your name');
+        $('#user-name').attr('class', 'form-control border border-danger');
+        return false;
+    } else {
+        createUser();
+        displayUserName();
+        $('#user-name').val('');
+        $('#user-name').attr('placeholder', '');
+        $('#user-name').attr('class', 'form-control');
+    }
 });
 
 
@@ -518,10 +498,7 @@ $("#save-choices-btn").on("click", function () {
     database.ref(`/user/${userName}/saved`).set(userSavedPrefArray);
     userSavedPrefArray =  foodName.userFoodArray[0].name;
     userSavedPrefArray.foodAddress = userFoodArray[1];
-    
-
 })
-
 
 let userSavedPrefArray = {
     foodName: '',
