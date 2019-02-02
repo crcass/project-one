@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Hello, world!</title>
@@ -25,10 +26,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#startModal">Get Started</a>
+                    <a class="nav-link" href="#learn">Learn More</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Meet the Team</a>
+                    <a class="nav-link" href="#team">Meet the Team</a>
                 </li>
             </ul>
         </div>
@@ -56,6 +57,66 @@
     </div>
     <div class="text-center button-wrapper">
         <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
+    </div>
+
+    <!-- Info -->
+
+    <div class="container text-center rounded" id="learn">
+        <div class="info" id="info-top">
+            <h2>We get it, you're busy</h2>
+            <p>______________________</p>
+            <p>When you travel for business, it can feel like you're in a foreign country. There are so many choices when it comes to food, events, and exercise that it can be hard to find just the right thing. You spend all day making tough decisions, and the last thing on your mind is finding the best place to eat or finding the right workout. That's where we come in.</p>
+            <p>We take the guess work out of finding those perfect places so you can spend your precious down time actually enjoying them.</p>
+        </div>
+        <div class="info">
+            <h2>How it works</h2>
+            <p>______________________</p>
+            <p>Simply enter your name & preferences for food, events, and exercise. Let us handle the rest. In seconds you'll have the very best of each category, right at your fingertips. We'll give you two great options to choose from in each category and directions to each place.</p>
+            <p>We're obsessed with sorting through the noise to get you out of that hotel room and in to the best places your city has to offer.</p>
+        </div>
+    </div>
+
+    <!-- Team -->
+
+    <div class="container-fluid text-center" id="team">
+        <h2>Meet the Team</h2>
+        <p>______________________</p>
+        <div class="container team-inside">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/patrick.png" height="140" width="140">
+                    </div>
+                    <h4>Patrick</h4>
+                    <p>Events</p>
+                    <a class="btn btn-outline-light" href="https://patrickj188.github.io/Responsive-Portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/eli.jpg" height="140" width="140">
+                    </div>
+                    <h4>Eli</h4>
+                    <p>Fitness</p>
+                    <a class="btn btn-outline-light" href="https://crcass.github.io/bootstrap-portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/chris.png" height="140" width="140">
+                    </div>
+                    <h4>Chris</h4>
+                    <p>Food & Style</p>
+                    <a class="btn btn-outline-light" href="https://evg7393.github.io/Responsive-Portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/daniel.jpg" height="140" width="140">
+                    </div>
+                    <h4>Daniel</h4>
+                    <p>Mapping</p>
+                    <a class="btn btn-outline-light" href="https://danbrit.github.io/responsive-portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modals for User Preferences -->
@@ -151,29 +212,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="container-fluid">
-
-                        <!-- <div class="card">
-                    <div class="card-header" id="user-selected">
-                        User Data
-                    </div>
-                    <div class="user-img">
-                        <img src="" class="card-img-top" alt="" id="">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="">Food</h5>
-                        <p class="card-text test" id="user-food"></p>
-                        <p class="card-text test" id="user-food-address"></p>
-                        <h5 class="card-title" id="">Event</h5>
-                        <p class="card-text test" id="user-event"></p>
-                        <p class="card-text test" id="user-event-buy"></p>
-                        <h5 class="card-title" id="">Exercise</h5>
-                        <p class="card-text" id="user-exercise"></p>
-                    </div>
-                    <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
-                </div> -->
-
                         <div class="row">
                             <div class="col-sm-8">
 
@@ -218,7 +257,7 @@
                                     <div class="col-sm-6">
                                         <div class="card choice" id="tm-card">
                                             <div class="card-header">
-                                                Large Venue
+                                                Large Events
                                             </div>
                                             <div class="img-div">
                                                 <img src="" class="card-img-top" alt="" id="tm-image">
@@ -232,7 +271,7 @@
                                     <div class="col-sm-6">
                                         <div class="card choice" id="eb-card">
                                             <div class="card-header">
-                                                Small Venue
+                                                Local Events
                                             </div>
                                             <div class="img-div">
                                                 <img src="" class="card-img-top" alt="" id="eb-image">
@@ -309,25 +348,18 @@
             </div>
         </div>
 
-        <!--         <div class="container">
-            <h2>Save Choices</h2>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-
-        <!-- Modal -->
         <div class="modal fade" id="saveModal" role="dialog">
             <div class="modal-dialog">
-
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h5 class="modal-title">Save your stuff!</h5>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <!--                             <h4 class="modal-title">Close Saved Data</h4> -->
                     </div>
                     <div class="modal-body">
-                        <h5 class="card-title" id="">Food</h5>
+                        <h5 class="card-title" id="">Enjoy Dinner</h5>
                         <p class="card-text test" id="savedChoice-food"></p>
                         <p class="card-text test" id="savedChoice-food-address"></p>
-                        <h5 class="card-title" id="">Event</h5>
+                        <h5 class="card-title" id="">Myabe a show?</h5>
                         <p class="card-text test" id="savedChoice-event"></p>
                         <p class="card-text test" id="savedChoice-event-buy"></p>
                         <h5 class="card-title" id="">Exercise</h5>
@@ -335,99 +367,21 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="save-choices-btn">Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-choices-btn">Save</button>
                     </div>
                 </div>
 
             </div>
         </div>
-
-        <!--         </div> -->
     </div>
 
-    <!-- Save User Info -->
+    <!-- Footer -->
 
-    </div>
-
-    <!-- <div class="modal fade" id="saveModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" id="user-choices-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title">Would you like to save?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                        <h5 class="card-title" id="">Food</h5>
-                        <p class="card-text test" id="saved-food"></p>
-                        <p class="card-text test" id="saved-food-address"></p>
-                        <h5 class="card-title" id="">Event</h5>
-                        <p class="card-text test" id="saved-event"></p>
-                        <p class="card-text test" id="save-event-buy"></p>
-                        <h5 class="card-title" id="">Exercise</h5>
-                        <p class="card-text" id="user-exercise"></p>
-                    <form class="container">
-                        <label for="user-name">First, tell us your name:</label>
-                        <input type="text" class="form-control" id="user-name">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="save-choices-btn">Save</button>
-                </div>
-            </div>
+    <footer class="bg-secondary">
+        <div class="container text-center">
+            <span>♥︎ 2019 team WKND</span>
         </div>
-    </div> -->
-
-    <!-- <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Would you like to Save?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="card-title" id="">Food</h5>
-                    <p class="card-text test" id="saved-food"></p>
-                    <p class="card-text test" id="saved-food-address"></p>
-                    <h5 class="card-title" id="">Event</h5>
-                    <p class="card-text test" id="saved-event"></p>
-                    <p class="card-text test" id="save-event-buy"></p>
-                    <h5 class="card-title" id="">Exercise</h5>
-                    <p class="card-text" id="user-exercise"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="save-user-btn">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <div class="card">
-            <div class="card-header" id="user-selected">
-               Would you like to Save?
-            </div>
-            <div class="save-img">
-                <img src="" class="card-img-top" alt="" id="">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" id="">Food</h5>
-                <p class="card-text test" id="saved-food"></p>
-                <p class="card-text test" id="saved-food-address"></p>
-                <h5 class="card-title" id="">Event</h5>
-                <p class="card-text test" id="saved-event"></p>
-                <p class="card-text test" id="save-event-buy"></p>
-                <h5 class="card-title" id="">Exercise</h5>
-                <p class="card-text" id="user-exercise"></p>
-            </div>
-            <button class="btn btn-primary" type="submit" id="save-user-btn">Submit</button>
-        </div> -->
-    <!-- <div class="modal fade" id="myModal" role="dialog">
-
-              </div> -->
+    </footer>
 
     <!-- Scripts -->
 

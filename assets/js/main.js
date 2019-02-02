@@ -553,6 +553,19 @@ $('#eb-card').on('click', function (e) {
 
 })
 
+$('#eb-card').on('click', function (e) {
+    e.preventDefault();
+    database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
+    $("#savedChoice-event").text(eventBriteFireBaseData.name);
+    $("#savedChoice-event-buy").text(eventBriteFireBaseData.link);
+
+    console.log(eventBriteFireBaseData.name);
+    userEventArray = [];
+    userEventArray.push(eventBriteFireBaseData)
+    console.log(userEventArray);
+
+})
+
 $('#name-btn').on('click', (e) => {
     e.preventDefault();
     userName = $('#user-name').val();
@@ -565,9 +578,11 @@ $('#name-btn').on('click', (e) => {
 $('#save-user-btn').on('click', (e) => {
     e.preventDefault();
     savedUserChoices();
+    $('#saveModal').modal('hide');
 });
 
 function savedUserChoices() {
+
     $("#saved-food").text(userFoodArray[0].name);
     $("#saved-food-address").text(userFoodArray[0].address);
     $("#saved-event").text(userEventArray[0].name);
@@ -577,20 +592,17 @@ function savedUserChoices() {
 
 
 $("#save-choices-btn").on("click", function () {
-    database.ref(`/user/${userName}/saved`).set(userSavedPrefArray);
-    userSavedPrefArray =  foodName.userFoodArray[0].name;
-    userSavedPrefArray.foodAddress = userFoodArray[1];
-    
+    database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray));
 
 })
 
 
-let userSavedPrefArray = {
-    foodName: '',
-    foodAddress: '',
-    eventName: '',
-    eventLink: ''
-}
+
+
+  
+
+  
+
 
 //      Mapping Functions Begin here
 //geocodes address

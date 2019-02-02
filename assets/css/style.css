@@ -1,6 +1,16 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #636363;
+	background: linear-gradient(45deg, #3146DE 15%, #AB6A15 85%);
+}
+
+/* Nav */
+
 .navbar-collapse {
 	flex-grow: 0;
 }
+
+/* Jumbotron */
 
 .jumbotron {
 	height: 44rem;
@@ -10,7 +20,7 @@
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;	
+    text-shadow: -1px -1px 0 #636363, 1px -1px 0 #636363, -1px 1px 0 #636363, 1px 1px 0 #636363;	
 }
 
 .jumbotron p {
@@ -33,6 +43,10 @@
 
 .jumbotron-activity {
 	background-image: url(../../assets/images/activity.jpg);
+}
+
+h1 {
+	font-weight: bold;
 }
 
 .btn-large {
@@ -66,8 +80,51 @@
   outline: none;
 }
 
+/* Info Section */
+
+#learn {
+	margin-top: -6rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background: #fff;
+}
+
+.info {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	margin-left: 3rem;
+	margin-right: 3rem;
+}
+
+#info-top {
+	border-bottom: 1px solid #ddd;
+}
+
+/* Team Section */
+
+#team {
+	background-color: #636363;
+	color: #fff;
+	padding-top: 2rem;
+	padding-bottom: 4rem;
+	margin-top: 3rem;
+}
+
+.team-inside {
+	padding-top: 2rem;
+}
+
+h4 {
+	margin-top: 1rem;
+}
+
+/* Modals */
+
 .modal {
   overflow-y:auto;
+}
+
+.card:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .img-div {
@@ -77,7 +134,7 @@
 	overflow: hidden;
 }
 
-img {
+.card-img-top {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -103,6 +160,22 @@ img {
 	position: sticky;
 	top: 4rem;
 	align-self: flex-start;
+}
+
+/* Footer */
+
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 2rem;
+	font-size: 0.75rem;
+	color: #fff;
+}
+
+footer:hover {
+	color: #F8B3FF;
 }
 
 @media and (max-width: 1024px) {
