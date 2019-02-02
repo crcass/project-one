@@ -493,7 +493,7 @@ $('#z-food-card').on('click', function (e) {
 $('#y-food-card').on('click', function (e) {
     e.preventDefault();
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
-    $("#avedChoice-food").text(yelpFoodData.name);
+    $("#savedChoice-food").text(yelpFoodData.name);
     $("#savedChoice-food-address").text(yelpFoodData.address);
     console.log(yelpFoodData.name);
     userFoodArray = [];
@@ -539,7 +539,7 @@ $('#sup-card').on('click', function (e) {
     $('#user-exercise-address').text(yelpRandomActData.address);
     userActivityArray = [];
     userActivityArray.push(yelpRandomActData);
-    $('#sup-card').css('background-color', '#DBBADD');
+    $('#sup-card').css('background-color', '#F5CDA7');
     $('#yelp-card').css('background-color', '#d6d8d9');
 });
 
@@ -552,7 +552,7 @@ $('#yelp-card').on('click', function (e) {
     userActivityArray = [];
     userActivityArray.push(yelpActivityData);
 
-    $('#yelp-card').css('background-color', '#DBBADD');
+    $('#yelp-card').css('background-color', '#F5CDA7');
     $('#sup-card').css('background-color', '#d6d8d9');
 });
 

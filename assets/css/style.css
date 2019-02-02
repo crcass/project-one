@@ -185,9 +185,19 @@ label {
 	align-self: flex-start;
 }
 
+#map-display p {
+	margin-top: 0.75rem;
+	margin-bottom: 0;
+	font-size: 0.75rem;
+}
+
 #map {
-  height: 400px;
+  height: 200px;
   width: 100%;
+}
+
+.break {
+	color: #ddd;
 }
 
 #save {
