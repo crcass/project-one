@@ -42,6 +42,8 @@ var map;
 var lat = 32.7767;
 var lng = -96.7970;
 var markers = [];
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
 
 // jumbotron slideshow
 $(document).ready(() => {
@@ -555,6 +557,7 @@ var newFoodMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -565,6 +568,7 @@ var newEventMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -575,6 +579,7 @@ var newActivityMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -822,6 +827,6 @@ function savedUserChoices() {
     $("#saved-event-buy").text(userEventArray[0].link);
     $("#user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
-}
+};
 
 
