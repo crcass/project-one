@@ -93,6 +93,22 @@ firebase.initializeApp(config);
 
 // global variables
 let database = firebase.database();
+
+// variables to keep track of user input
+let userName;
+let userCity;
+let userFoodArray = [];
+let userEventArray = [];
+let userActivityArray = [];
+
+// variables to store firebase data
+let ylpActivityData = {};
+let yelpFoodData = {};
+let zomatoFoodData = {};
+let ticketMasterFireBaseData = {};
+let eventBriteFireBaseData = {};
+
+// variables to store google maps coordinates
 let EventBriteLocationArray = {
     lat: 0,
     lng: 0
@@ -117,26 +133,14 @@ let yelpActRandCoords = {
     lat: 0,
     lng: 0
 };
-let userName;
-let userCity;
-let userFoodArray = [];
-let userEventArray = [];
-let userActivityArray = [];
 
-let ylpActivityData = {};
-let yelpFoodData = {};
-let zomatoFoodData = {};
-let ticketMasterFireBaseData = {};
-let eventBriteFireBaseData = {};
-
-let map;
-let markers = [];
-
-// Mapping Functions Begin here
-// geocodes address
+var map;
 var lat = 32.7767;
 var lng = -96.7970;
+var markers = [];
 
+// Mapping Functions Begin here
+// changes userCity into geocode and centers map
 function codeAddress() {
     geocoder = new google.maps.Geocoder();
     var address = userCity;
@@ -146,14 +150,15 @@ function codeAddress() {
         if (status == google.maps.GeocoderStatus.OK) {
             lat = results[0].geometry.location.lat();
             lng = results[0].geometry.location.lng();
-            console.log(lat);
-            console.log(lng);
+            // console.log(lat);
+            // console.log(lng);
         } else {
             console.log("Geocode was not successful for the following reason: " + status);
         }
     });
 }
 
+// initialize map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -163,8 +168,9 @@ function initMap() {
     });
 }
 
-let newFoodMarker = function(location, name) {
-    let marker = new google.maps.Marker({
+// adds markers to map for each type of selection
+var newFoodMarker = function(location, name) {
+    var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
         map: map,
@@ -173,8 +179,8 @@ let newFoodMarker = function(location, name) {
     markers[0] = marker;
 };
 
-let newEventMarker = function(location, name) {
-    let marker = new google.maps.Marker({
+var newEventMarker = function(location, name) {
+    var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
         map: map,
@@ -183,8 +189,8 @@ let newEventMarker = function(location, name) {
     markers[1] = marker;
 };
 
-let newActivityMarker = function(location, name) {
-    let marker = new google.maps.Marker({
+var newActivityMarker = function(location, name) {
+    var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
         map: map,
@@ -193,21 +199,17 @@ let newActivityMarker = function(location, name) {
     markers[2] = marker;
 };
 
-let setMapOnAll = function(map) {
-    for (let i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-    }
+// displays markers on map
+var setMapOnAll = function (map) {
+    markers.forEach(function(marker) {
+    marker.setMap(map);
+    });
 };
 
-let clearMarkers = function() {
+// removes markers from map
+var clearMarkers = function() {
     setMapOnAll(null);
 };
-
-let showMarkers = function() {
-    setMapOnAll(map);
-};
-
-
 
 // function that automatically corrects user name case
 let titleCase = ((str) => {
@@ -288,7 +290,7 @@ let yelpFood = (() => {
         }
     };
     $.ajax(yelpLocation).done((response) => {
-        console.log(response);
+        // console.log(response);
         response.businesses.forEach((element) => {
             yelpFoodArray.push(element.review_count);
         })
@@ -332,8 +334,8 @@ function eventBriteData() {
     var newStartTime = moment(startDate).format("YYYY-MM-DD");
     var proposedStartDate = newStartTime + "T14:00:00Z";
     endDate = moment(newStartTime).add(3, 'days');
-    console.log(proposedStartDate);
-    console.log(endDate);
+    // console.log(proposedStartDate);
+    // console.log(endDate);
 
     let userInput = $("#user-event").val();
     // let locationEvent = $("#user-city").val();
@@ -353,7 +355,7 @@ function eventBriteData() {
 function processData(data) {
     let randomEventEB = Math.floor(Math.random() * 10)
     let topEventEB = data.events[randomEventEB];
-    console.log(topEventEB)
+    // console.log(topEventEB)
 
     let EventDescriptionEB = topEventEB.description.text;
     let eventNameEB = topEventEB.name.text;
@@ -368,7 +370,7 @@ function processData(data) {
     $("#eb-name").text(eventNameEB);
     $("#eblink").attr("href", eventBriteLink);
     $("#eblink").text("Buy tickets here");
-    console.log(EventDescriptionEB);
+    // console.log(EventDescriptionEB);
 
     $("#eb-link").on("click", function() {
         $("#eblink").attr("href", eventBriteLink);
@@ -391,9 +393,9 @@ function ticketMasterData() {
 
     // let endDate = moment(startDate, 'MM/DD/YYYY').add(1, 'day').format("YYYY-MM-DDTh:mm:ssZ");
     let endDate = moment(startDate).add(1, "week").format("YYYY-MM-DDTh:mm:ss");
-    console.log(endDate);
+    // console.log(endDate);
     const apiEndDate = endDate.concat('Z');
-    console.log(apiEndDate);
+    // console.log(apiEndDate);
     let userInput = $("#user-event").val();
     // let locationEvent = $("#user-city").val();
     // console.log(userInput);
@@ -422,8 +424,8 @@ function displayEventData(eventData) {
     TicketMasterLocationArray.lat = ticketMasterLat;
     TicketMasterLocationArray.lng = ticketMasterLon;
 
-    console.log(eventData);
-    console.log(topEventTicketMaster)
+    // console.log(eventData);
+    // console.log(topEventTicketMaster)
 
     let tmLink = topEventTicketMaster.url
     let eventNameTM = topEventTicketMaster.name;
@@ -465,8 +467,8 @@ let displayYelpActivity = (() => {
 
     // Health/Activity Ajax
     $.ajax(yelpLocation).done((response) => {
-        console.log(response);
-        console.log(response.businesses[0].location);
+        // console.log(response);
+        // console.log(response.businesses[0].location);
         response.businesses.forEach((element) => {
             yelpActivityArray.push(element.review_count);
         })
@@ -487,24 +489,25 @@ let displayYelpActivity = (() => {
         let yelpBusinessImage = response.businesses[activityIndex].image_url;
         yelpActivityCoords.lat = response.businesses[activityIndex].coordinates.latitude;
         yelpActivityCoords.lng = response.businesses[activityIndex].coordinates.longitude;
-        console.log(yelpActivityCoords);
-        console.log(`Yelp's best ${userActivity} in ${userCity}: ${yelpBusinessName}, ${yelpBusinessAddress}`);
+        // console.log(yelpActivityCoords);
+        // console.log(`Yelp's best ${userActivity} in ${userCity}: ${yelpBusinessName}, ${yelpBusinessAddress}`);
         $('#yelp-business').text(yelpBusinessName);
         $('#yelp-address').text(yelpBusinessAddress);
         $('#yelp-image').attr('src', yelpBusinessImage);
 
         //returns a random number
         var searchRandom = Math.floor(Math.random() * 20);
-        console.log(response.businesses[searchRandom]);
+        // console.log(response.businesses[searchRandom]);
         var resultsRandom = response.businesses[searchRandom];
-        console.log(resultsRandom)
-        console.log(resultsRandom.name)
+        // console.log(resultsRandom)
+        // console.log(resultsRandom.name)
 
         $('#sup-business').text(resultsRandom.name);
         $('#sup-address').text(resultsRandom.location.address1);
         $('#sup-image').attr('src', resultsRandom.image_url);
         yelpActRandCoords.lat = resultsRandom.coordinates.latitude;
         yelpActRandCoords.lng = resultsRandom.coordinates.longitude;
+        // console.log(yelpActRandCoords);
 
         yelpActivityData = {
             name: yelpBusinessName,
@@ -528,12 +531,12 @@ let getCurrentWeather = (event) => {
             return response.json();
         })
         .then(function(myJson) {
-            console.log(JSON.stringify(myJson));
+            // console.log(JSON.stringify(myJson));
             displayInfo(myJson)
             weatherData = myJson;
         })
         .catch(function(err) {
-            // console.log(err);
+            console.log(err);
         });
 }
 
@@ -603,13 +606,11 @@ $('#z-food-card').on('click', function(e) {
     $("#savedChoice-food-address").text(zomatoFoodData.address);
     userFoodArray = [];
     userFoodArray.push(zomatoFoodData);
-    console.log(userFoodArray);
+    // console.log(userFoodArray);
     $('#z-food-card').css('background-color', '#F5CDA7');
     $('#y-food-card').css('background-color', '#d6d8d9');
     newFoodMarker(zomatoCoords, zomatoFoodData.name);
     setMapOnAll(map);
-    showMarkers();
-    console.log(markers);
 });
 
 $('#y-food-card').on('click', function(e) {
@@ -618,15 +619,14 @@ $('#y-food-card').on('click', function(e) {
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
     $(".savedChoice-food").text(yelpFoodData.name);
     $("#savedChoice-food-address").text(yelpFoodData.address);
-    console.log(yelpFoodData.name);
+    // console.log(yelpFoodData.name);
     userFoodArray = [];
     userFoodArray.push(yelpFoodData);
-    console.log(userFoodArray);
+    // console.log(userFoodArray);
     $('#y-food-card').css('background-color', '#F5CDA7');
     $('#z-food-card').css('background-color', '#d6d8d9');
     newFoodMarker(yelpFoodCoords, yelpFoodData.name);
     setMapOnAll(map);
-    showMarkers();
 });
 
 $('#tm-card').on('click', function(e) {
@@ -635,15 +635,14 @@ $('#tm-card').on('click', function(e) {
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
     $(".savedChoice-event").text(ticketMasterFireBaseData.name);
     $("#savedChoice-event-buy").attr('href', ticketMasterFireBaseData.link);
-    console.log(ticketMasterFireBaseData.name);
+    // console.log(ticketMasterFireBaseData.name);
     userEventArray = [];
     userEventArray.push(ticketMasterFireBaseData);
-    console.log(userEventArray);
+    // console.log(userEventArray);
     $('#tm-card').css('background-color', '#F5CDA7');
     $('#eb-card').css('background-color', '#d6d8d9');
     newEventMarker(TicketMasterLocationArray, ticketMasterFireBaseData.name);
     setMapOnAll(map);
-    showMarkers();
 });
 
 $('#eb-card').on('click', function(e) {
@@ -652,15 +651,14 @@ $('#eb-card').on('click', function(e) {
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
     $(".savedChoice-event").text(eventBriteFireBaseData.name);
     $("#savedChoice-event-buy").attr('href', eventBriteFireBaseData.link);
-    console.log(eventBriteFireBaseData.name);
+    // console.log(eventBriteFireBaseData.name);
     userEventArray = [];
     userEventArray.push(eventBriteFireBaseData);
-    console.log(userEventArray);
+    // console.log(userEventArray);
     $('#eb-card').css('background-color', '#F5CDA7');
     $('#tm-card').css('background-color', '#d6d8d9');
     newEventMarker(EventBriteLocationArray, eventBriteFireBaseData.name);
     setMapOnAll(map);
-    showMarkers();
 });
 
 $('#sup-card').on('click', function(e) {
@@ -675,7 +673,6 @@ $('#sup-card').on('click', function(e) {
     $('#yelp-card').css('background-color', '#d6d8d9');
     newActivityMarker(yelpActRandCoords, yelpRandomActData.name);
     setMapOnAll(map);
-    showMarkers();
 });
 
 $('#yelp-card').on('click', function(e) {
@@ -690,7 +687,6 @@ $('#yelp-card').on('click', function(e) {
     $('#sup-card').css('background-color', '#d6d8d9');
     newActivityMarker(yelpActivityCoords, yelpActivityData.name);
     setMapOnAll(map);
-    showMarkers();
 });
 
 // stores the user's name for other functions
