@@ -791,6 +791,7 @@ $('#save-user-btn').on('click', (e) => {
 $("#save-choices-btn").on("click", function() {
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
     // sendSms();
+    $('#phone').val('');
 
 })
 
