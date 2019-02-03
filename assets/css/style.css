@@ -221,6 +221,7 @@ label {
 
 #map-display {
 	position: sticky;
+	position: -webkit-sticky;
 	top: 4rem;
 	align-self: flex-start;
 }
