@@ -2,10 +2,10 @@
 let updateHero = setInterval(nameChange, 1000);
 
 function nameChange() {
-    cityNames = ['Dallas', 'Chicago', 'New York', 'Seattle', 'Atlanta', 'Miami', 'Los Angeles', 'Seattle'];
+    cityNames = ['Dallas', 'Chicago', 'New York', 'Seattle', 'Atlanta', 'Miami', 'Los Angeles', 'Seattle', 'Boston', 'Phoenix', 'Houston', 'Philadelphia'];
     foodNames = ['thai', 'pizza', 'burgers', 'mexican', 'steak', 'bbq', 'french', 'italian', 'vegetarian', 'indian'];
     eventNames = ['live music', 'wine tastings', 'art shows', 'pub crawls', 'sporting events'];
-    activityNames = ['running', 'weights', 'swimming', 'biking', 'gyms', 'yoga', 'spin class'];
+    activityNames = ['running', 'weights', 'swimming', 'biking', 'gyms', 'yoga', 'spin class', 'climbing'];
 
     function randomNumber(num) {
         return Math.floor(Math.random() * Math.floor(num));
@@ -200,9 +200,9 @@ var newActivityMarker = function(location, name) {
 };
 
 // displays markers on map
-var setMapOnAll = function (map) {
+var setMapOnAll = function(map) {
     markers.forEach(function(marker) {
-    marker.setMap(map);
+        marker.setMap(map);
     });
 };
 
@@ -581,6 +581,7 @@ $('#city-btn').on('click', (e) => {
         $('#user-city').attr('placeholder', '');
         $('#user-city').attr('class', 'form-control');
         codeAddress();
+        $('#user-date').val('');
     }
 });
 
@@ -704,29 +705,29 @@ $('#close').on('click', function(e) {
     eventBriteFireBaseData = {};
     yelpActivityData = {};
     EventBriteLocationArray = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     TicketMasterLocationArray = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     zomatoCoords = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     yelpFoodCoords = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     yelpActivityCoords = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     yelpActRandCoords = {
-    lat: 0,
-    lng: 0
-};
+        lat: 0,
+        lng: 0
+    };
     lat = 32.7767;
     lng = -96.7970;
     markers = [];
