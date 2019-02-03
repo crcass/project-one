@@ -1,8 +1,7 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #636363;
-/*	background: linear-gradient(45deg, #3146DE 15%, #AB6A15 85%);
-*/	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
+	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
 }
 
 /* Nav */
@@ -50,25 +49,35 @@ h1 {
 	font-weight: bold;
 }
 
+.btn-primary, .btn-large {
+	background-color: #D48DBE;
+	border: 0;
+}
+
 .btn-large {
 	font-size: 1.3rem;
-	background-color: #399bd1;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 	margin-top: 2.8rem;
 	width: 11.4rem;
 	padding: 1.3rem 0;
 	text-shadow: none;
-	border: 0;
 	transition: .5s box-shadow;
 }
 
-.btn-large:hover {
-	background-color: #399bd1;
+.btn-primary:hover, .btn-large:hover {
+	background-color: #E37DB8;	
+}
+
+.btn-large:hover{
 	box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
 }
 
 .btn-large:active {
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+	background-color: #f067b4;
 }
 
 .button-wrapper {
