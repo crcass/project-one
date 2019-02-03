@@ -57,7 +57,7 @@ $(document).ready(() => {
 
     // auto-hides nav bar
     let lastScrollTop = 0;
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         let scrollTop = $(this).scrollTop();
         if (scrollTop - lastScrollTop > 50) {
             let navHeight = $('.navbar').css('height');
@@ -160,12 +160,12 @@ let getCurrentWeather = (event) => {
         .then(response => {
             return response.json();
         })
-        .then(function (myJson) {
+        .then(function(myJson) {
             // console.log(JSON.stringify(myJson));
             displayInfo(myJson)
             weatherData = myJson;
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.log(err);
         });
 }
@@ -310,9 +310,9 @@ function eventBriteData() {
 
     var queryURL = "https://www.eventbriteapi.com/v3/events/search/?q=" + userInput + "&location.address=" + userCity + "&token=D6XUTCDEZDOKRNBW4HNT";
     fetch(queryURL)
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
-        }).then(function (myJson) {
+        }).then(function(myJson) {
             processData(myJson);
         })
 };
@@ -332,7 +332,7 @@ function processData(data) {
     $("#eb-name").text(eventNameEB);
     $("#eblink").attr("href", eventBriteLink);
     $("#eblink").text("Buy tickets here");
-    $("#eb-link").on("click", function () {
+    $("#eb-link").on("click", function() {
         $("#eblink").attr("href", eventBriteLink);
     })
 
@@ -355,9 +355,9 @@ function ticketMasterData() {
     let gueryTicketMasterURL = "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?startDateTime=2019-02-04T14:00:00Z&classificationName=" + userInput + "&city=" + userCity + "&endDateTime=2019-02-10T14:00:00Z&apikey=04jxM0zqluq8H37dKHJOEiYw8CTNalD5";
 
     fetch(gueryTicketMasterURL)
-        .then(function (response) {
+        .then(function(response) {
             return response.json();
-        }).then(function (myJsonTM) {
+        }).then(function(myJsonTM) {
             displayEventData(myJsonTM);
         });
 }
@@ -382,7 +382,7 @@ function displayEventData(eventData) {
     $("#tmlink").attr("href", tmLink);
     $("#tmlink").text("Buy tickets here");
 
-    $("#tm-link").on("click", function () {
+    $("#tm-link").on("click", function() {
         $("#tmlink").attr("href", tmLink);
     })
 
@@ -467,7 +467,7 @@ function codeAddress() {
     var address = userCity;
     geocoder.geocode({
         'address': address
-    }, function (results, status) {
+    }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             lat = results[0].geometry.location.lat();
             lng = results[0].geometry.location.lng();
@@ -490,7 +490,7 @@ function initMap() {
 }
 
 // adds markers to map for each type of selection
-var newFoodMarker = function (location, name) {
+var newFoodMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
@@ -500,7 +500,7 @@ var newFoodMarker = function (location, name) {
     markers[0] = marker;
 };
 
-var newEventMarker = function (location, name) {
+var newEventMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
@@ -510,7 +510,7 @@ var newEventMarker = function (location, name) {
     markers[1] = marker;
 };
 
-var newActivityMarker = function (location, name) {
+var newActivityMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
@@ -521,14 +521,14 @@ var newActivityMarker = function (location, name) {
 };
 
 // displays markers on map
-var setMapOnAll = function (map) {
-    markers.forEach(function (marker) {
+var setMapOnAll = function(map) {
+    markers.forEach(function(marker) {
         marker.setMap(map);
     });
 };
 
 // removes markers from map
-var clearMarkers = function () {
+var clearMarkers = function() {
     setMapOnAll(null);
 };
 
@@ -687,7 +687,7 @@ $('#choices-btn').on('click', (e) => {
 });
 
 // Pushes Zomatoe food data to firebase and save card
-$('#z-food-card').on('click', function (e) {
+$('#z-food-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/food`).set(zomatoFoodData);
@@ -702,7 +702,7 @@ $('#z-food-card').on('click', function (e) {
 });
 
 // Pushes Yelp food data to firebase and save card
-$('#y-food-card').on('click', function (e) {
+$('#y-food-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/food`).set(yelpFoodData)
@@ -717,7 +717,7 @@ $('#y-food-card').on('click', function (e) {
 });
 
 // Pushes ticketmaster event data to firebase and save card
-$('#tm-card').on('click', function (e) {
+$('#tm-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/event`).set(ticketMasterFireBaseData);
@@ -732,7 +732,7 @@ $('#tm-card').on('click', function (e) {
 });
 
 // Pushes EventBrite event data to firebase and save card
-$('#eb-card').on('click', function (e) {
+$('#eb-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/event`).set(eventBriteFireBaseData);
@@ -747,7 +747,7 @@ $('#eb-card').on('click', function (e) {
 });
 
 // Pushes Yelp activity data to firebase and save card
-$('#sup-card').on('click', function (e) {
+$('#sup-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/activity`).set(yelpRandomActData);
@@ -762,7 +762,7 @@ $('#sup-card').on('click', function (e) {
 });
 
 // Pushes Yelp activity  data to firebase and save card
-$('#yelp-card').on('click', function (e) {
+$('#yelp-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
     database.ref(`/user/${userName}/activity`).set(yelpActivityData);
@@ -784,7 +784,7 @@ $('#save-user-btn').on('click', (e) => {
 });
 
 // pushes user saved choices to firesbase and SMS
-$("#save-choices-btn").on("click", function () {
+$("#save-choices-btn").on("click", function() {
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
     // sendSms();
 
@@ -804,4 +804,3 @@ function savedUserChoices() {
 // function sendSms() {
 //     fetch('/Desktop/node-practice/server.js')
 // }
-
