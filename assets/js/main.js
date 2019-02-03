@@ -789,9 +789,29 @@ $('#save-user-btn').on('click', (e) => {
 
 // pushes user saved choices to firesbase and SMS
 $("#save-choices-btn").on("click", function() {
+    let userPhoneinput = "+1" + $('#phone').val() 
+    var phoneNumber = userPhoneinput || '+17024285828';
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
-    // sendSms();
-    $('#phone').val('');
+
+    fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+           phone: phoneNumber,
+           food: userFoodArray,
+           event: userEventArray,
+           activity: userActivityArray
+        })
+    })
+    .then(function (){
+        console.log("Hey");
+    })
+    .catch( err =>{
+        console.error(err)
+    })
 
 })
 
@@ -804,8 +824,3 @@ function savedUserChoices() {
     $("#user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
 }
-
-//calls server to send SMS text message
-// function sendSms() {
-//     fetch('/Desktop/node-practice/server.js')
-// }
