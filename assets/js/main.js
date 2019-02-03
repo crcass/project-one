@@ -102,11 +102,11 @@ let userEventArray = [];
 let userActivityArray = [];
 
 // variables to store firebase data
-let ylpActivityData = {};
 let yelpFoodData = {};
 let zomatoFoodData = {};
 let ticketMasterFireBaseData = {};
 let eventBriteFireBaseData = {};
+let yelpActivityData = {};
 
 // variables to store google maps coordinates
 let EventBriteLocationArray = {
@@ -687,6 +687,49 @@ $('#yelp-card').on('click', function(e) {
     $('#sup-card').css('background-color', '#d6d8d9');
     newActivityMarker(yelpActivityCoords, yelpActivityData.name);
     setMapOnAll(map);
+});
+
+// resets initial state on click
+$('#close').on('click', function(e) {
+    e.preventDefault();
+    clearMarkers();
+    userName = '';
+    userCity = '';
+    userFoodArray = [];
+    userEventArray = [];
+    userActivityArray = [];
+    yelpFoodData = {};
+    zomatoFoodData = {};
+    ticketMasterFireBaseData = {};
+    eventBriteFireBaseData = {};
+    yelpActivityData = {};
+    EventBriteLocationArray = {
+    lat: 0,
+    lng: 0
+};
+    TicketMasterLocationArray = {
+    lat: 0,
+    lng: 0
+};
+    zomatoCoords = {
+    lat: 0,
+    lng: 0
+};
+    yelpFoodCoords = {
+    lat: 0,
+    lng: 0
+};
+    yelpActivityCoords = {
+    lat: 0,
+    lng: 0
+};
+    yelpActRandCoords = {
+    lat: 0,
+    lng: 0
+};
+    lat = 32.7767;
+    lng = -96.7970;
+    markers = [];
 });
 
 // stores the user's name for other functions
