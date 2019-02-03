@@ -1,7 +1,7 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #636363;
-	background: linear-gradient(45deg, #3146DE 15%, #AB6A15 85%);
+	background: linear-gradient(45deg, #f067b4 -30%, #81ffef 115%);
 }
 
 /* Nav */
@@ -49,25 +49,35 @@ h1 {
 	font-weight: bold;
 }
 
+.btn-primary, .btn-large {
+	background-color: #D48DBE;
+	border: 0;
+}
+
 .btn-large {
 	font-size: 1.3rem;
-	background-color: #399bd1;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 	margin-top: 2.8rem;
 	width: 11.4rem;
 	padding: 1.3rem 0;
 	text-shadow: none;
-	border: 0;
 	transition: .5s box-shadow;
 }
 
-.btn-large:hover {
-	background-color: #399bd1;
+.btn-primary:hover, .btn-large:hover {
+	background-color: #E37DB8;	
+}
+
+.btn-large:hover{
 	box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
 }
 
 .btn-large:active {
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+	background-color: #f067b4;
 }
 
 .button-wrapper {
@@ -86,6 +96,19 @@ h1 {
 	margin-top: -6rem;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	background: #fff;
+}
+
+#learn h2::after, #team h2::after {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 2px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    background-image: linear-gradient(90deg, #81ffef, #f067b4);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .info {
@@ -119,6 +142,10 @@ h1 {
 
 h4 {
 	margin-top: 1rem;
+}
+
+.btn-outline-light {
+	border-image: linear-gradient(45deg, #81ffef, #f067b4) 1;
 }
 
 /* Modals */
@@ -196,8 +223,16 @@ label {
   width: 100%;
 }
 
-.break {
-	color: #ddd;
+.under-map::before {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 1px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #save {
@@ -212,8 +247,6 @@ label {
 	font-weight: bold;
 }
 
-<<<<<<< HEAD
-=======
 .save-header::before {
 	display: block;
 	content: "";
@@ -234,7 +267,6 @@ label {
 	width: 25%;
 }
 
->>>>>>> c108ef9fe37329a64f2c82112309c060ffe8e394
 /* Footer */
 
 footer {
@@ -256,3 +288,4 @@ footer:hover {
 		position: static;
 	}
 }
+s
