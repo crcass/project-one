@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="text-center button-wrapper">
-        <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal">Get Started</button>
+        <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal" id="start-button">Get Started</button>
     </div>
 
     <!-- Info -->
@@ -64,13 +64,11 @@
     <div class="container text-center rounded" id="learn">
         <div class="info" id="info-top">
             <h2>We get it, you're busy</h2>
-            <p>______________________</p>
             <p>When you travel for business, it can feel like you're in a foreign country. There are so many choices when it comes to food, events, and exercise that it can be hard to find just the right thing. You spend all day making tough decisions, and the last thing on your mind is finding the best place to eat or finding the right workout. That's where we come in.</p>
             <p>We take the guess work out of finding those perfect places so you can spend your precious down time actually enjoying them.</p>
         </div>
         <div class="info">
             <h2>How it works</h2>
-            <p>______________________</p>
             <p>Simply enter your name & preferences for food, events, and exercise. Let us handle the rest. In seconds you'll have the very best of each category, right at your fingertips. We'll give you two great options to choose from in each category and directions to each place.</p>
             <p>We're obsessed with sorting through the noise to get you out of that hotel room and in to the best places your city has to offer.</p>
         </div>
@@ -80,7 +78,6 @@
 
     <div class="container-fluid text-center" id="team">
         <h2>Meet the Team</h2>
-        <p>______________________</p>
         <div class="container team-inside">
             <div class="row">
                 <div class="col-sm-3 team-member">
@@ -112,7 +109,7 @@
                         <img class="rounded-circle" src="./assets/images/daniel.jpg" height="140" width="140">
                     </div>
                     <h4>Daniel</h4>
-                    <p>Mapping</p>
+                    <p>Maps</p>
                     <a class="btn btn-outline-light" href="https://danbrit.github.io/responsive-portfolio/portfolio.html" target="blank">Portfolio</a>
                 </div>
             </div>
@@ -137,7 +134,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
                 </div>
             </div>
         </div>
@@ -286,7 +283,7 @@
 
                                 <!-- Activity Info Display -->
 
-                                <h2>Exercise</h2>
+                                <h2>Activity</h2>
                                 <div class="row" id="">
                                     <div class="col-sm-6">
                                         <div class="card choice" id="sup-card">
@@ -297,7 +294,7 @@
                                                 <img src="" class="card-img-top" alt="" id="sup-image">
                                             </div>
                                             <div class="card-body">
-                                                <h5 class="card-title" id="sup-image"></h5>
+                                                <h5 class="card-title" id="sup-business"></h5>
                                                 <p class="card-text" id="sup-address"></p>
                                             </div>
                                         </div>
@@ -308,7 +305,7 @@
                                                 Voted Most Popular
                                             </div>
                                             <div class="img-div">
-                                                <img src="" class="card-img-top" alt="" id="yelp-image">
+                                                <img src="" class="card-img-top" id="yelp-image">
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title" id="yelp-business"></h5>
@@ -327,22 +324,16 @@
                                     <div class="card-header" id="map-city">
                                         <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">--</span>°</span>
                                     </div>
-                                  
                                     <div class="card-body">
                                         <div id="map">
 
                                         </div>
-                                        <p class="text-center break">__________</p>
-                                        <p class="card-text test" id="savedChoice-food"></p>
-                                        <p class="text-center break">______</p>
-                                        <p class="card-text test" id="savedChoice-event"></p>
-                                        <p class="text-center break">______</p>
-                                        <p class="card-text" id="user-exercise"></p>
+                                        <p class="card-text under-map savedChoice-food"></p>
+                                        <p class="card-text under-map savedChoice-event"></p>
+                                        <p class="card-text under-map user-exercise"></p>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -353,16 +344,18 @@
             </div>
         </div>
 
+        <!-- Save Modal -->
+
         <div class="modal fade" id="saveModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="save">
                     <div class="modal-header">
                         <h5 class="modal-title">Save your stuff!</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-toggle="modal" data-target="#saveModal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="card-title" id="">Enjoy Dinner</h5>
-                        <p class="card-text test" id="savedChoice-food"></p>
+                        <h5 class="card-title">Enjoy Dinner</h5>
+                        <p class="card-text test savedChoice-food"></p>
                         <p class="card-text test" id="savedChoice-food-address"></p>
                         <h5 class="card-title save-header">Maybe a show?</h5>
                         <p class="card-text test savedChoice-event"></p>
@@ -378,7 +371,6 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Send</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -393,10 +385,10 @@
 
     <!-- Scripts -->
 
-    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx2mBeHdyE4fngY5daB9i4IXK79Zy8_lA&callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx2mBeHdyE4fngY5daB9i4IXK79Zy8_lA&callback=initMap" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
