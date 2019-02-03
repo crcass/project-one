@@ -80,6 +80,14 @@ $('#detailsModal').on('submit', (e) => {
     $('#choices-btn').click();
 });
 
+$('#save-trigger').on('click', () => {
+    $('#results-fade').css('filter', 'brightness(50%)');
+});
+
+$('#saveModal').on('hide.bs.modal', () => {
+    $('#results-fade').css('filter', 'brightness(100%)');
+});
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC3y-iyuZvzjuAwx4_TcTgYp-b7fezkCHM",
