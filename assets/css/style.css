@@ -10,6 +10,19 @@ body {
 	flex-grow: 0;
 }
 
+#logo {
+	font-family: 'Catamaran', sans-serif;
+	font-weight: 900;
+	background: -webkit-linear-gradient(45deg, #81ffef, #f067b4);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+#tagline {
+	color: #ddd;
+	font-size: 0.65em;
+}
+
 /* Jumbotron */
 
 .jumbotron {
