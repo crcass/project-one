@@ -108,8 +108,69 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// global variables
 let database = firebase.database();
+
+// reset function
+let reset = (() => {
+    userName = '';
+    userCity = '';
+    userFoodArray = [];
+    userEventArray = [];
+    userActivityArray = [];
+    yelpFoodData = {};
+    zomatoFoodData = {};
+    ticketMasterFireBaseData = {};
+    eventBriteFireBaseData = {};
+    yelpActivityData = {};
+    EventBriteLocationArray = {
+        lat: 0,
+        lng: 0
+    };
+    TicketMasterLocationArray = {
+        lat: 0,
+        lng: 0
+    };
+    zomatoCoords = {
+        lat: 0,
+        lng: 0
+    };
+    yelpFoodCoords = {
+        lat: 0,
+        lng: 0
+    };
+    yelpActivityCoords = {
+        lat: 0,
+        lng: 0
+    };
+    yelpActRandCoords = {
+        lat: 0,
+        lng: 0
+    };
+    lat = 32.7767;
+    lng = -96.7970;
+    markers = [];
+    $('#z-image').attr('src', '');
+    $('#z-restaurant').empty();
+    $('#z-address').empty();
+    $('#y-image').attr('src', '');
+    $('#y-restaurant').empty();
+    $('#y-address').empty();
+    $('#tm-image').attr('src', '');
+    $('#tm-name').empty();
+    $('#tm-info').empty();
+    $('#eb-image').attr('src', '');
+    $('#eb-name').empty();
+    $('#eb-info').empty();
+    $('#sup-image').attr('src', '');
+    $('#sup-business').empty();
+    $('#sup-address').empty();
+    $('#yelp-image').attr('src', '');
+    $('#yelp-business').empty();
+    $('#yelp-address').empty();
+    $('.card').css('background-color', '#fff');
+    $('.under-map').empty();
+    $('#phone').empty();
+});
 
 // modal event listeners 
 $('#startModal').on('shown.bs.modal', () => {
@@ -536,64 +597,7 @@ var clearMarkers = function() {
 // resets initial state on click
 $('#start-button').on('click', (e) => {
     e.preventDefault();
-    userName = '';
-    userCity = '';
-    userFoodArray = [];
-    userEventArray = [];
-    userActivityArray = [];
-    yelpFoodData = {};
-    zomatoFoodData = {};
-    ticketMasterFireBaseData = {};
-    eventBriteFireBaseData = {};
-    yelpActivityData = {};
-    EventBriteLocationArray = {
-        lat: 0,
-        lng: 0
-    };
-    TicketMasterLocationArray = {
-        lat: 0,
-        lng: 0
-    };
-    zomatoCoords = {
-        lat: 0,
-        lng: 0
-    };
-    yelpFoodCoords = {
-        lat: 0,
-        lng: 0
-    };
-    yelpActivityCoords = {
-        lat: 0,
-        lng: 0
-    };
-    yelpActRandCoords = {
-        lat: 0,
-        lng: 0
-    };
-    lat = 32.7767;
-    lng = -96.7970;
-    markers = [];
-    $('#z-image').attr('src', '');
-    $('#z-restaurant').empty();
-    $('#z-address').empty();
-    $('#y-image').attr('src', '');
-    $('#y-restaurant').empty();
-    $('#y-address').empty();
-    $('#tm-image').attr('src', '');
-    $('#tm-name').empty();
-    $('#tm-info').empty();
-    $('#eb-image').attr('src', '');
-    $('#eb-name').empty();
-    $('#eb-info').empty();
-    $('#sup-image').attr('src', '');
-    $('#sup-business').empty();
-    $('#sup-address').empty();
-    $('#yelp-image').attr('src', '');
-    $('#yelp-business').empty();
-    $('#yelp-address').empty();
-    $('.card').css('background-color', '#fff');
-    $('.under-map').empty();
-    $('#phone').empty();
+    reset();
     clearMarkers();
 });
 
@@ -686,7 +690,7 @@ $('#choices-btn').on('click', (e) => {
     }
 });
 
-// Pushes Zomatoe food data to firebase and save card
+// Pushes Zomato food data to firebase and save card
 $('#z-food-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
