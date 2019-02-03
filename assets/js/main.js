@@ -562,6 +562,9 @@ let displayUserName = (() => {
 })
 
 // city is defined for other functions on click, weather updates
+
+
+
 $('#city-btn').on('click', (e) => {
     e.preventDefault();
     userCity = $('#user-city').val().trim();
