@@ -254,6 +254,10 @@ label {
 	color: #636363;
 }
 
+#phone {
+	width: 25%;
+}
+
 /* Footer */
 
 footer {
