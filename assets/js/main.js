@@ -467,7 +467,7 @@ let displayYelpActivity = (() => {
     let yelpActivityArray = [];
 
     // Health/Activity API variables 
-    let userActivity = $('#user-activity').val().trim().toLowerCase();
+    let userActivity = $('#user-activity').val().trim().toLowerCase() || 'gym';
 
     let yelpLocation = {
         url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=' + userActivity + '&location=' + userCity,
@@ -584,6 +584,11 @@ $('#city-btn').on('click', (e) => {
         $('#user-city').attr('placeholder', 'Please enter your destination');
         $('#user-city').attr('class', 'form-control border border-danger');
         return false;
+    } else if (!/[A-Za-z]/g.test(userCity) || /\d/.test(userCity)) {
+        $('#user-city').val('');
+        $('#user-city').attr('placeholder', 'Only letters are accepted');
+        $('#user-city').attr('class', 'form-control border border-danger');
+        return false;
     } else {
         database.ref(`/user/${userName}/city`).set(userCity);
         getCurrentWeather();
@@ -600,15 +605,42 @@ $('#city-btn').on('click', (e) => {
 // runs functions based on user preferences
 $('#choices-btn').on('click', (e) => {
     e.preventDefault();
-    zomatoFood();
-    yelpFood();
-    displayYelpActivity();
-    ticketMasterData();
-    eventBriteData();
-    initMap();
-    $('#user-food').val('');
-    $('#user-event').val('');
-    $('#user-activity').val('');
+    if ($('#user-food').val() != '' && !/[A-Za-z]/g.test($('#user-food').val()) || /\d/.test($('#user-food').val())) {
+        $('#user-food').val('');
+        $('#user-food').attr('placeholder', 'Only letters are accepted');
+        $('#user-food').attr('class', 'form-control border border-danger');
+        return false;
+    } else {
+        zomatoFood();
+        yelpFood();
+        $('#user-food').attr('placeholder', '');
+        $('#user-food').attr('class', 'form-control');
+    }
+    if ($('#user-event').val() != '' && !/[A-Za-z]/g.test($('#user-event').val()) || /\d/.test($('#user-event').val())) {
+        $('#user-event').val('');
+        $('#user-event').attr('placeholder', 'Only letters are accepted');
+        $('#user-event').attr('class', 'form-control border border-danger');
+        return false;
+    } else {
+        ticketMasterData();
+        eventBriteData();
+        $('#user-event').attr('placeholder', '');
+        $('#user-event').attr('class', 'form-control');
+    }
+    if ($('#user-activity').val() != '' && !/[A-Za-z]/g.test($('#user-activity').val()) || /\d/.test($('#user-activity').val())) {
+        $('#user-activity').val('');
+        $('#user-activity').attr('placeholder', 'Only letters are accepted');
+        $('#user-activity').attr('class', 'form-control border border-danger');
+        return false;
+    } else {
+        displayYelpActivity();
+        initMap();
+        $('#user-food').val('');
+        $('#user-event').val('');
+        $('#user-activity').val('');
+        $('#user-activity').attr('placeholder', '');
+        $('#user-activity').attr('class', 'form-control');
+    }
 });
 
 $('#z-food-card').on('click', function(e) {
@@ -772,6 +804,11 @@ $('#name-btn').on('click', (e) => {
     userName = $('#user-name').val().trim();
     if (userName === '') {
         $('#user-name').attr('placeholder', 'Please enter your name');
+        $('#user-name').attr('class', 'form-control border border-danger');
+        return false;
+    } else if (!/[A-Za-z]/g.test(userName) || /\d/.test(userName)) {
+        $('#user-name').val('');
+        $('#user-name').attr('placeholder', 'Only letters are accepted');
         $('#user-name').attr('class', 'form-control border border-danger');
         return false;
     } else {
