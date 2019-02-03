@@ -84,6 +84,10 @@ $('#save-trigger').on('click', () => {
     $('#results-fade').css('filter', 'brightness(50%)');
 });
 
+$('#saveModal').on('shown.bs.modal', () => {
+    $('#phone').trigger('focus');
+})
+
 $('#saveModal').on('hide.bs.modal', () => {
     $('#results-fade').css('filter', 'brightness(100%)');
 });
@@ -699,9 +703,8 @@ $('#yelp-card').on('click', function(e) {
 });
 
 // resets initial state on click
-$('#close').on('click', function(e) {
+$('#start-button').on('click', (e) => {
     e.preventDefault();
-    clearMarkers();
     userName = '';
     userCity = '';
     userFoodArray = [];
@@ -739,6 +742,28 @@ $('#close').on('click', function(e) {
     lat = 32.7767;
     lng = -96.7970;
     markers = [];
+    $('#z-image').attr('src', '');
+    $('#z-restaurant').empty();
+    $('#z-address').empty();
+    $('#y-image').attr('src', '');
+    $('#y-restaurant').empty();
+    $('#y-address').empty();
+    $('#tm-image').attr('src', '');
+    $('#tm-name').empty();
+    $('#tm-info').empty();
+    $('#eb-image').attr('src', '');
+    $('#eb-name').empty();
+    $('#eb-info').empty();
+    $('#sup-image').attr('src', '');
+    $('#sup-business').empty();
+    $('#sup-address').empty();
+    $('#yelp-image').attr('src', '');
+    $('#yelp-business').empty();
+    $('#yelp-address').empty();
+    $('.card').css('background-color', '#fff');
+    $('.under-map').empty();
+    $('#phone').empty();
+    clearMarkers();
 });
 
 // stores the user's name for other functions
@@ -755,7 +780,6 @@ $('#name-btn').on('click', (e) => {
         $('#user-name').val('');
         $('#user-name').attr('placeholder', '');
         $('#user-name').attr('class', 'form-control');
-        $('.card').css('background-color', '#fff');
     }
 });
 
