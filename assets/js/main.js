@@ -812,7 +812,7 @@ $("#save-choices-btn").on("click", function() {
             })
         })
         .then(function() {
-            console.log("Hey");
+            // console.log("Hey");
         })
         .catch(err => {
             console.error(err)
@@ -827,10 +827,4 @@ function savedUserChoices() {
     $("#saved-event-buy").text(userEventArray[0].link);
     $("#user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
-<<<<<<< HEAD
 };
-
-
-=======
-}
->>>>>>> b032fe718061c608aacdcfe1001547b3bc283e34
