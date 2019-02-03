@@ -770,7 +770,7 @@ $('#sup-card').on('click', function(e) {
     setMapOnAll(map);
 });
 
-// Pushes Yelp activity  data to firebase and save card
+// Pushes Yelp activity data to firebase and save card
 $('#yelp-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
@@ -794,30 +794,30 @@ $('#save-user-btn').on('click', (e) => {
 
 // pushes user saved choices to firesbase and SMS
 $("#save-choices-btn").on("click", function() {
-    var phoneNumber = $('#phone').val() || '+17024285828';
+    let userPhoneinput = "+1" + $('#phone').val()
+    var phoneNumber = userPhoneinput || '+17024285828';
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
-    fetch("https://node-practice-k1csb8vhu.now.sh/api/sms", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-           phone: phoneNumber,
-           food: userFoodArray,
-           event: userEventArray,
-           activity: userActivityArray
+    fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                phone: phoneNumber,
+                food: userFoodArray,
+                event: userEventArray,
+                activity: userActivityArray
+            })
         })
-    })
-    .then(function (){
-        console.log("Hey");
-    })
-    .catch( err =>{
-        console.error(err)
-    })
-
-})
+        .then(function() {
+            console.log("Hey");
+        })
+        .catch(err => {
+            console.error(err)
+        })
+});
 
 //function pushes the save card data to firebase unde the user's name
 function savedUserChoices() {
@@ -827,6 +827,10 @@ function savedUserChoices() {
     $("#saved-event-buy").text(userEventArray[0].link);
     $("#user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
+<<<<<<< HEAD
 };
 
 
+=======
+}
+>>>>>>> b032fe718061c608aacdcfe1001547b3bc283e34
