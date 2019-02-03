@@ -212,6 +212,29 @@ label {
 	font-weight: bold;
 }
 
+<<<<<<< HEAD
+=======
+.save-header::before {
+	display: block;
+	content: "";
+	width: 3.25em;
+	height: 2px;
+	margin: .7em 0 1em;
+	border-radius: 2px;
+	background-color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#saveModal label {
+	color: #636363;
+}
+
+#phone {
+	width: 25%;
+}
+
+>>>>>>> c108ef9fe37329a64f2c82112309c060ffe8e394
 /* Footer */
 
 footer {

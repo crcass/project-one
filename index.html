@@ -373,9 +373,11 @@
                         <p class="card-text user-exercise"  id="user-exercise"></p>
                         <p class="card-text" id="user-exercise-address"></p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#saveModal">Close</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Save</button>
+                    <div class="modal-footer justify-content-between">
+                        <label for="phone">Enter your phone #
+                            <br>We'll send your stuff</label>
+                        <input type="tel" class="form-control" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="10" maxlength="10">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Send</button>
                     </div>
                 </div>
 
