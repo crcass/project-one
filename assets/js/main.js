@@ -789,10 +789,11 @@ $('#save-user-btn').on('click', (e) => {
 
 // pushes user saved choices to firesbase and SMS
 $("#save-choices-btn").on("click", function() {
-    var phoneNumber = $('#phone').val() || '+17024285828';
+    let userPhoneinput = "+1" + $('#phone').val() 
+    var phoneNumber = userPhoneinput || '+17024285828';
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
-    fetch("https://node-practice-k1csb8vhu.now.sh/api/sms", {
+    fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
         method: "POST",
         mode: "cors",
         headers: {
