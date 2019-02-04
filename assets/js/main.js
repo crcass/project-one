@@ -806,7 +806,6 @@ $("#save-choices-btn").on("click", function() {
         $('#phone').attr('class', 'form-control border-danger');
         return false;
     } else {
-
         userPhoneinput = `+1${userPhoneinput}`;
         var phoneNumber = userPhoneinput || '+17024285828';
         database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
