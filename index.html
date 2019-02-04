@@ -1,25 +1,403 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Signal - We Know.</title>
+</head>
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
+<body>
 
-    <div id="food"></div>
-	<div id="events"></div>
-	<div id="health"></div>
-	<div id="maps"></div>
+    <!-- Nav-->
 
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top justify-content-between">
+        <a class="navbar-brand" href="#"><span id="logo">SIGNAL</span> <span id="tagline">We Know.</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#learn">Learn More</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#team">Meet the Team</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Jumbotron-->
+
+    <div class="carousel">
+        <div class="jumbotron jumbotron-city">
+            <h1>We know <span id="city-name">Dallas</span></h1>
+            <p>Just tell us where you want to go and we'll find you the best spots in town</p>
+        </div>
+        <div class="jumbotron jumbotron-food">
+            <h1>We know <span id="food-name">thai</span></h1>
+            <p>We find the best food of any kind, every time</p>
+        </div>
+        <div class="jumbotron jumbotron-events">
+            <h1>We know <span id="event-name">music</span></h1>
+            <p>Get out of that hotel room and see what's happening around you</p>
+        </div>
+        <div class="jumbotron jumbotron-activity">
+            <h1>We know <span id="activity-name">fitness</span></h1>
+            <p>Keep up with your workouts while you're on the road</p>
+        </div>
+    </div>
+    <div class="text-center button-wrapper">
+        <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#startModal" id="start-button">Get Started
+        </button>
+    </div>
+
+    <!-- Info -->
+
+    <div class="container text-center rounded" id="learn">
+        <div class="info" id="info-top">
+            <h2>We get it, you're busy</h2>
+            <p>When you travel for business, it can feel like you're in a foreign country. There are so many choices when it comes to food, events, and exercise that it can be hard to find just the right thing. You spend all day making tough decisions, and the last thing on your mind is finding the best place to eat or finding the right workout. That's where we come in.</p>
+            <p>We take the guess work out of finding those perfect places so you can spend your precious down time actually enjoying them.</p>
+        </div>
+        <div class="info">
+            <h2>How it works</h2>
+            <p>Simply enter your name & preferences for food, events, and exercise. Let us handle the rest. In seconds you'll have the very best of each category, right at your fingertips. We'll give you two great options to choose from in each category and directions to each place.</p>
+            <p>We're obsessed with sorting through the noise to get you out of that hotel room and in to the best places your city has to offer.</p>
+            <p>Welcome to Signal. We Know.</p>
+        </div>
+    </div>
+
+    <!-- Team -->
+
+    <div class="container-fluid text-center" id="team">
+        <h2>Meet the Team</h2>
+        <div class="container team-inside">
+            <div class="row">
+                <div class="col-sm-3 team-member">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/patrick.png" height="140" width="140">
+                    </div>
+                    <h4>Patrick</h4>
+                    <p>Events & Data</p>
+                    <a class="btn btn-outline-light" href="https://patrickj188.github.io/Responsive-Portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3 team-member">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/eli.jpg" height="140" width="140">
+                    </div>
+                    <h4>Eli</h4>
+                    <p>Fitness</p>
+                    <a class="btn btn-outline-light" href="https://evg7393.github.io/Responsive-Portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3 team-member">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/chris.png" height="140" width="140">
+                    </div>
+                    <h4>Chris</h4>
+                    <p>Food & Style</p>
+                    <a class="btn btn-outline-light" href="https://crcass.github.io/bootstrap-portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+                <div class="col-sm-3 team-member">
+                    <div class="team-img">
+                        <img class="rounded-circle" src="./assets/images/daniel.jpg" height="140" width="140">
+                    </div>
+                    <h4>Daniel</h4>
+                    <p>Maps</p>
+                    <a class="btn btn-outline-light" href="https://danbrit.github.io/responsive-portfolio/portfolio.html" target="blank">Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for User Preferences -->
+
+    <div class="modal fade" id="startModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <label for="user-name">First, tell us your name:</label>
+                        <input type="text" class="form-control" id="user-name">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cityModal" id="name-btn">Next!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cityModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hi, <span id="user"></span>!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <div class="form-group">
+                            <label for="user-city">Next, tell us where you're headed:</label>
+                            <input type="text" class="form-control" id="user-city">
+                            <label for="user-date">and when you'll be there:</label>
+                            <input type="date" class="form-control" id="user-date">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#detailsModal" id="city-btn">Onward!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Just a few more questions...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="container">
+                        <div class="form-group">
+                            <label for="user-food">What kind of food makes your mouth water?</label>
+                            <input type="text" class="form-control" id="user-food" placeholder="optional">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-event">What's your favorite type of music?</label>
+                            <input type="text" class="form-control" id="user-event" placeholder="optional">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-activity">How do you stay active?</label>
+                            <input type="text" class="form-control" id="user-activity" placeholder="optional">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#resultsModal" id="choices-btn">Let's Go!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content" id="results-fade">
+                <div class="modal-header">
+                    <h5 class="modal-title">We found the very best, just for you</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="results">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-8">
+
+                                <!-- Food Info Display -->
+
+                                <h2>Food</h2>
+                                <div class="row" id="food-display">
+                                    <div class="col-sm-6">
+                                        <div class="card choice" id="z-food-card">
+                                            <div class="card-header">
+                                                Best Reviewed
+                                            </div>
+                                            <div class=img-div>
+                                                <img src="" class="card-img-top" id="z-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="z-restaurant"></h5>
+                                                <p class="card-text" id="z-address"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card choice food" id="y-food-card">
+                                            <div class="card-header">
+                                                Loved by Locals
+                                            </div>
+                                            <div class="img-div">
+                                                <img src="" class="card-img-top" id="y-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="y-restaurant"></h5>
+                                                <p class="card-text" id="y-address"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Event Info Display -->
+
+                                <h2>Events</h2>
+                                <div class="row" id="tm-event-display">
+                                    <div class="col-sm-6">
+                                        <div class="card choice" id="tm-card">
+                                            <div class="card-header">
+                                                Large Events
+                                            </div>
+                                            <div class="img-div">
+                                                <img src="" class="card-img-top" id="tm-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="tm-name"></h5>
+                                                <p class="card-text" id="tm-info"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card choice" id="eb-card">
+                                            <div class="card-header">
+                                                Local Events
+                                            </div>
+                                            <div class="img-div">
+                                                <img src="" class="card-img-top" id="eb-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="eb-name"></h5>
+                                                <p class="card-text" id="eb-link"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Info Display -->
+
+                                <h2>Activity</h2>
+                                <div class="row" id="">
+                                    <div class="col-sm-6">
+                                        <div class="card choice" id="sup-card">
+                                            <div class="card-header">
+                                                Hidden Gems
+                                            </div>
+                                            <div class="img-div">
+                                                <img src="" class="card-img-top" id="sup-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="sup-business"></h5>
+                                                <p class="card-text" id="sup-address"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card choice" id="yelp-card">
+                                            <div class="card-header">
+                                                Most Popular
+                                            </div>
+                                            <div class="img-div">
+                                                <img src="" class="card-img-top" id="yelp-image">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="yelp-business"></h5>
+                                                <p class="card-text" id="yelp-address"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map Display -->
+
+                            <div class="col-sm-4" id="map-display">
+                                <h2>Map</h2>
+                                <div class="card map-card">
+                                    <div class="card-header" id="map-city">
+                                        <span id="map-name">City Name</span><span><span>Current Temp: </span><span id="map-temp">--</span>°</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="map">
+
+                                        </div>
+                                        <p class="card-text under-map savedChoice-food"></p>
+                                        <p class="card-text under-map savedChoice-event"></p>
+                                        <p class="card-text under-map user-exercise"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-trigger">Save Info
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Modal -->
+
+        <div class="modal fade" id="saveModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" id="save">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Send a Signal</h5>
+                        <button type="button" class="close" data-toggle="modal" data-target="#saveModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="card-title">Enjoy Dinner</h5>
+                        <p class="card-text test savedChoice-food"></p>
+                        <p class="card-text test" id="savedChoice-food-address"></p>
+                        <h5 class="card-title save-header">Maybe a show?</h5>
+                        <p class="card-text test savedChoice-event"></p>
+                        <a class="card-text test" href="" target="blank" id="savedChoice-event-buy">Click to Learn More</a>
+                        <h5 class="card-title save-header">Get that workout in</h5>
+                        <p class="card-text user-exercise"></p>
+                        <p class="card-text" id="user-exercise-address"></p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <label for="phone">Enter your phone #
+                            <br>We'll send a Signal</label>
+                        <input type="tel" class="form-control" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="10" maxlength="10">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" id="save-choices-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="bg-dark">
+        <div class="container text-center">
+            <span>♥︎ 2019 team WKND</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx2mBeHdyE4fngY5daB9i4IXK79Zy8_lA&callback=initMap" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="./assets/js/main.js"></script>
-  </body>
+</body>
+
 </html>
