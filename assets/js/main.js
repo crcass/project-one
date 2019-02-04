@@ -172,6 +172,7 @@ let reset = (() => {
     $('#phone').empty();
 });
 
+
 // modal event listeners 
 $('#startModal').on('shown.bs.modal', () => {
     $('#user-name').trigger('focus');
