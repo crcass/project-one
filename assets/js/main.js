@@ -174,7 +174,6 @@ let reset = (() => {
     $('#phone').empty();
 });
 
-
 // modal event listeners 
 $('#startModal').on('shown.bs.modal', () => {
     $('#user-name').trigger('focus');
@@ -811,7 +810,7 @@ $("#save-choices-btn").on("click", function() {
         var phoneNumber = userPhoneinput || '+17024285828';
         database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
-        fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
+        fetch("https://cors-anywhere.herokuapp.com/https://node-practice-14bhtuncu.now.sh/api/sms", {
                 method: "POST",
                 mode: "cors",
                 headers: {
