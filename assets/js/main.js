@@ -436,8 +436,8 @@ function displayEventData(eventData) {
     let eventNameTM = topEventTicketMaster.name;
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
 
-    TicketMasterLocationArray.lat = ticketMasterLat;
-    TicketMasterLocationArray.lng = ticketMasterLon;
+    TicketMasterLocationArray.lat = Number(ticketMasterLat);
+    TicketMasterLocationArray.lng = Number(ticketMasterLon);
 
     $("#tm-image").attr("src", ticketMasterPic);
     $("#tm-name").text(eventNameTM);
