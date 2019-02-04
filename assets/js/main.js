@@ -665,7 +665,7 @@ $('#choices-btn').on('click', (e) => {
     } else {
         zomatoFood();
         yelpFood();
-        $('#user-food').attr('placeholder', 'optional');
+        $('#user-food').attr('placeholder', '');
         $('#user-food').attr('class', 'form-control');
     }
     if ($('#user-event').val() != '' && !/[A-Za-z]/g.test($('#user-event').val()) || /\d/.test($('#user-event').val())) {
@@ -676,7 +676,7 @@ $('#choices-btn').on('click', (e) => {
     } else {
         ticketMasterData();
         eventBriteData();
-        $('#user-event').attr('placeholder', 'optional');
+        $('#user-event').attr('placeholder', '');
         $('#user-event').attr('class', 'form-control');
     }
     if ($('#user-activity').val() != '' && !/[A-Za-z]/g.test($('#user-activity').val()) || /\d/.test($('#user-activity').val())) {
@@ -690,7 +690,7 @@ $('#choices-btn').on('click', (e) => {
         $('#user-food').val('');
         $('#user-event').val('');
         $('#user-activity').val('');
-        $('#user-activity').attr('placeholder', 'optional');
+        $('#user-activity').attr('placeholder', '');
         $('#user-activity').attr('class', 'form-control');
     }
 });
