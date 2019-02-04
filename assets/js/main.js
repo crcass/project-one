@@ -42,6 +42,8 @@ var map;
 var lat = 32.7767;
 var lng = -96.7970;
 var markers = [];
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
 
 // jumbotron slideshow
 $(document).ready(() => {
@@ -435,8 +437,8 @@ function displayEventData(eventData) {
     let eventNameTM = topEventTicketMaster.name;
     let EventDescriptionTM = topEventTicketMaster.dates.start.localDate;
 
-    TicketMasterLocationArray.lat = ticketMasterLat;
-    TicketMasterLocationArray.lng = ticketMasterLon;
+    TicketMasterLocationArray.lat = Number(ticketMasterLat);
+    TicketMasterLocationArray.lng = Number(ticketMasterLon);
 
     $("#tm-image").attr("src", ticketMasterPic);
     $("#tm-name").text(eventNameTM);
@@ -556,6 +558,7 @@ var newFoodMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -566,6 +569,7 @@ var newEventMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -576,6 +580,7 @@ var newActivityMarker = function(location, name) {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: location,
+        label: labels[labelIndex++ % labels.length],
         map: map,
         title: name
     });
@@ -766,7 +771,7 @@ $('#sup-card').on('click', function(e) {
     setMapOnAll(map);
 });
 
-// Pushes Yelp activity  data to firebase and save card
+// Pushes Yelp activity data to firebase and save card
 $('#yelp-card').on('click', function(e) {
     e.preventDefault();
     clearMarkers();
@@ -790,31 +795,30 @@ $('#save-user-btn').on('click', (e) => {
 
 // pushes user saved choices to firesbase and SMS
 $("#save-choices-btn").on("click", function() {
-    let userPhoneinput = "+1" + $('#phone').val() 
+    let userPhoneinput = "+1" + $('#phone').val()
     var phoneNumber = userPhoneinput || '+17024285828';
     database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
     fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-           phone: phoneNumber,
-           food: userFoodArray,
-           event: userEventArray,
-           activity: userActivityArray
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                phone: phoneNumber,
+                food: userFoodArray,
+                event: userEventArray,
+                activity: userActivityArray
+            })
         })
-    })
-    .then(function (){
-        console.log("Hey");
-    })
-    .catch( err =>{
-        console.error(err)
-    })
-
-})
+        .then(function() {
+            // console.log("Hey");
+        })
+        .catch(err => {
+            console.error(err)
+        })
+});
 
 //function pushes the save card data to firebase unde the user's name
 function savedUserChoices() {
@@ -824,6 +828,4 @@ function savedUserChoices() {
     $("#saved-event-buy").text(userEventArray[0].link);
     $("#user-exercise").text(userActivityArray[0].name);
     $("#user-exercise-address").text(userActivityArray[0].address);
-}
-
-
+};
