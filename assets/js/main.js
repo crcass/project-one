@@ -794,29 +794,44 @@ $('#save-user-btn').on('click', (e) => {
 
 // pushes user saved choices to firesbase and SMS
 $("#save-choices-btn").on("click", function() {
-    let userPhoneinput = "+1" + $('#phone').val()
-    var phoneNumber = userPhoneinput || '+17024285828';
-    database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
+    let userPhoneinput = $('#phone').val();
+    if (userPhoneinput === '') {
+        $('#phone').val('');
+        $('#phone').attr('placeholder', 'numbers only');
+        $('#phone').attr('class', 'form-control border-danger');
+        return false;
+    } else if (/[A-Za-z]/g.test(userPhoneinput) || !/\d/.test(userPhoneinput)) {
+        $('#phone').val('');
+        $('#phone').attr('placeholder', 'numbers only');
+        $('#phone').attr('class', 'form-control border-danger');
+        return false;
+    } else {
+        userPhoneinput = `+1${userPhoneinput}`;
+        var phoneNumber = userPhoneinput || '+17024285828';
+        database.ref(`/user/${userName}/saved`).set(userEventArray.concat(userFoodArray).concat(userActivityArray));
 
-    fetch("https://node-practice-14bhtuncu.now.sh/api/sms", {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                phone: phoneNumber,
-                food: userFoodArray,
-                event: userEventArray,
-                activity: userActivityArray
+        fetch("https://cors-anywhere.herokuapp.com/https://node-practice-14bhtuncu.now.sh/api/sms", {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    phone: phoneNumber,
+                    food: userFoodArray,
+                    event: userEventArray,
+                    activity: userActivityArray
+                })
             })
-        })
-        .then(function() {
-            // console.log("Hey");
-        })
-        .catch(err => {
-            console.error(err)
-        })
+            .then(function() {
+                // console.log("Hey");
+            })
+            .catch(err => {
+                console.error(err)
+            })
+        $('#phone').val('');
+        $('#phone').attr('class', 'form-control');
+    }
 });
 
 //function pushes the save card data to firebase unde the user's name
