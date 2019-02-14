@@ -19,3 +19,4 @@ Future development goals include
 * Authentication with Google, Facebook, etc.
 * Ability for users to add multiple days to their journey
 * Let user add their hotel information to allow a more customized search by location or distance
+* Use stored user data to create review process where users can rate us on how well we 
